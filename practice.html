@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="style2.css">
+    
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin&family=Onest&family=Syne:wght@800&family=Young+Serif&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=Urbanist:ital,wght@0,100;1,100&display=swap" rel="stylesheet">
+
+<div class="Home"> <a href="index.html">Back</a> </div>
+</head>
+    <script>
+        function addRow() {
+            var table = document.getElementById('myTable');
+            //var row = document.getElementById("myTable");
+            var x = table.insertRow(0);
+            var e = table.rows.length-1;
+            var l = table.rows[e].cells.length;
+            //x.innerHTML = "&nbsp;";
+
+            for (var c=0, m=l; c < m; c++) {
+                table.rows[0].insertCell(c);
+                table.rows[0].cells[c].innerHTML = "&nbsp;&nbsp;";
+            }
+        }
+
+        function addColumn() {
+            var table = document.getElementById('myTable');
+            for (var r = 0, n = table.rows.length; r < n; r++) {
+                table.rows[r].insertCell(0);
+                table.rows[r].cells[0].innerHTML = "&nbsp;&nbsp;";
+            }
+        }
+
+        function deleteRow() {
+            document.getElementById("myTable").deleteRow(0);
+        }
+
+        function deleteColumn() {
+            // var row = document.getElementById("myRow");
+            var table = document.getElementById('myTable');
+            for (var r = 0, n = table.rows.length; r < n; r++) {
+                table.rows[r].deleteCell(0); // var table handle
+            }
+        }
+    </script>
+
+    <style>
+
+    .myTable {
+        display: flex;
+        justify-content: center;
+    }
+
+
+
+    </style>
+
+    <body>
+        <input type="button" value="row +" onClick="addRow()" border=0 style='cursor:hand'>
+        <input type="button" value="row -" onClick='deleteRow()' border=0 style='cursor:hand'>
+        <input type="button" value="column +" onClick="addColumn()" border=0 style='cursor:hand'>
+        <input type="button" value="column -" onClick='deleteColumn()' border=0 style='cursor:hand'>
+
+        <table  id='myTable' border=1 cellpadding=0 cellspacing=0>
+            <thead> 
+                <th>Accomodation</th>
+                <th>Rate</th>
+                <th>Nights</th>
+                <th>Cost</th>
+            </thead>
+            <tbody>
+            <tr>
+                <td contenteditable="true">&nbsp;</td>
+                <td contenteditable="true">&nbsp;</td>
+                <td contenteditable="true">&nbsp;</td>
+                <td contenteditable="true">&nbsp;</td>
+            </tr>
+            <tr>
+                <td id='myRow'contenteditable="true">&nbsp;</td>
+                <td contenteditable="true">&nbsp;</td>
+                <td contenteditable="true">&nbsp;</td>
+                <td contenteditable="true">&nbsp;</td>
+                
+            </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
