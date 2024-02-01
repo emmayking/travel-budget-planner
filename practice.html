@@ -13,81 +13,108 @@
 
 <div class="Home"> <a href="index.html">Back</a> </div>
 </head>
-    <script>
-        function addRow() {
-            var table = document.getElementById('myTable');
-            //var row = document.getElementById("myTable");
-            var x = table.insertRow(0);
-            var e = table.rows.length-1;
-            var l = table.rows[e].cells.length;
-            //x.innerHTML = "&nbsp;";
+  
+<body>
 
-            for (var c=0, m=l; c < m; c++) {
-                table.rows[0].insertCell(c);
-                table.rows[0].cells[c].innerHTML = "&nbsp;&nbsp;";
-            }
-        }
+<h1 contenteditable="true">Destination (edit)</h1>
 
-        function addColumn() {
-            var table = document.getElementById('myTable');
-            for (var r = 0, n = table.rows.length; r < n; r++) {
-                table.rows[r].insertCell(0);
-                table.rows[r].cells[0].innerHTML = "&nbsp;&nbsp;";
-            }
-        }
+<p contenteditable="true">Travel Dates (edit)</p>
 
-        function deleteRow() {
-            document.getElementById("myTable").deleteRow(0);
-        }
+ <table>
+ <thead>
+    <th>Accomodation</th>
+    <th>Date</th>
+    <th>Rate</th>
+    <th>Nights</th>
+    <th>Cost</th>
+ </thead>
 
-        function deleteColumn() {
-            // var row = document.getElementById("myRow");
-            var table = document.getElementById('myTable');
-            for (var r = 0, n = table.rows.length; r < n; r++) {
-                table.rows[r].deleteCell(0); // var table handle
-            }
-        }
-    </script>
+<div class="wrapper">
+    <button id="addRow">Add</button>
+    <button id="deleteRow">Remove</button>
+ <tbody id="tableBody">
+    <tr>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true">$</td>
+        <td contenteditable="true">#</td>
+        <td contenteditable="true">$</td>
+      </tr>
+<!-- filled by script -->
+ </tbody>
+</div>
 
-    <style>
+<tfoot>
+    <tr>
+        <th>Total</th>
+        <div class="total-amount-box"><th contenteditable = "true" colspan="4" class="total-amount-box">$</th></div>
+    </tr>
+</tfoot>
 
-    .myTable {
-        display: flex;
-        justify-content: center;
-    }
+</table>
 
+<script>
 
+document.getElementById("addRow").addEventListener("click", function() {
+            
+let tableBody = document.getElementById("tableBody")
+let row = tableBody.insertRow(-1);
+let cell0 = row.insertCell(0);
+let cell1 = row.insertCell(1);
+let cell2 = row.insertCell(2);
+let cell3 = row.insertCell(3);
+let cell4 = row.insertCell(4);
 
-    </style>
+cell0.innerHTML = '<div contenteditable="true"></div>';
+cell1.innerHTML = '<div contenteditable="true"></div>';
+cell2.innerHTML = '<div contenteditable="true">$</div>';
+cell3.innerHTML = '<div contenteditable="true">#</div>';
+cell4.innerHTML = '<div contenteditable="true">$</div>';
+ })
 
-    <body>
-        <input type="button" value="row +" onClick="addRow()" border=0 style='cursor:hand'>
-        <input type="button" value="row -" onClick='deleteRow()' border=0 style='cursor:hand'>
-        <input type="button" value="column +" onClick="addColumn()" border=0 style='cursor:hand'>
-        <input type="button" value="column -" onClick='deleteColumn()' border=0 style='cursor:hand'>
+ document.getElementById("deleteRow").addEventListener("click", function (){
+    let tableBody = document.getElementById("tableBody")
+    let row = tableBody.deleteRow(-1);
+    let cell0 = row.deleteCell(0);
+    let cell1 = row.deleteCell(1);
+    let cell2 = row.deleteCell(2);
+    let cell3 = row.deleteCell(4);
 
-        <table  id='myTable' border=1 cellpadding=0 cellspacing=0>
-            <thead> 
-                <th>Accomodation</th>
-                <th>Rate</th>
-                <th>Nights</th>
-                <th>Cost</th>
-            </thead>
-            <tbody>
-            <tr>
-                <td contenteditable="true">&nbsp;</td>
-                <td contenteditable="true">&nbsp;</td>
-                <td contenteditable="true">&nbsp;</td>
-                <td contenteditable="true">&nbsp;</td>
-            </tr>
-            <tr>
-                <td id='myRow'contenteditable="true">&nbsp;</td>
-                <td contenteditable="true">&nbsp;</td>
-                <td contenteditable="true">&nbsp;</td>
-                <td contenteditable="true">&nbsp;</td>
-                
-            </tr>
-            </tbody>
-        </table>
-    </body>
-</html>
+    cell0.innerHTML = '<div contenteditable="true"></div>';
+    cell1.innerHTML = '<div contenteditable="true"></div>';
+    cell2.innerHTML = '<div contenteditable="true">$</div>';
+    cell3.innerHTML = '<div contenteditable="true">#</div>';
+    cell4.innerHTML = '<div contenteditable="true">$</div>'; 
+ })
+ </script>
+
+ <div class="Transport">
+  <table>
+  <thead>
+    <th>Transport</th>
+    <th>Date</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Cost</th>
+  </thead>
+  <tbody>
+    <tr>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true">$</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+        <th>Total</th>
+        <div class="total-amount-box"><th contenteditable = "true" colspan="4" class="total-amount-box">$</th></div>
+    </tr>
+</tfoot>
+ </table>
+</div>
+ </body>   
+  
+
+ </html>
