@@ -43,7 +43,7 @@
 </div>
 
 <div class="Accomodation">
- <table>
+ <table id="table1">
  <thead>
     <th>Accomodation</th>
     <th>Date</th>
@@ -53,15 +53,15 @@
  </thead>
 
  <div class="wrapper">
-  <button class= "ButtonAddDelete" id= "addRow"><span class="material-symbols-outlined">add</span></button>
-  <button class="ButtonAddDelete" id="deleteRow"><span class="material-symbols-outlined">delete</span></button>
-  <tbody id="tableBody">
+  <button class= "ButtonAddDelete" id= "addRow1"><span class="material-symbols-outlined">add</span></button>
+  <button class="ButtonAddDelete" id="deleteRow1"><span class="material-symbols-outlined">delete</span></button>
+  <tbody id="tableBody1">
     <tr>
         <td contenteditable="true"></td>
         <td contenteditable="true"></td>
-        <td contenteditable="true">$</td>
-        <td contenteditable="true">#</td>
-        <td contenteditable="true">$</td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
       </tr>
  </tbody>
 </div>
@@ -69,7 +69,7 @@
 <tfoot>
     <tr>
         <th>Total</th>
-        <div class="total-amount-box"><th contenteditable = "true" colspan="4" class="total-amount-box">$</th></div>
+        <div class="total-amount-box"><th id="totalValue1"colspan="4" class="total-amount-box">0</th></div>
     </tr>
 </tfoot>
 
@@ -84,7 +84,7 @@
 
 
  <div class="Transport">
-  <table>
+  <table id="table2">
    <thead>
     <th>Transport</th>
     <th>Date</th>
@@ -94,22 +94,22 @@
   </thead>
 
   <div class="wrapper">
-    <button class= "ButtonAddDelete" id= "addRowT"><span class="material-symbols-outlined">add</span></button>
-    <button class="ButtonAddDelete" id="deleteRowT"><span class="material-symbols-outlined">delete</span></button>
-  <tbody id="tableBodyT">
+    <button class= "ButtonAddDelete" id= "addRow2"><span class="material-symbols-outlined">add</span></button>
+    <button class="ButtonAddDelete" id="deleteRow2"><span class="material-symbols-outlined">delete</span></button>
+  <tbody id="tableBody2">
     <tr>
         <td contenteditable="true"></td>
         <td contenteditable="true"></td>
         <td contenteditable="true"></td>
         <td contenteditable="true"></td>
-        <td contenteditable="true">$</td>
+        <td contenteditable="true"></td>
     </tr>
   </tbody>
 </div>
   <tfoot>
     <tr>
         <th>Total</th>
-        <div class="total-amount-box"><th contenteditable = "true" colspan="4" class="total-amount-box">$</th></div>
+        <div class="total-amount-box"><th id= "totalValue2" colspan="4" class="total-amount-box">0</th></div>
     </tr>
   </tfoot>
  </table>
@@ -130,8 +130,9 @@
       <th>Cost</th>
     </thead>
     <div class="wrapper">
-      <button class= "ButtonAddDelete" id= "addRowF"><span class="material-symbols-outlined">add</span></button>
-      <button class="ButtonAddDelete" id="deleteRowF"><span class="material-symbols-outlined">delete</span></button>
+      <button class= "ButtonAddDelete" id= "addRow3"><span class="material-symbols-outlined">add</span></button>
+      <button class="ButtonAddDelete" id="deleteRow3"><span class="material-symbols-outlined">delete</span></button>
+      <tbody id="tableBody3">
       <tr>
         <td contenteditable="true"></td>
         <td><select class= "selectFood" name="Type"><span class="material-symbols-outlined">delete</span>
@@ -145,14 +146,14 @@
           <option value ="Groceries">Night Out</option></select> 
       </td>
         <td contenteditable="true"></td>
-        <td contenteditable="true">$</td>
+        <td contenteditable="true"></td>
       </tr>
     </tbody>
     </div>
     <tfoot>
       <tr>
         <th>Total</th>
-        <div class="total-amount-box"><th contenteditable = "true" colspan="4" class="total-amount-box">$</th></div>
+        <div class="total-amount-box"><th id = "totalValue3"contenteditable = "true" colspan="4" class="total-amount-box">0</th></div>
       </tr>
   </tfoot>
    </table>
@@ -277,7 +278,11 @@
 <span class="material-symbols-outlined">shopping_bag</span>
 <span class="material-symbols-outlined">paid</span>
 
- <script src="script.js"></script>
+
+
+
+
+ <script src="scriptTest.js"></script>
  </body>   
   
 
