@@ -1,5 +1,5 @@
 
-document.getElementById("addRow").addEventListener("click", function() {
+document.getElementById("addRow").addEventListener("click", function () {
    let tableBody = document.getElementById("tableBody");
    let row = tableBody.insertRow(-1);
    let cell0 = row.insertCell(0);
@@ -7,6 +7,7 @@ document.getElementById("addRow").addEventListener("click", function() {
    let cell2 = row.insertCell(2);
    let cell3 = row.insertCell(3);
    let cell4 = row.insertCell(4);
+
 
    cell0.innerHTML = '<div contenteditable="true"></div>';
    cell1.innerHTML = '<div contenteditable="true"></div>';
@@ -17,11 +18,11 @@ document.getElementById("addRow").addEventListener("click", function() {
    cell4.addEventListener('input', calculateTotal);
 });
 
-document.getElementById("deleteRow").addEventListener("click", function() {
+document.getElementById("deleteRow").addEventListener("click", function () {
    let tableBody = document.getElementById("tableBody");
    if (tableBody.rows.length > 0) {
-       tableBody.deleteRow(-1);
-       calculateTotal(); 
+      tableBody.deleteRow(-1);
+      calculateTotal();
    }
 });
 
@@ -29,18 +30,18 @@ function calculateTotal() {
    let total = 0;
    let tableBody = document.getElementById("tableBody");
    for (let row of tableBody.rows) {
-       let value = row.cells[4].innerText; 
-       total += parseFloat(value) || 0; 
+      let value = row.cells[4].innerText;
+      total += parseFloat(value) || 0;
    }
    document.getElementById("totalValue").innerText = total.toFixed(2);
 }
 
-   
 
- /* Transport 'T' */
 
- document.getElementById("addRowT").addEventListener("click", function() {
-            
+/* Transport 'T' */
+
+document.getElementById("addRowT").addEventListener("click", function () {
+
    let tableBodyT = document.getElementById("tableBodyT")
    let row = tableBodyT.insertRow(-1);
    let cell0 = row.insertCell(0);
@@ -48,19 +49,19 @@ function calculateTotal() {
    let cell2 = row.insertCell(2);
    let cell3 = row.insertCell(3);
    let cell4 = row.insertCell(4);
-      
+
    cell0.innerHTML = '<div contenteditable="true"></div>';
    cell1.innerHTML = '<div contenteditable="true"></div>';
    cell2.innerHTML = '<div contenteditable="true">$</div>';
    cell3.innerHTML = '<div contenteditable="true"></div>';
    cell4.innerHTML = '<div contenteditable="true"></div>';
 
-        
-    })
-         
-         
-document.getElementById("deleteRowT").addEventListener("click", function (){
-   
+
+})
+
+
+document.getElementById("deleteRowT").addEventListener("click", function () {
+
    let tableBodyA = document.getElementById("tableBodyT")
    let row = tableBodyT.deleteRow(-1);
    let cell0 = row.deleteCell(0);
@@ -68,17 +69,17 @@ document.getElementById("deleteRowT").addEventListener("click", function (){
    let cell2 = row.deleteCell(2);
    let cell3 = row.deleteCell(3);
    let cell4 = row.deleteCell(4);
-            
-         
+
+
    cell0.innerHTML = '<div contenteditable="true"></div>';
    cell1.innerHTML = '<div contenteditable="true"></div>';
    cell2.innerHTML = '<div contenteditable="true">$</div>';
    cell3.innerHTML = '<div contenteditable="true"></div>';
    cell4.innerHTML = '<div contenteditable="true"></div>';
 
-    })
- document.getElementById("addRowT").addEventListener("click", function() {
-            
+})
+document.getElementById("addRowT").addEventListener("click", function () {
+
    let tableBodyT = document.getElementById("tableBodyT")
    let row = tableBodyT.insertRow(-1);
    let cell0 = row.insertCell(0);
@@ -86,23 +87,23 @@ document.getElementById("deleteRowT").addEventListener("click", function (){
    let cell2 = row.insertCell(2);
    let cell3 = row.insertCell(3);
    let cell4 = row.insertCell(4);
-   
+
    cell0.innerHTML = '<div contenteditable="true"></div>';
    cell1.innerHTML = '<div contenteditable="true"></div>';
    cell2.innerHTML = '<div contenteditable="true"></div>';
    cell3.innerHTML = '<div contenteditable="true"></div>';
    cell4.innerHTML = '<div contenteditable="true"></div>';
- })
+})
 
 /* Food & Drink 'F' */
 
-document.getElementById("addRowF").addEventListener("click", function() {
+document.getElementById("addRowF").addEventListener("click", function () {
    var table = document.getElementById("foodT").getElementsByTagName('tbody')[0];
    var newRow = table.insertRow(table.rows.length);
 
    var cells = [];
    for (var i = 0; i < 4; i++) {
-       cells.push(newRow.insertCell(i));
+      cells.push(newRow.insertCell(i));
    }
 
    cells[0].contentEditable = true;
@@ -117,113 +118,112 @@ document.getElementById("addRowF").addEventListener("click", function() {
    <option value="Groceries">Night Out</option></select>`;
    cells[2].contentEditable = true;
    cells[3].contentEditable = true;
-}); 
+});
 
-document.getElementById("deleteRowF").addEventListener("click", function() {
+document.getElementById("deleteRowF").addEventListener("click", function () {
    var table = document.getElementById("foodT").getElementsByTagName('tbody')[0];
-   if (table.rows.length > 1) { 
-       table.deleteRow(table.rows.length - 1);
+   if (table.rows.length > 1) {
+      table.deleteRow(table.rows.length - 1);
    }
 });
 
-   
- /* Activities 'A' */
 
-document.getElementById("addRowA").addEventListener("click", function() {
-            
+/* Activities 'A' */
+
+document.getElementById("addRowA").addEventListener("click", function () {
+
    let tableBodyA = document.getElementById("tableBodyA")
    let row = tableBodyA.insertRow(-1);
    let cell0 = row.insertCell(0);
    let cell1 = row.insertCell(1);
    let cell2 = row.insertCell(2);
-      
+
    cell0.innerHTML = '<div contenteditable="true"></div>';
    cell1.innerHTML = '<div contenteditable="true"></div>';
    cell2.innerHTML = '<div contenteditable="true">$</div>';
-        
-    })
-         
-         
-document.getElementById("deleteRowA").addEventListener("click", function (){
-   
+
+})
+
+
+document.getElementById("deleteRowA").addEventListener("click", function () {
+
    let tableBodyA = document.getElementById("tableBodyA")
    let row = tableBodyA.deleteRow(-1);
    let cell0 = row.deleteCell(0);
    let cell1 = row.deleteCell(1);
    let cell2 = row.deleteCell(2);
-            
-         
+
+
    cell0.innerHTML = '<div contenteditable="true"></div>';
    cell1.innerHTML = '<div contenteditable="true"></div>';
    cell2.innerHTML = '<div contenteditable="true">$</div>';
-             
-    })
+
+})
 
 
 /* Shopping 'S' */
 
-document.getElementById("addRowS").addEventListener("click", function() {
-            
-let tableBodyS = document.getElementById("tableBodyS")
-let row = tableBodyS.insertRow(-1);
-let cell0 = row.insertCell(0);
-let cell1 = row.insertCell(1);
-let cell2 = row.insertCell(2);
-         
-            
-cell0.innerHTML = '<div contenteditable="true"></div>';
-cell1.innerHTML = '<div contenteditable="true"></div>';
-cell2.innerHTML = '<div contenteditable="true">$</div>';
-           
- })
-            
-            
- document.getElementById("deleteRowS").addEventListener("click", function (){
+document.getElementById("addRowS").addEventListener("click", function () {
+
+   let tableBodyS = document.getElementById("tableBodyS")
+   let row = tableBodyS.insertRow(-1);
+   let cell0 = row.insertCell(0);
+   let cell1 = row.insertCell(1);
+   let cell2 = row.insertCell(2);
+
+
+   cell0.innerHTML = '<div contenteditable="true"></div>';
+   cell1.innerHTML = '<div contenteditable="true"></div>';
+   cell2.innerHTML = '<div contenteditable="true">$</div>';
+
+})
+
+
+document.getElementById("deleteRowS").addEventListener("click", function () {
 
    let tableBodyS = document.getElementById("tableBodyS")
    let row = tableBodyS.deleteRow(-1);
    let cell0 = row.deleteCell(0);
    let cell1 = row.deleteCell(1);
    let cell2 = row.deleteCell(2);
-               
-            
+
+
    cell0.innerHTML = '<div contenteditable="true"></div>';
    cell1.innerHTML = '<div contenteditable="true"></div>';
    cell2.innerHTML = '<div contenteditable="true">$</div>';
-                
-    })
-    
- /* Extra 'E' */
 
-document.getElementById("addRowE").addEventListener("click", function() {
-            
+})
+
+/* Extra 'E' */
+
+document.getElementById("addRowE").addEventListener("click", function () {
+
    let tableBodyE = document.getElementById("tableBodyE")
    let row = tableBodyE.insertRow(-1);
    let cell0 = row.insertCell(0);
    let cell1 = row.insertCell(1);
    let cell2 = row.insertCell(2);
-            
-               
+
+
    cell0.innerHTML = '<div contenteditable="true"></div>';
    cell1.innerHTML = '<div contenteditable="true"></div>';
    cell2.innerHTML = '<div contenteditable="true">$</div>';
-              
-    })
-               
-               
-    document.getElementById("deleteRowE").addEventListener("click", function (){
-   
-      let tableBodyE = document.getElementById("tableBodyE")
-      let row = tableBodyE.deleteRow(-1);
-      let cell0 = row.deleteCell(0);
-      let cell1 = row.deleteCell(1);
-      let cell2 = row.deleteCell(2);
-                  
-               
-      cell0.innerHTML = '<div contenteditable="true"></div>';
-      cell1.innerHTML = '<div contenteditable="true"></div>';
-      cell2.innerHTML = '<div contenteditable="true">$</div>';
-                   
-       })
-       
-    
+
+})
+
+
+document.getElementById("deleteRowE").addEventListener("click", function () {
+
+   let tableBodyE = document.getElementById("tableBodyE")
+   let row = tableBodyE.deleteRow(-1);
+   let cell0 = row.deleteCell(0);
+   let cell1 = row.deleteCell(1);
+   let cell2 = row.deleteCell(2);
+
+
+   cell0.innerHTML = '<div contenteditable="true"></div>';
+   cell1.innerHTML = '<div contenteditable="true"></div>';
+   cell2.innerHTML = '<div contenteditable="true">$</div>';
+
+})
+

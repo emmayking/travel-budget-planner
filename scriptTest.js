@@ -1,70 +1,49 @@
 
-/* Accomodation & Transport */
+/* Accomodation */
 
-// Function to calculate total for a specific table
-function calculateTotal(tableId) {
-    let total = 0;
-    const tableBody = document.getElementById('tableBody' + tableId);
-    const rows = tableBody.getElementsByTagName('tr');
-    
-    // Iterate over each row
-    for (let i = 0; i < rows.length; i++) {
-        const cells = rows[i].getElementsByTagName('td');
-        const costCell = cells[cells.length - 1]; // Last cell (cost cell)
-        const costValue = parseFloat(costCell.innerText) || 0;
-        total += costValue;
+document.getElementById("addAccomodation").addEventListener("click", function () {
+    let accomodationTableBody = document.getElementById("accomodationTableBody");
+    let row = accomodationTableBody.insertRow(-1); 
+    let cell0 = row.insertCell(0);
+    let cell1 = row.insertCell(1);
+    let cell2 = row.insertCell(2);
+    let cell3 = row.insertCell(3);
+    let cell4 = row.insertCell(4);
+ 
+ 
+    cell0.innerHTML = '<div contenteditable="true"></div>';
+    cell1.innerHTML = '<div contenteditable="true"></div>';
+    cell2.innerHTML = '<div contenteditable="true"></div>';
+    cell3.innerHTML = '<div contenteditable="true"></div>';
+    cell4.innerHTML = '<div contenteditable="true"></div>';
+ 
+    cell4.addEventListener('input', calculateTotal);
+ });
+ 
+ document.getElementById("deleteAccomodation").addEventListener("click", function () {
+    let accomodationTableBody = document.getElementById("accomodationTableBody");
+    if (accomodationTableBody.rows.length > 0) {
+       accomodationTableBody.deleteRow(-1);
+       calculateTotal();
     }
-    
-    // Update the total value
-    document.getElementById('totalValue' + tableId).textContent = total.toFixed(2);
-}
+ });
+ 
+ function calculateTotal() {
+    let total = 0;
+    let accommodationTableBody = document.getElementById("accomodationTableBody");
+    for (let row of accomodationTableBody.rows) {
+       let value = row.cells[4].innerText;
+       total += parseFloat(value) || 0;
+    }
+    document.getElementById("totalAccomodation").innerText = total.toFixed(2);
+ }
 
-// Setup event listeners for both tables
-function setupTable(tableId, addBtnId, deleteBtnId, totalValueId) {
-    const addButton = document.getElementById(addBtnId);
-    const deleteButton = document.getElementById(deleteBtnId);
-    const totalValue = document.getElementById(totalValueId);
 
-    // Add event listener for adding a row
-    addButton.addEventListener('click', function() {
-        const tableBody = document.getElementById('tableBody' + tableId);
-        const newRow = tableBody.insertRow();
-        
-        // Insert cells
-        for (let i = 0; i < 5; i++) {
-            const cell = newRow.insertCell(i);
-            cell.contentEditable = true;
-            if (i === 4) {
-                // Attach event listener to the last cell (cost cell) for real-time calculation
-                cell.addEventListener('input', function() {
-                    calculateTotal(tableId);
-                });
-            }
-        }
-        
-        // Initially calculate total after adding a new row
-        calculateTotal(tableId);
-    });
+ 
 
-    // Add event listener for deleting a row
-    deleteButton.addEventListener('click', function() {
-        const tableBody = document.getElementById('tableBody' + tableId);
-        if (tableBody.rows.length > 0) {
-            tableBody.deleteRow(-1);
-            calculateTotal(tableId);
-        }
-    });
-
-    // Initial total calculation
-    calculateTotal(tableId);
-}
-
-// Setup tables
-setupTable(1, 'addRow1', 'deleteRow1', 'totalValue1');
-setupTable(2, 'addRow2', 'deleteRow2', 'totalValue2');
 
     
-/*Food*/
+/* Food */
         document.getElementById("addRowF").addEventListener("click", function() {
             const tableBodyF = document.getElementById("tableBodyF");
             const newRow = tableBodyF.insertRow();
@@ -84,7 +63,7 @@ setupTable(2, 'addRow2', 'deleteRow2', 'totalValue2');
         });
 
         const initialCostCells = document.querySelectorAll('#tableBodyF tr td:nth-child(4)');
-        initialCostCells.forEach(cell => {
+        (document.querySelectorAll('#tableBodyF tr td:nth-child(4)')).forEach(cell => {
         cell.addEventListener('input', calculateTotalCost)
         });
 
@@ -110,5 +89,7 @@ setupTable(2, 'addRow2', 'deleteRow2', 'totalValue2');
 
         calculateTotalCost(); 
 
-        /* Activities & Shopping & Other */ 
+
+
+
 
