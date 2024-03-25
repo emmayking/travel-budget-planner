@@ -1,42 +1,4 @@
 
-document.getElementById("add-accommdation-row").addEventListener("click", function () {
-   let accommodationTableBody = document.getElementById("accommodation-table-body");
-   let row = tableBody.insertRow(-1);
-   let cell0 = row.insertCell(0);
-   let cell1 = row.insertCell(1);
-   let cell2 = row.insertCell(2);
-   let cell3 = row.insertCell(3);
-   let cell4 = row.insertCell(4);
-
-
-   cell0.innerHTML = '<div contenteditable="true"></div>';
-   cell1.innerHTML = '<div contenteditable="true"></div>';
-   cell2.innerHTML = '<div contenteditable="true"></div>';
-   cell3.innerHTML = '<div contenteditable="true"></div>';
-   cell4.innerHTML = '<div contenteditable="true"></div>';
-
-   cell4.addEventListener('input', calculateTotal);
-});
-
-document.getElementById("deleteRow").addEventListener("click", function () {
-   let tableBody = document.getElementById("tableBody");
-   if (tableBody.rows.length > 0) {
-      tableBody.deleteRow(-1);
-      calculateTotal();
-   }
-});
-
-function calculateTotal() {
-   let total = 0;
-   let tableBody = document.getElementById("tableBody");
-   for (let row of tableBody.rows) {
-      let value = row.cells[4].innerText;
-      total += parseFloat(value) || 0;
-   }
-   document.getElementById("totalValue").innerText = total.toFixed(2);
-}
-
-
 
 /* Transport 'T' */
 
@@ -79,60 +41,60 @@ document.getElementById("deleteTransportRow").addEventListener("click", function
 
 })
 
-/* Food & Drink 'F' */
+/* Food & Drink */
 
-document.getElementById("add").addEventListener("click", function () {
-   var table = document.getElementById("foodT").getElementsByTagName('tbody')[0];
-   var newRow = table.insertRow(table.rows.length);
+document.getElementById("addFoodRow").addEventListener("click", function() {
+   const foodTableBody = document.getElementById("foodTableBody");
+   const newRow = foodTableBody.insertRow();
+   const cell0 = newRow.insertCell(0);
+   const cell1 = newRow.insertCell(1);
+   const cell2 = newRow.insertCell(2);
+   const cell3 = newRow.insertCell(3);
 
-   var cells = [];
-   for (var i = 0; i < 4; i++) {
-      cells.push(newRow.insertCell(i));
-   }
-
-   cells[0].contentEditable = true;
-   cells[1].innerHTML = `<select class="selectFood" name="Type">
-   <option value="Select">Select</option>
-   <option value="Breakfast">Breakfast</option>
-    <option value="Lunch">Lunch</option>
-   <option value="Dinner">Dinner</option>
-   <option value="Snack">Snack</option>
-   <option value="Drink">Beverage</option>
-   <option value="Drink">Grocery Run</option>
-   <option value="Groceries">Night Out</option></select>`;
-   cells[2].contentEditable = true;
-   cells[3].contentEditable = true;
+   cell0.contentEditable = "true";
+   cell1.innerHTML = '<select class="select_food" name="Type"><option value="Select">Select</option><option value="Breakfast">Breakfast</option><option value="Lunch">Lunch</option><option value="Dinner">Dinner</option><option value="Snack">Snack</option><option value="Drink">Beverage</option><option value="Drink">Grocery Run</option><option value="Groceries">Night Out</option></select>';
+   cell2.contentEditable = "true";
+   cell3.contentEditable = "true";
 });
 
-document.getElementById("deleteRowF").addEventListener("click", function () {
-   var table = document.getElementById("foodT").getElementsByTagName('tbody')[0];
-   if (table.rows.length > 1) {
-      table.deleteRow(table.rows.length - 1);
-   }
+   document.getElementById("deleteFoodRow").addEventListener("click", function () {
+
+      const foodTableBody = document.getElementById("foodTableBody");
+      const newRow = foodTableBody.deleteRow(-1);
+      const cell0 = newRow.deleteCell(0);
+      const cell1 = newRow.deleteCell(1);
+      const cell2 = newRow.deleteCell(2);
+      const cell3 = newRow.deleteCell(3);
+   
+      cell0.contentEditable = "true";
+      cell1.innerHTML = '<select class="select_food" name="Type"><option value="Select">Select</option><option value="Breakfast">Breakfast</option><option value="Lunch">Lunch</option><option value="Dinner">Dinner</option><option value="Snack">Snack</option><option value="Drink">Beverage</option><option value="Drink">Grocery Run</option><option value="Groceries">Night Out</option></select>';
+      cell2.contentEditable = "true";
+      cell3.contentEditable = "true";
+      
 });
 
 
-/* Activities 'A' */
+/* Activities */
 
-document.getElementById("addRowA").addEventListener("click", function () {
+document.getElementById("addActivityRow").addEventListener("click", function () {
 
-   let tableBodyA = document.getElementById("tableBodyA")
-   let row = tableBodyA.insertRow(-1);
+   let activitiesTableBody = document.getElementById("activitiesTableBody")
+   let row = activitiesTableBody.insertRow(-1);
    let cell0 = row.insertCell(0);
    let cell1 = row.insertCell(1);
    let cell2 = row.insertCell(2);
 
    cell0.innerHTML = '<div contenteditable="true"></div>';
    cell1.innerHTML = '<div contenteditable="true"></div>';
-   cell2.innerHTML = '<div contenteditable="true">$</div>';
+   cell2.innerHTML = '<div contenteditable="true"></div>';
 
 })
 
 
-document.getElementById("deleteRowA").addEventListener("click", function () {
+document.getElementById("deleteActivityRow").addEventListener("click", function () {
 
-   let tableBodyA = document.getElementById("tableBodyA")
-   let row = tableBodyA.deleteRow(-1);
+   let activitiesTableBody = document.getElementById("activitiesTableBody")
+   let row = activitiesTableBody.deleteRow(-1);
    let cell0 = row.deleteCell(0);
    let cell1 = row.deleteCell(1);
    let cell2 = row.deleteCell(2);
@@ -140,17 +102,17 @@ document.getElementById("deleteRowA").addEventListener("click", function () {
 
    cell0.innerHTML = '<div contenteditable="true"></div>';
    cell1.innerHTML = '<div contenteditable="true"></div>';
-   cell2.innerHTML = '<div contenteditable="true">$</div>';
+   cell2.innerHTML = '<div contenteditable="true"></div>';
 
 })
 
 
-/* Shopping 'S' */
+/* Shopping */
 
-document.getElementById("addRowS").addEventListener("click", function () {
+document.getElementById("addShoppingRow").addEventListener("click", function () {
 
-   let tableBodyS = document.getElementById("tableBodyS")
-   let row = tableBodyS.insertRow(-1);
+   let shoppingTableBody = document.getElementById("shoppingTableBody")
+   let row = shoppingTableBody.insertRow(-1);
    let cell0 = row.insertCell(0);
    let cell1 = row.insertCell(1);
    let cell2 = row.insertCell(2);
@@ -158,15 +120,15 @@ document.getElementById("addRowS").addEventListener("click", function () {
 
    cell0.innerHTML = '<div contenteditable="true"></div>';
    cell1.innerHTML = '<div contenteditable="true"></div>';
-   cell2.innerHTML = '<div contenteditable="true">$</div>';
+   cell2.innerHTML = '<div contenteditable="true"></div>';
 
 })
 
 
-document.getElementById("deleteRowS").addEventListener("click", function () {
+document.getElementById("deleteShoppingRow").addEventListener("click", function () {
 
-   let tableBodyS = document.getElementById("tableBodyS")
-   let row = tableBodyS.deleteRow(-1);
+   let shoppingTableBody = document.getElementById("shoppingTableBody")
+   let row = shoppingTableBody.deleteRow(-1);
    let cell0 = row.deleteCell(0);
    let cell1 = row.deleteCell(1);
    let cell2 = row.deleteCell(2);
@@ -174,16 +136,16 @@ document.getElementById("deleteRowS").addEventListener("click", function () {
 
    cell0.innerHTML = '<div contenteditable="true"></div>';
    cell1.innerHTML = '<div contenteditable="true"></div>';
-   cell2.innerHTML = '<div contenteditable="true">$</div>';
+   cell2.innerHTML = '<div contenteditable="true"></div>';
 
 })
 
-/* Extra 'E' */
+/* Extra */
 
-document.getElementById("addRowE").addEventListener("click", function () {
+document.getElementById("addExtraExpensesRow").addEventListener("click", function () {
 
-   let tableBodyE = document.getElementById("tableBodyE")
-   let row = tableBodyE.insertRow(-1);
+   let extraExpensesTableBody = document.getElementById("extraExpensesTableBody")
+   let row = extraExpensesTableBody.insertRow(-1);
    let cell0 = row.insertCell(0);
    let cell1 = row.insertCell(1);
    let cell2 = row.insertCell(2);
@@ -191,15 +153,15 @@ document.getElementById("addRowE").addEventListener("click", function () {
 
    cell0.innerHTML = '<div contenteditable="true"></div>';
    cell1.innerHTML = '<div contenteditable="true"></div>';
-   cell2.innerHTML = '<div contenteditable="true">$</div>';
+   cell2.innerHTML = '<div contenteditable="true"></div>';
 
 })
 
 
-document.getElementById("deleteRowE").addEventListener("click", function () {
+document.getElementById("deleteExtraExpensesRow").addEventListener("click", function () {
 
-   let tableBodyE = document.getElementById("tableBodyE")
-   let row = tableBodyE.deleteRow(-1);
+   let extraExpensesTableBody = document.getElementById("extraExpensesTableBody")
+   let row = extraExpensesTableBody.deleteRow(-1);
    let cell0 = row.deleteCell(0);
    let cell1 = row.deleteCell(1);
    let cell2 = row.deleteCell(2);
@@ -207,7 +169,7 @@ document.getElementById("deleteRowE").addEventListener("click", function () {
 
    cell0.innerHTML = '<div contenteditable="true"></div>';
    cell1.innerHTML = '<div contenteditable="true"></div>';
-   cell2.innerHTML = '<div contenteditable="true">$</div>';
+   cell2.innerHTML = '<div contenteditable="true"></div>';
 
 })
 

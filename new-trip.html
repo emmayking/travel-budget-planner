@@ -22,7 +22,7 @@
 <h1 contenteditable="true">(Destination)</h1>
 <p contenteditable="true">(Travel Dates)</p>
 
-<div class="accommodation-title">
+<div class="accommodation_title">
 <span class="material-symbols-outlined">night_shelter</span>
 
 <style>
@@ -43,7 +43,7 @@
 </div>
 
 <div class="accommodation">
- <table id="accommodation-table">
+ <table id="accommodation_table">
  <thead>
     <th>Accomodation</th>
     <th>Date</th>
@@ -53,9 +53,9 @@
  </thead>
 
  <div class="wrapper">
-  <button class= "add-delete-button" id= "add-accommodation-row"><span class="material-symbols-outlined">add</span></button>
-  <button class="add-delete-button" id="delete-accommodation-row"><span class="material-symbols-outlined">delete</span></button>
-  <tbody id="accomodation-table-body">
+  <button class= "add_delete_button" id= "addAccommodationRow"><span class="material-symbols-outlined">add</span></button>
+  <button class="add_delete_button" id="deleteAccommodationRow"><span class="material-symbols-outlined">delete</span></button>
+  <tbody id="tableBodyAccommodation">
     <tr>
         <td contenteditable="true"></td>
         <td contenteditable="true"></td>
@@ -69,7 +69,7 @@
 <tfoot>
     <tr>
         <th>Total</th>
-        <div class="total-amount-box"><th id="total-accommodation"colspan="4" class="total-amount-box">0</th></div>
+        <div class="total-amount-box"><th id="total_accommodation"colspan="4" class="total-amount-box">0</th></div>
     </tr>
 </tfoot>
 
@@ -77,7 +77,7 @@
 </div>
 
 
-<div class="transport-title">
+<div class="transport_title">
     <span class="material-symbols-outlined">flight</span>
     <h3>Transportation</h3>
 </div>
@@ -94,8 +94,8 @@
   </thead>
 
   <div class="wrapper">
-    <button class= "add-delete-button" id= "addTransportRow"><span class="material-symbols-outlined">add</span></button>
-    <button class="add-delete-button" id="deleteTransportRow"><span class="material-symbols-outlined">delete</span></button>
+    <button class= "add_delete_button" id= "addTransportRow"><span class="material-symbols-outlined">add</span></button>
+    <button class="add_delete_button" id="deleteTransportRow"><span class="material-symbols-outlined">delete</span></button>
   <tbody id="transportTableBody">
     <tr>
         <td contenteditable="true"></td>
@@ -109,20 +109,20 @@
   <tfoot>
     <tr>
         <th>Total</th>
-        <div class="total-amount-box"><th id= "total-transport" colspan="4" class="total-amount-box">0</th></div>
+        <div class="total-amount-box"><th id= "total_transport" colspan="4" class="total-amount-box">0</th></div>
     </tr>
   </tfoot>
  </table>
 </div>
 
 
-<div class="food-title">
+<div class="food_title">
     <span class="material-symbols-outlined">local_dining</span>
     <h3>Food & Drink</h3>
 </div>
 
  <div class="food">
-    <table id="food-table">
+    <table id="foodTable">
     <thead>
       <th>Purchase</th>
       <th>Type</th>
@@ -130,12 +130,12 @@
       <th>Cost</th>
     </thead>
     <div class="wrapper">
-      <button class= "add-delete-button" id= "add-food-row"><span class="material-symbols-outlined">add</span></button>
-      <button class="add-delete-button" id="delete-food-row"><span class="material-symbols-outlined">delete</span></button>
-      <tbody id="food-table-body">
+      <button class= "add_delete_button" id= "addFoodRow"><span class="material-symbols-outlined">add</span></button>
+      <button class="add_delete_button" id="deleteFoodRow"><span class="material-symbols-outlined">delete</span></button>
+      <tbody id="foodTableBody">
       <tr>
         <td contenteditable="true"></td>
-        <td><select class= "select-food" name="Type"><span class="material-symbols-outlined">delete</span>
+        <td><select class= "select_food" name="Type"><span class="material-symbols-outlined">delete</span>
           <option value ="Select">Select</option>
           <option value ="Breakfast">Breakfast</option>
           <option value ="Lunch">Lunch</option>
@@ -159,7 +159,7 @@
    </table>
   </div>
 
-  <div class="activities-title">
+  <div class="activities_title">
     <span class="material-symbols-outlined">
         surfing
         </span>
@@ -175,9 +175,9 @@
       <th>Cost</th>
     </thead>
     <div class="wrapper">
-      <button class= "add-delete-button" id= "add-activity-row"><span class="material-symbols-outlined">add</span></button>
-      <button class="add-delete-button" id="delete-activity-row"><span class="material-symbols-outlined">delete</span></button>
-    <tbody id="activities-table-body">
+      <button class= "add_delete_button" id= "addActivityRow"><span class="material-symbols-outlined">add</span></button>
+      <button class="add_delete_button" id="deleteActivityRow"><span class="material-symbols-outlined">delete</span></button>
+    <tbody id="activitiesTableBody">
       <tr>
           <td contenteditable="true"></td>
           <td contenteditable="true"></td>
@@ -194,7 +194,7 @@
    </table>
   </div>
 
-  <div class="shopping-title">
+  <div class="shopping_title">
     <span class="material-symbols-outlined">
         shopping_bag
         </span>
@@ -210,9 +210,9 @@
       <th>Cost</th>
     </thead>
     <div class="wrapper">
-      <button class= "add-delete-button" id= "add-shopping-row"><span class="material-symbols-outlined">add</span></button>
-      <button class="add-delete-button" id="delete-shopping-row"><span class="material-symbols-outlined">delete</span></button>
-    <tbody id="shopping-table-body">
+      <button class= "add_delete_button" id= "addShoppingRow"><span class="material-symbols-outlined">add</span></button>
+      <button class="add_delete_button" id="deleteShoppingRow"><span class="material-symbols-outlined">delete</span></button>
+    <tbody id="shoppingTableBody">
       <tr>
           <td contenteditable="true"></td>
           <td contenteditable="true"></td>
@@ -231,7 +231,7 @@
 
 
   <div class="parentExtra">
-  <div class="extra-expenses-title">
+  <div class="extra_expenses_title">
     <span class="material-symbols-outlined">
         paid
         </span>
@@ -239,7 +239,7 @@
     <h3>Extra Expenses</h3>
     </div>
 
-  <div class="extra-expenses">
+  <div class="extra_expenses">
     <table>
     <thead>
       <th>Item</th>
@@ -247,9 +247,9 @@
       <th>Cost</th>
     </thead>
     <div class="wrapper">
-      <button class= "add-delete-button" id= "add-extra-expenses-row"><span class="material-symbols-outlined">add</span></button>
-      <button class="add-delete-button" id="delete-extra-expenses-row"><span class="material-symbols-outlined">delete</span></button>
-    <tbody id="extra-expenses-table-body">
+      <button class= "add_delete_button" id= "addExtraExpensesRow"><span class="material-symbols-outlined">add</span></button>
+      <button class="add_delete_button" id="deleteExtraExpensesRow"><span class="material-symbols-outlined">delete</span></button>
+    <tbody id="extraExpensesTableBody">
       <tr>
           <td contenteditable="true"></td>
           <td contenteditable="true"></td>
@@ -267,7 +267,7 @@
   </div>
 </div>
 
-<div class="total-budget-used">
+<div class="total_budget_used">
 <h3>Total Budget Used:</h3>
 </div>
 
@@ -282,7 +282,7 @@
 
 
 
- <script src="script.js"></script>
+<script src="script.js"></script>
  </body>   
   
 

@@ -1,7 +1,46 @@
-.Back {
-  padding: 10px;
-  margin-left: 10px;
-  margin-top: 0px;
+.page {
+    margin: 20px;
+    padding: 20px;
+    color: #0e1517;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    background-color: #f5f5f5;
+  } 
+  
+  
+  h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'DM Sans', sans-serif;
+    text-align: center;
+    font-size: 60px;
+    font-stretch: extra-condensed;
+    margin-top: 100px;
+    padding-top: 10px;
+  }
+  
+  
+  .New {
+    margin: 20px;
+    padding: 10px;
+    color: #0e1517;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 25px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 20vh;
+  } 
+  
+  .Back {
+    padding: 10px;
+    margin-left: 10px;
+    margin-top: 0px;
     color: #0e1517;
     font-family: 'DM Sans', sans-serif;
     font-size: 25px;
@@ -89,7 +128,7 @@
 }
 
 
-.accommodation-title {
+.accommodation_title {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -110,7 +149,7 @@
 
 }
 
-.transport-title {
+.transport_title {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -131,7 +170,7 @@
     align-items: center;
 }
 
-.food-title {
+.food_title {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -151,7 +190,7 @@
   align-items: center;
 }
 
-.add-delete-button {
+.add_delete_button {
   font-family: 'DM Sans';
   border: #f5f5f5; 
   background-color: #f5f5f5;
@@ -160,7 +199,7 @@
   
 }
 
-.select-food {
+.select_food {
   font-family: 'DM Sans';
   font-size: 16px;
   border: #f5f5f5;
@@ -173,7 +212,7 @@
   border: #f5f5f5;
 }
 
-.activities-title {
+.activities_title {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -193,7 +232,7 @@
     align-items: center;
 }
 
-.shopping-title {
+.shopping_title {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -213,7 +252,7 @@
     align-items: center;
 }
 
-.extra-expenses-title {
+.extra_expenses_title {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -222,7 +261,7 @@
   font-size: 45px;
 }
 
-.extra-expenses {
+.extra_expenses {
     max-width: 90%;
     padding-left: 20px;   
     padding-right: 20px;   
@@ -238,7 +277,7 @@
 .toggle:target 
 { display: table-row; }
 
-.total-budget-used {
+.total_budget_used {
   display: flex;
   justify-content: center;
   align-items: center;
