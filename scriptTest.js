@@ -1,9 +1,9 @@
 
 /* Accomodation */
 
-document.getElementById("addAccomodation").addEventListener("click", function () {
-    let accomodationTableBody = document.getElementById("accomodationTableBody");
-    let row = accomodationTableBody.insertRow(-1); 
+document.getElementById("add-accommodation-row").addEventListener("click", function () {
+    let accommodationTableBody = document.getElementById("accommodation-table-body");
+    let row = accommodation-table-body.insertRow(-1); 
     let cell0 = row.insertCell(0);
     let cell1 = row.insertCell(1);
     let cell2 = row.insertCell(2);
@@ -20,22 +20,22 @@ document.getElementById("addAccomodation").addEventListener("click", function ()
     cell4.addEventListener('input', calculateTotal);
  });
  
- document.getElementById("deleteAccomodation").addEventListener("click", function () {
-    let accomodationTableBody = document.getElementById("accomodationTableBody");
-    if (accomodationTableBody.rows.length > 0) {
-       accomodationTableBody.deleteRow(-1);
+ document.getElementById("delete-accommodation-row").addEventListener("click", function () {
+    let accommodationTableBody = document.getElementById("accomodation-table-body");
+    if (accommodation-table-body.rows.length > 0) {
+       accommodationTableBody.deleteRow(-1);
        calculateTotal();
     }
  });
  
  function calculateTotal() {
     let total = 0;
-    let accommodationTableBody = document.getElementById("accomodationTableBody");
-    for (let row of accomodationTableBody.rows) {
+    let accommodationTableBody = document.getElementById("accommodation-table-body");
+    for (let row of accommodationTableBody.rows) {
        let value = row.cells[4].innerText;
        total += parseFloat(value) || 0;
     }
-    document.getElementById("totalAccomodation").innerText = total.toFixed(2);
+    document.getElementById("total-accommodation").innerText = total.toFixed(2);
  }
 
 
