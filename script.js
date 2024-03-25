@@ -1,6 +1,45 @@
 
+/* Accommodation */
 
-/* Transport 'T' */
+document.getElementById("addAccommodationRow").addEventListener("click", function () {
+
+   let accommodationTableBody = document.getElementById("accommodationTableBody")
+   let row = accommodationTableBody.insertRow(-1);
+   let cell0 = row.insertCell(0);
+   let cell1 = row.insertCell(1);
+   let cell2 = row.insertCell(2);
+   let cell3 = row.insertCell(3);
+   let cell4 = row.insertCell(4);
+
+   cell0.innerHTML = '<div contenteditable="true"></div>';
+   cell1.innerHTML = '<div contenteditable="true"></div>';
+   cell2.innerHTML = '<div contenteditable="true"></div>';
+   cell3.innerHTML = '<div contenteditable="true"></div>';
+   cell4.innerHTML = '<div contenteditable="true"></div>';
+
+
+})
+
+
+document.getElementById("deleteAccommodationRow").addEventListener("click", function () {
+
+   let accommodationTableBody = document.getElementById("accommodationTableBody")
+   let row = accommodationTableBody.deleteRow(-1);
+   let cell0 = row.deleteCell(0);
+   let cell1 = row.deleteCell(1);
+   let cell2 = row.deleteCell(2);
+   let cell3 = row.deleteCell(3);
+   let cell4 = row.deleteCell(4);
+
+
+   cell0.innerHTML = '<div contenteditable="true"></div>';
+   cell1.innerHTML = '<div contenteditable="true"></div>';
+   cell2.innerHTML = '<div contenteditable="true"></div>';
+   cell3.innerHTML = '<div contenteditable="true"></div>';
+   cell4.innerHTML = '<div contenteditable="true"></div>';
+
+})
+/* Transport */
 
 document.getElementById("addTransportRow").addEventListener("click", function () {
 
@@ -14,7 +53,7 @@ document.getElementById("addTransportRow").addEventListener("click", function ()
 
    cell0.innerHTML = '<div contenteditable="true"></div>';
    cell1.innerHTML = '<div contenteditable="true"></div>';
-   cell2.innerHTML = '<div contenteditable="true">$</div>';
+   cell2.innerHTML = '<div contenteditable="true"></div>';
    cell3.innerHTML = '<div contenteditable="true"></div>';
    cell4.innerHTML = '<div contenteditable="true"></div>';
 
@@ -35,7 +74,7 @@ document.getElementById("deleteTransportRow").addEventListener("click", function
 
    cell0.innerHTML = '<div contenteditable="true"></div>';
    cell1.innerHTML = '<div contenteditable="true"></div>';
-   cell2.innerHTML = '<div contenteditable="true">$</div>';
+   cell2.innerHTML = '<div contenteditable="true"></div>';
    cell3.innerHTML = '<div contenteditable="true"></div>';
    cell4.innerHTML = '<div contenteditable="true"></div>';
 
