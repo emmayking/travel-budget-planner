@@ -1,7 +1,7 @@
 /* Accommodation */
 
 document
-  .getElementById("addAccommodationRow")
+  .getElementById("addAccomodation")
   .addEventListener("click", function () {
     let accommodationTableBody = document.getElementById(
       "accommodationTableBody"
@@ -21,7 +21,7 @@ document
   });
 
 document
-  .getElementById("deleteAccommodationRow")
+  .getElementById("deleteAccommodation")
   .addEventListener("click", function () {
     let accommodationTableBody = document.getElementById(
       "accommodationTableBody"
@@ -42,26 +42,24 @@ document
 
 /* Transport */
 
-document
-  .getElementById("addTransportRow")
-  .addEventListener("click", function () {
-    let transportTableBody = document.getElementById("transportTableBody");
-    let row = transportTableBody.insertRow(-1);
-    let cell0 = row.insertCell(0);
-    let cell1 = row.insertCell(1);
-    let cell2 = row.insertCell(2);
-    let cell3 = row.insertCell(3);
-    let cell4 = row.insertCell(4);
+document.getElementById("addTransport").addEventListener("click", function () {
+  let transportTableBody = document.getElementById("transportTableBody");
+  let row = transportTableBody.insertRow(-1);
+  let cell0 = row.insertCell(0);
+  let cell1 = row.insertCell(1);
+  let cell2 = row.insertCell(2);
+  let cell3 = row.insertCell(3);
+  let cell4 = row.insertCell(4);
 
-    cell0.innerHTML = '<div contenteditable="true"></div>';
-    cell1.innerHTML = '<div contenteditable="true"></div>';
-    cell2.innerHTML = '<div contenteditable="true"></div>';
-    cell3.innerHTML = '<div contenteditable="true"></div>';
-    cell4.innerHTML = '<div contenteditable="true"></div>';
-  });
+  cell0.innerHTML = '<div contenteditable="true"></div>';
+  cell1.innerHTML = '<div contenteditable="true"></div>';
+  cell2.innerHTML = '<div contenteditable="true"></div>';
+  cell3.innerHTML = '<div contenteditable="true"></div>';
+  cell4.innerHTML = '<div contenteditable="true"></div>';
+});
 
 document
-  .getElementById("deleteTransportRow")
+  .getElementById("deleteTransport")
   .addEventListener("click", function () {
     let transportTableBody = document.getElementById("transportTableBody");
     let row = transportTableBody.deleteRow(-1);
@@ -80,7 +78,7 @@ document
 
 /* Food & Drink */
 
-document.getElementById("addFoodRow").addEventListener("click", function () {
+document.getElementById("addFood").addEventListener("click", function () {
   const foodTableBody = document.getElementById("foodTableBody");
   const newRow = foodTableBody.insertRow();
   const cell0 = newRow.insertCell(0);
@@ -90,12 +88,12 @@ document.getElementById("addFoodRow").addEventListener("click", function () {
 
   cell0.contentEditable = "true";
   cell1.innerHTML =
-    '<select class="select_food" name="Type"><option value="Select">Select</option><option value="Breakfast">Breakfast</option><option value="Lunch">Lunch</option><option value="Dinner">Dinner</option><option value="Snack">Snack</option><option value="Drink">Beverage</option><option value="Drink">Grocery Run</option><option value="Groceries">Night Out</option></select>';
+    '<select class="select-food" name="Type"><option value="Select">Select</option><option value="Breakfast">Breakfast</option><option value="Lunch">Lunch</option><option value="Dinner">Dinner</option><option value="Snack">Snack</option><option value="Drink">Beverage</option><option value="Drink">Grocery Run</option><option value="Groceries">Night Out</option></select>';
   cell2.contentEditable = "true";
   cell3.contentEditable = "true";
 });
 
-document.getElementById("deleteFoodRow").addEventListener("click", function () {
+document.getElementById("deleteFood").addEventListener("click", function () {
   const foodTableBody = document.getElementById("foodTableBody");
   const newRow = foodTableBody.deleteRow(-1);
   const cell0 = newRow.deleteCell(0);
@@ -112,22 +110,20 @@ document.getElementById("deleteFoodRow").addEventListener("click", function () {
 
 /* Activities */
 
-document
-  .getElementById("addActivityRow")
-  .addEventListener("click", function () {
-    let activitiesTableBody = document.getElementById("activitiesTableBody");
-    let row = activitiesTableBody.insertRow(-1);
-    let cell0 = row.insertCell(0);
-    let cell1 = row.insertCell(1);
-    let cell2 = row.insertCell(2);
+document.getElementById("addActivity").addEventListener("click", function () {
+  let activitiesTableBody = document.getElementById("activitiesTableBody");
+  let row = activitiesTableBody.insertRow(-1);
+  let cell0 = row.insertCell(0);
+  let cell1 = row.insertCell(1);
+  let cell2 = row.insertCell(2);
 
-    cell0.innerHTML = '<div contenteditable="true"></div>';
-    cell1.innerHTML = '<div contenteditable="true"></div>';
-    cell2.innerHTML = '<div contenteditable="true"></div>';
-  });
+  cell0.innerHTML = '<div contenteditable="true"></div>';
+  cell1.innerHTML = '<div contenteditable="true"></div>';
+  cell2.innerHTML = '<div contenteditable="true"></div>';
+});
 
 document
-  .getElementById("deleteActivityRow")
+  .getElementById("deleteActivity")
   .addEventListener("click", function () {
     let activitiesTableBody = document.getElementById("activitiesTableBody");
     let row = activitiesTableBody.deleteRow(-1);
@@ -142,22 +138,20 @@ document
 
 /* Shopping */
 
-document
-  .getElementById("addShoppingRow")
-  .addEventListener("click", function () {
-    let shoppingTableBody = document.getElementById("shoppingTableBody");
-    let row = shoppingTableBody.insertRow(-1);
-    let cell0 = row.insertCell(0);
-    let cell1 = row.insertCell(1);
-    let cell2 = row.insertCell(2);
+document.getElementById("addShopping").addEventListener("click", function () {
+  let shoppingTableBody = document.getElementById("shoppingTableBody");
+  let row = shoppingTableBody.insertRow(-1);
+  let cell0 = row.insertCell(0);
+  let cell1 = row.insertCell(1);
+  let cell2 = row.insertCell(2);
 
-    cell0.innerHTML = '<div contenteditable="true"></div>';
-    cell1.innerHTML = '<div contenteditable="true"></div>';
-    cell2.innerHTML = '<div contenteditable="true"></div>';
-  });
+  cell0.innerHTML = '<div contenteditable="true"></div>';
+  cell1.innerHTML = '<div contenteditable="true"></div>';
+  cell2.innerHTML = '<div contenteditable="true"></div>';
+});
 
 document
-  .getElementById("deleteShoppingRow")
+  .getElementById("deleteShopping")
   .addEventListener("click", function () {
     let shoppingTableBody = document.getElementById("shoppingTableBody");
     let row = shoppingTableBody.deleteRow(-1);
@@ -172,34 +166,30 @@ document
 
 /* Extra */
 
-document
-  .getElementById("addExtraExpensesRow")
-  .addEventListener("click", function () {
-    let extraExpensesTableBody = document.getElementById(
-      "extraExpensesTableBody"
-    );
-    let row = extraExpensesTableBody.insertRow(-1);
-    let cell0 = row.insertCell(0);
-    let cell1 = row.insertCell(1);
-    let cell2 = row.insertCell(2);
+document.getElementById("addExtra").addEventListener("click", function () {
+  let extraExpensesTableBody = document.getElementById(
+    "extraExpensesTableBody"
+  );
+  let row = extraExpensesTableBody.insertRow(-1);
+  let cell0 = row.insertCell(0);
+  let cell1 = row.insertCell(1);
+  let cell2 = row.insertCell(2);
 
-    cell0.innerHTML = '<div contenteditable="true"></div>';
-    cell1.innerHTML = '<div contenteditable="true"></div>';
-    cell2.innerHTML = '<div contenteditable="true"></div>';
-  });
+  cell0.innerHTML = '<div contenteditable="true"></div>';
+  cell1.innerHTML = '<div contenteditable="true"></div>';
+  cell2.innerHTML = '<div contenteditable="true"></div>';
+});
 
-document
-  .getElementById("deleteExtraExpensesRow")
-  .addEventListener("click", function () {
-    let extraExpensesTableBody = document.getElementById(
-      "extraExpensesTableBody"
-    );
-    let row = extraExpensesTableBody.deleteRow(-1);
-    let cell0 = row.deleteCell(0);
-    let cell1 = row.deleteCell(1);
-    let cell2 = row.deleteCell(2);
+document.getElementById("deleteExtra").addEventListener("click", function () {
+  let extraExpensesTableBody = document.getElementById(
+    "extraExpensesTableBody"
+  );
+  let row = extraExpensesTableBody.deleteRow(-1);
+  let cell0 = row.deleteCell(0);
+  let cell1 = row.deleteCell(1);
+  let cell2 = row.deleteCell(2);
 
-    cell0.innerHTML = '<div contenteditable="true"></div>';
-    cell1.innerHTML = '<div contenteditable="true"></div>';
-    cell2.innerHTML = '<div contenteditable="true"></div>';
-  });
+  cell0.innerHTML = '<div contenteditable="true"></div>';
+  cell1.innerHTML = '<div contenteditable="true"></div>';
+  cell2.innerHTML = '<div contenteditable="true"></div>';
+});
