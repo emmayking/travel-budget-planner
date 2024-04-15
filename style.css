@@ -154,11 +154,15 @@ tr:hover {
   justify-content: center;
 }
 
-.select-food {
+.select-food,
+.nights,
+.rate,
+.cost {
   font-family: "DM Sans";
   font-size: 16px;
   border: #f5f5f5;
   background-color: #f5f5f5;
+  width: 60px;
 }
 
 .toggle {

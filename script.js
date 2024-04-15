@@ -1,80 +1,55 @@
 /* Accommodation */
 
 document
-  .getElementById("addAccomodation")
+  .getElementById("add-accommodation-button")
   .addEventListener("click", function () {
-    let accommodationTableBody = document.getElementById(
-      "accommodationTableBody"
-    );
-    let row = accommodationTableBody.insertRow(-1);
-    let cell0 = row.insertCell(0);
-    let cell1 = row.insertCell(1);
-    let cell2 = row.insertCell(2);
-    let cell3 = row.insertCell(3);
-    let cell4 = row.insertCell(4);
-
-    cell0.innerHTML = '<div contenteditable="true"></div>';
-    cell1.innerHTML = '<div contenteditable="true"></div>';
-    cell2.innerHTML = '<div contenteditable="true"></div>';
-    cell3.innerHTML = '<div contenteditable="true"></div>';
-    cell4.innerHTML = '<div contenteditable="true"></div>';
+    const newRow = document.createElement("tr");
+    newRow.innerHTML = `
+    <td contenteditable="true"></td>
+    <td contenteditable="true"></td>
+    <td><input type="text" class="rate"></td>
+    <td><input type="text" class="nights"></td>
+    <td><input type="text" class="cost" disabled></td>
+  `;
+    document.getElementById("accommodationTableBody").appendChild(newRow);
+    updateTotalCost();
   });
 
 document
-  .getElementById("deleteAccommodation")
+  .getElementById("delete-accommodation-button")
   .addEventListener("click", function () {
-    let accommodationTableBody = document.getElementById(
-      "accommodationTableBody"
-    );
-    let row = accommodationTableBody.deleteRow(-1);
-    let cell0 = row.deleteCell(0);
-    let cell1 = row.deleteCell(1);
-    let cell2 = row.deleteCell(2);
-    let cell3 = row.deleteCell(3);
-    let cell4 = row.deleteCell(4);
-
-    cell0.innerHTML = '<div contenteditable="true"></div>';
-    cell1.innerHTML = '<div contenteditable="true"></div>';
-    cell2.innerHTML = '<div contenteditable="true"></div>';
-    cell3.innerHTML = '<div contenteditable="true"></div>';
-    cell4.innerHTML = '<div contenteditable="true"></div>';
+    const tableBody = document.getElementById("accommodationTableBody");
+    if (tableBody.children.length > 0) {
+      tableBody.removeChild(tableBody.lastElementChild);
+      updateTotalCost();
+    }
   });
-
-/* Transport */
-
-document.getElementById("addTransport").addEventListener("click", function () {
-  let transportTableBody = document.getElementById("transportTableBody");
-  let row = transportTableBody.insertRow(-1);
-  let cell0 = row.insertCell(0);
-  let cell1 = row.insertCell(1);
-  let cell2 = row.insertCell(2);
-  let cell3 = row.insertCell(3);
-  let cell4 = row.insertCell(4);
-
-  cell0.innerHTML = '<div contenteditable="true"></div>';
-  cell1.innerHTML = '<div contenteditable="true"></div>';
-  cell2.innerHTML = '<div contenteditable="true"></div>';
-  cell3.innerHTML = '<div contenteditable="true"></div>';
-  cell4.innerHTML = '<div contenteditable="true"></div>';
-});
 
 document
-  .getElementById("deleteTransport")
-  .addEventListener("click", function () {
-    let transportTableBody = document.getElementById("transportTableBody");
-    let row = transportTableBody.deleteRow(-1);
-    let cell0 = row.deleteCell(0);
-    let cell1 = row.deleteCell(1);
-    let cell2 = row.deleteCell(2);
-    let cell3 = row.deleteCell(3);
-    let cell4 = row.deleteCell(4);
-
-    cell0.innerHTML = '<div contenteditable="true"></div>';
-    cell1.innerHTML = '<div contenteditable="true"></div>';
-    cell2.innerHTML = '<div contenteditable="true"></div>';
-    cell3.innerHTML = '<div contenteditable="true"></div>';
-    cell4.innerHTML = '<div contenteditable="true"></div>';
+  .getElementById("accommodationTableBody")
+  .addEventListener("input", function (e) {
+    if (
+      e.target.classList.contains("rate") ||
+      e.target.classList.contains("nights")
+    ) {
+      const row = e.target.closest("tr");
+      const rate = parseFloat(row.querySelector(".rate").value) || 0;
+      const nights = parseFloat(row.querySelector(".nights").value) || 0;
+      const costInput = row.querySelector(".cost");
+      costInput.value = (rate * nights).toFixed(2);
+      updateTotalCost();
+    }
   });
+
+function updateTotalCost() {
+  const costs = document.querySelectorAll(".cost");
+  let totalCost = 0;
+  costs.forEach((costInput) => {
+    totalCost += parseFloat(costInput.value) || 0;
+  });
+  document.getElementById("total-accommodation").textContent =
+    totalCost.toFixed(2);
+}
 
 /* Food & Drink */
 

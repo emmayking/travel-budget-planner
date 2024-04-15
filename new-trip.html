@@ -26,37 +26,32 @@
 </div>
 
 <div class="table">
- <table>
- <thead>
-    <th>Accomodation</th>
-    <th>Date</th>
-    <th>Rate</th>
-    <th>Nights</th>
-    <th>Cost</th>
- </thead>
-
- <div class="wrapper">
-  <button class= "button" id= "addAccommodation"><span class="material-symbols-outlined">add</span></button>
-  <button class="button" id="deleteAccommodation"><span class="material-symbols-outlined">delete</span></button>
-  <tbody id="accommodationTableBody">
-    <tr>
+  <table>
+    <thead>
+      <th>Accommodation</th>
+      <th>Date</th>
+      <th>Rate</th>
+      <th>Nights</th>
+      <th>Cost</th>
+    </thead>
+    <tbody id="accommodationTableBody">
+       <div class="wrapper"><button class="button" id="add-accommodation-button"><span class="material-symbols-outlined">add</span></button>
+  <button class="button" id="delete-accommodation-button"><span class="material-symbols-outlined">delete</span></button></div>
+      <tr>
         <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
+        <td contenteditable="true" class="date"></td>
+        <td><input type="text" class="rate"></td>
+        <td><input type="text" class="nights"></td>
+        <td><input type="text" class="cost" disabled></td>
       </tr>
- </tbody>
-</div>
-
-<tfoot>
-    <tr>
+    </tbody>
+    <tfoot>
+      <tr>
         <th>Total</th>
-        <th class="total-cost" id="total-accommodation" colspan="4">0</th>
-    </tr>
-</tfoot>
-
-</table>
+        <th class="total-cost" colspan="4" id="total-accommodation">0</th>
+      </tr>
+    </tfoot>
+  </table>
 </div>
 
 
