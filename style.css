@@ -110,16 +110,20 @@ table {
   background-color: #f5f5f5;
 }
 
-th,
-td {
+th {
   border: 1px solid;
   padding: 8px;
   text-align: left;
   font-family: "DM Sans", sans-serif;
+  background-color: #b4c3b3;
+  word-wrap: break-word;
 }
 
-th {
-  background-color: #b4c3b3;
+td {
+  border: 1px solid;
+  padding: 8px;
+  font-family: "DM Sans", sans-serif;
+  word-wrap: break-word;
 }
 
 tr:hover {
@@ -154,15 +158,32 @@ tr:hover {
   justify-content: center;
 }
 
-.select-food,
 .nights,
-.rate,
-.cost {
+.rate {
   font-family: "DM Sans";
   font-size: 16px;
   border: #f5f5f5;
   background-color: #f5f5f5;
   width: 60px;
+}
+
+.cost,
+.extra-cost,
+.shopping-cost,
+.activity-cost,
+.transport-cost {
+  font-family: "DM Sans";
+  font-size: 16px;
+  border: #f5f5f5;
+  background-color: #f5f5f5;
+  width: 60px;
+}
+
+.select-food {
+  font-family: "DM Sans";
+  font-size: 16px;
+  border: #f5f5f5;
+  background-color: #f5f5f5;
 }
 
 .toggle {
@@ -180,11 +201,4 @@ tr:hover {
   font-family: "DM Sans", sans-serif;
   text-align: center;
   font-size: 45px;
-}
-
-.material-symbols-outlined {
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 500;
 }

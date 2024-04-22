@@ -1,27 +1,27 @@
-/* Accommodation */
+// Accommodation
 
 document
   .getElementById("add-accommodation-button")
   .addEventListener("click", function () {
-    const newRow = document.createElement("tr");
-    newRow.innerHTML = `
+    const newAccRow = document.createElement("tr");
+    newAccRow.innerHTML = `
     <td contenteditable="true"></td>
     <td contenteditable="true"></td>
     <td><input type="text" class="rate"></td>
     <td><input type="text" class="nights"></td>
     <td><input type="text" class="cost" disabled></td>
   `;
-    document.getElementById("accommodationTableBody").appendChild(newRow);
-    updateTotalCost();
+    document.getElementById("accommodationTableBody").appendChild(newAccRow);
+    updateTotalAccCost();
   });
 
 document
   .getElementById("delete-accommodation-button")
   .addEventListener("click", function () {
-    const tableBody = document.getElementById("accommodationTableBody");
-    if (tableBody.children.length > 0) {
-      tableBody.removeChild(tableBody.lastElementChild);
-      updateTotalCost();
+    const tableBodyAcc = document.getElementById("accommodationTableBody");
+    if (tableBodyAcc.children.length > 0) {
+      tableBodyAcc.removeChild(tableBodyAcc.lastElementChild);
+      updateTotalAccCost();
     }
   });
 
@@ -37,134 +37,207 @@ document
       const nights = parseFloat(row.querySelector(".nights").value) || 0;
       const costInput = row.querySelector(".cost");
       costInput.value = (rate * nights).toFixed(2);
-      updateTotalCost();
+      updateTotalAccCost();
     }
   });
 
-function updateTotalCost() {
+function updateTotalAccCost() {
   const costs = document.querySelectorAll(".cost");
-  let totalCost = 0;
+  let totalAccCost = 0;
   costs.forEach((costInput) => {
-    totalCost += parseFloat(costInput.value) || 0;
+    totalAccCost += parseFloat(costInput.value) || 0;
   });
   document.getElementById("total-accommodation").textContent =
-    totalCost.toFixed(2);
+    totalAccCost.toFixed(2);
 }
 
-/* Food & Drink */
+// Transport
 
-document.getElementById("addFood").addEventListener("click", function () {
-  const foodTableBody = document.getElementById("foodTableBody");
-  const newRow = foodTableBody.insertRow();
-  const cell0 = newRow.insertCell(0);
-  const cell1 = newRow.insertCell(1);
-  const cell2 = newRow.insertCell(2);
-  const cell3 = newRow.insertCell(3);
+function updateInitialRow() {
+  const existingCostInputs = document.querySelectorAll(".transport-cost");
+  existingCostInputs.forEach((input) => {
+    input.addEventListener("input", updateTotalTranCost);
+  });
+}
 
-  cell0.contentEditable = "true";
-  cell1.innerHTML =
-    '<select class="select-food" name="Type"><option value="Select">Select</option><option value="Breakfast">Breakfast</option><option value="Lunch">Lunch</option><option value="Dinner">Dinner</option><option value="Snack">Snack</option><option value="Drink">Beverage</option><option value="Drink">Grocery Run</option><option value="Groceries">Night Out</option></select>';
-  cell2.contentEditable = "true";
-  cell3.contentEditable = "true";
-});
-
-document.getElementById("deleteFood").addEventListener("click", function () {
-  const foodTableBody = document.getElementById("foodTableBody");
-  const newRow = foodTableBody.deleteRow(-1);
-  const cell0 = newRow.deleteCell(0);
-  const cell1 = newRow.deleteCell(1);
-  const cell2 = newRow.deleteCell(2);
-  const cell3 = newRow.deleteCell(3);
-
-  cell0.contentEditable = "true";
-  cell1.innerHTML =
-    '<select class="select_food" name="Type"><option value="Select">Select</option><option value="Breakfast">Breakfast</option><option value="Lunch">Lunch</option><option value="Dinner">Dinner</option><option value="Snack">Snack</option><option value="Drink">Beverage</option><option value="Drink">Grocery Run</option><option value="Groceries">Night Out</option></select>';
-  cell2.contentEditable = "true";
-  cell3.contentEditable = "true";
-});
-
-/* Activities */
-
-document.getElementById("addActivity").addEventListener("click", function () {
-  let activitiesTableBody = document.getElementById("activitiesTableBody");
-  let row = activitiesTableBody.insertRow(-1);
-  let cell0 = row.insertCell(0);
-  let cell1 = row.insertCell(1);
-  let cell2 = row.insertCell(2);
-
-  cell0.innerHTML = '<div contenteditable="true"></div>';
-  cell1.innerHTML = '<div contenteditable="true"></div>';
-  cell2.innerHTML = '<div contenteditable="true"></div>';
-});
+document.addEventListener("DOMContentLoaded", updateInitialRow);
 
 document
-  .getElementById("deleteActivity")
+  .getElementById("add-transport-button")
   .addEventListener("click", function () {
-    let activitiesTableBody = document.getElementById("activitiesTableBody");
-    let row = activitiesTableBody.deleteRow(-1);
-    let cell0 = row.deleteCell(0);
-    let cell1 = row.deleteCell(1);
-    let cell2 = row.deleteCell(2);
+    const newTranRow = document.createElement("tr");
+    newTranRow.innerHTML = `
+    <td contenteditable="true"></td>
+    <td contenteditable="true"></td>
+    <td contenteditable="true"></td>
+    <td contenteditable="true"></td>
+    <td><input type="text" class="transport-cost"></td>
+  `;
+    const newTranInput = newTranRow.querySelector(".transport-cost");
+    newTranInput.addEventListener("input", updateTotalTranCost);
 
-    cell0.innerHTML = '<div contenteditable="true"></div>';
-    cell1.innerHTML = '<div contenteditable="true"></div>';
-    cell2.innerHTML = '<div contenteditable="true"></div>';
+    document.getElementById("transportTableBody").appendChild(newTranRow);
+    updateTotalTranCost();
   });
-
-/* Shopping */
-
-document.getElementById("addShopping").addEventListener("click", function () {
-  let shoppingTableBody = document.getElementById("shoppingTableBody");
-  let row = shoppingTableBody.insertRow(-1);
-  let cell0 = row.insertCell(0);
-  let cell1 = row.insertCell(1);
-  let cell2 = row.insertCell(2);
-
-  cell0.innerHTML = '<div contenteditable="true"></div>';
-  cell1.innerHTML = '<div contenteditable="true"></div>';
-  cell2.innerHTML = '<div contenteditable="true"></div>';
-});
 
 document
-  .getElementById("deleteShopping")
+  .getElementById("delete-transport-button")
   .addEventListener("click", function () {
-    let shoppingTableBody = document.getElementById("shoppingTableBody");
-    let row = shoppingTableBody.deleteRow(-1);
-    let cell0 = row.deleteCell(0);
-    let cell1 = row.deleteCell(1);
-    let cell2 = row.deleteCell(2);
-
-    cell0.innerHTML = '<div contenteditable="true"></div>';
-    cell1.innerHTML = '<div contenteditable="true"></div>';
-    cell2.innerHTML = '<div contenteditable="true"></div>';
+    const tableBody = document.getElementById("transportTableBody");
+    if (tableBody.children.length > 0) {
+      tableBody.removeChild(tableBody.lastElementChild);
+      updateTotalTranCost();
+    }
   });
 
-/* Extra */
+function updateTotalTranCost() {
+  const costs = document.querySelectorAll(".transport-cost");
+  let totalTranCost = 0;
+  costs.forEach((costInput) => {
+    totalTranCost += parseFloat(costInput.value) || 0;
+  });
+  document.getElementById("total-transport").textContent =
+    totalTranCost.toFixed(2);
+}
 
-document.getElementById("addExtra").addEventListener("click", function () {
-  let extraExpensesTableBody = document.getElementById(
-    "extraExpensesTableBody"
-  );
-  let row = extraExpensesTableBody.insertRow(-1);
-  let cell0 = row.insertCell(0);
-  let cell1 = row.insertCell(1);
-  let cell2 = row.insertCell(2);
+// Food
 
-  cell0.innerHTML = '<div contenteditable="true"></div>';
-  cell1.innerHTML = '<div contenteditable="true"></div>';
-  cell2.innerHTML = '<div contenteditable="true"></div>';
-});
+// Activities
 
-document.getElementById("deleteExtra").addEventListener("click", function () {
-  let extraExpensesTableBody = document.getElementById(
-    "extraExpensesTableBody"
-  );
-  let row = extraExpensesTableBody.deleteRow(-1);
-  let cell0 = row.deleteCell(0);
-  let cell1 = row.deleteCell(1);
-  let cell2 = row.deleteCell(2);
+function updateInitialActInput() {
+  const initialActInputs = document.querySelectorAll(".activity-cost");
+  initialActInputs.forEach((input) => {
+    input.addEventListener("input", updateTotalActCost);
+  });
+}
 
-  cell0.innerHTML = '<div contenteditable="true"></div>';
-  cell1.innerHTML = '<div contenteditable="true"></div>';
-  cell2.innerHTML = '<div contenteditable="true"></div>';
-});
+document.addEventListener("DOMContentLoaded", updateInitialActInput);
+
+document
+  .getElementById("add-activity-button")
+  .addEventListener("click", function () {
+    const newActRow = document.createElement("tr");
+    newActRow.innerHTML = `
+    <td contenteditable="true"></td>
+    <td contenteditable="true"></td>
+    <td><input type="text" class="activity-cost"></td>
+  `;
+    const newActInput = newActRow.querySelector(".activity-cost");
+    newActInput.addEventListener("input", updateTotalActCost);
+
+    document.getElementById("activitiesTableBody").appendChild(newActRow);
+    updateTotalActCost();
+  });
+
+document
+  .getElementById("delete-activity-button")
+  .addEventListener("click", function () {
+    const tableBodyAct = document.getElementById("activitiesTableBody");
+    if (tableBodyAct.children.length > 0) {
+      tableBodyAct.removeChild(tableBodyAct.lastElementChild);
+      updateTotalActCost();
+    }
+  });
+
+function updateTotalActCost() {
+  const costs = document.querySelectorAll(".activity-cost");
+  let totalActCost = 0;
+  costs.forEach((costInput) => {
+    totalActCost += parseFloat(costInput.value) || 0;
+  });
+  document.getElementById("total-activities").textContent =
+    totalActCost.toFixed(2);
+}
+
+//Shopping
+
+function updateInitialShopInput() {
+  const initialShopInputs = document.querySelectorAll(".shopping-cost");
+  initialShopInputs.forEach((input) => {
+    input.addEventListener("input", updateTotalShopCost);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", updateInitialShopInput);
+
+document
+  .getElementById("add-shopping-button")
+  .addEventListener("click", function () {
+    const newShopRow = document.createElement("tr");
+    newShopRow.innerHTML = `
+    <td contenteditable="true"></td>
+    <td contenteditable="true"></td>
+    <td><input type="text" class="shopping-cost"></td>
+  `;
+    const newShopInput = newShopRow.querySelector(".shopping-cost");
+    newShopInput.addEventListener("input", updateTotalShopCost);
+
+    document.getElementById("shoppingTableBody").appendChild(newShopRow);
+    updateTotalShopCost();
+  });
+
+document
+  .getElementById("delete-shopping-button")
+  .addEventListener("click", function () {
+    const tableBodyShop = document.getElementById("shoppingTableBody");
+    if (tableBodyShop.children.length > 0) {
+      tableBodyShop.removeChild(tableBodyShop.lastElementChild);
+      updateTotalShopCost();
+    }
+  });
+
+function updateTotalShopCost() {
+  const costs = document.querySelectorAll(".shopping-cost");
+  let totalShopCost = 0;
+  costs.forEach((costInput) => {
+    totalShopCost += parseFloat(costInput.value) || 0;
+  });
+  document.getElementById("total-shopping").textContent =
+    totalShopCost.toFixed(2);
+}
+
+// Extra Expenses
+
+function updateInitialExtInput() {
+  const initialExtInputs = document.querySelectorAll(".extra-cost");
+  initialExtInputs.forEach((input) => {
+    input.addEventListener("input", updateTotalExtCost);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", updateInitialExtInput);
+
+document
+  .getElementById("add-extra-button")
+  .addEventListener("click", function () {
+    const newExtRow = document.createElement("tr");
+    newExtRow.innerHTML = `
+    <td contenteditable="true"></td>
+    <td contenteditable="true"></td>
+    <td><input type="text" class="extra-cost"></td>
+  `;
+    const newExtInput = newExtRow.querySelector(".extra-cost");
+    newExtInput.addEventListener("input", updateTotalExtCost);
+
+    document.getElementById("extraTableBody").appendChild(newExtRow);
+    updateTotalExtCost();
+  });
+
+document
+  .getElementById("delete-extra-button")
+  .addEventListener("click", function () {
+    const tableBodyExt = document.getElementById("extraTableBody");
+    if (tableBodyExt.children.length > 0) {
+      tableBodyExt.removeChild(tableBodyExt.lastElementChild);
+      updateTotalExtCost();
+    }
+  });
+
+function updateTotalExtCost() {
+  const costs = document.querySelectorAll(".extra-cost");
+  let totalExtCost = 0;
+  costs.forEach((costInput) => {
+    totalExtCost += parseFloat(costInput.value) || 0;
+  });
+  document.getElementById("total-extra").textContent = totalExtCost.toFixed(2);
+}
