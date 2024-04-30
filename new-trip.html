@@ -8,6 +8,11 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
+ <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 <style>
 .material-symbols-outlined {
   display: flex;
@@ -49,7 +54,7 @@
   <button class="button" id="delete-accommodation-button"><span class="material-symbols-outlined">delete</span></button></div>
       <tr>
         <td contenteditable="true"></td>
-        <td contenteditable="true" class="date"></td>
+        <td><input type="text" name="dates"></td>
         <td><input type="text" class="rate"></td>
         <td><input type="text" class="nights"></td>
         <td><input type="text" class="cost" disabled></td>
@@ -87,7 +92,7 @@
   <tbody id="transportTableBody">
     <tr>
         <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
+        <td> <input type="date" name="date" id="daterangepicker"></td>
         <td contenteditable="true"></td>
         <td contenteditable="true"></td>
         <td><input type="text" class="transport-cost"></td>
@@ -133,7 +138,7 @@
           <option value ="Drink">Grocery Run</option>
           <option value ="Groceries">Night Out</option></select> 
       </td>
-        <td contenteditable="true"></td>
+        <td> <input type="date" name="date" id="daterangepicker"></td>
         <td contenteditable="true"></td>
       </tr>
     </tbody>
@@ -168,7 +173,7 @@
     <tbody id="activitiesTableBody">
       <tr>
           <td contenteditable="true"></td>
-          <td contenteditable="true"></td>
+          <td> <input type="date" name="date" id="daterangepicker"></td>
           <td><input type="text" class="activity-cost"></td>
       </tr>
     </tbody>
@@ -203,7 +208,7 @@
     <tbody id="shoppingTableBody">
       <tr>
           <td contenteditable="true"></td>
-          <td contenteditable="true"></td>
+          <td> <input type="date" name="date" id="daterangepicker"></td>
           <td><input type="text" class="shopping-cost"></td>
       </tr>
     </tbody>
@@ -240,7 +245,7 @@
     <tbody id="extraTableBody">
       <tr>
           <td contenteditable="true"></td>
-          <td contenteditable="true"></td>
+          <td><input type="date" name="date" id="daterangepicker"></td>
           <td><input type="text" class="extra-cost"></td>
       </tr>
     </tbody>

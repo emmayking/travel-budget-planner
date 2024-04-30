@@ -1,3 +1,5 @@
+$('input[name="dates"]').daterangepicker();
+
 // Accommodation
 
 document
@@ -6,7 +8,7 @@ document
     const newAccRow = document.createElement("tr");
     newAccRow.innerHTML = `
     <td contenteditable="true"></td>
-    <td contenteditable="true"></td>
+    <td><input type="text" name="dates"></td>
     <td><input type="text" class="rate"></td>
     <td><input type="text" class="nights"></td>
     <td><input type="text" class="cost" disabled></td>
@@ -68,7 +70,7 @@ document
     const newTranRow = document.createElement("tr");
     newTranRow.innerHTML = `
     <td contenteditable="true"></td>
-    <td contenteditable="true"></td>
+    <td> <input type="date" name="date" id="daterangepicker"></td>
     <td contenteditable="true"></td>
     <td contenteditable="true"></td>
     <td><input type="text" class="transport-cost"></td>
@@ -119,7 +121,7 @@ document
     const newActRow = document.createElement("tr");
     newActRow.innerHTML = `
     <td contenteditable="true"></td>
-    <td contenteditable="true"></td>
+    <td> <input type="date" name="date" id="daterangepicker"></td>
     <td><input type="text" class="activity-cost"></td>
   `;
     const newActInput = newActRow.querySelector(".activity-cost");
@@ -166,7 +168,7 @@ document
     const newShopRow = document.createElement("tr");
     newShopRow.innerHTML = `
     <td contenteditable="true"></td>
-    <td contenteditable="true"></td>
+    <td> <input type="date" name="date" id="daterangepicker"></td>
     <td><input type="text" class="shopping-cost"></td>
   `;
     const newShopInput = newShopRow.querySelector(".shopping-cost");
@@ -213,7 +215,7 @@ document
     const newExtRow = document.createElement("tr");
     newExtRow.innerHTML = `
     <td contenteditable="true"></td>
-    <td contenteditable="true"></td>
+    <td> <input type="date" name="date" id="daterangepicker"></td>
     <td><input type="text" class="extra-cost"></td>
   `;
     const newExtInput = newExtRow.querySelector(".extra-cost");

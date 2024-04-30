@@ -1,301 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-<link rel="stylesheet" href="style-upcoming.css">
-
-
-<link rel="stylesheet" href="https://fontawesome.com/icons/plus?f=classic&s=solid">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin&family=Onest&family=Syne:wght@800&family=Young+Serif&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=Urbanist:ital,wght@0,100;1,100&display=swap" rel="stylesheet">
-
-
+  <title>Responsive Grid Table</title>
+  <link rel="stylesheet" href="style-upcoming.css">
 </head>
 
-
-<div class="Back"> <a href="upcoming-trips.html">Back</a>
- 
 <body>
-</div>
-<h1 contenteditable="true">(Destination)</h1>
-<p contenteditable="true">(Travel Dates)</p>
 
-
-<div class="AccomodationTitle">
-<span class="material-symbols-outlined">night_shelter</span>
-
-
-<style>
-.material-symbols-outlined {
-  font-size: 59px;
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 500
-}
-  </style>
-
-
-<h3>Accomodation</h3>
-</div>
-
-
-<div class="Accomodation">
- <table>
- <thead>
-    <th>Accomodation</th>
-    <th>Date</th>
-    <th>Rate</th>
-    <th>Nights</th>
-    <th>Cost</th>
- </thead>
-
-
- <div class="wrapper">
-  <button class= "ButtonAddDelete" id= "addRowC"><span class="material-symbols-outlined">add</span></button>
-  <button class="ButtonAddDelete" id="deleteRowC"><span class="material-symbols-outlined">delete</span></button>
-  <tbody id="tableBodyC">
-    <tr>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true">$</td>
-        <td contenteditable="true">#</td>
-        <td contenteditable="true">$</td>
-      </tr>
- </tbody>
-</div>
-
-
-<tfoot>
-    <tr>
-        <th>Total</th>
-        <div class="total-amount-box"><th contenteditable = "true" colspan="4" class="total-amount-box">$</th></div>
-    </tr>
-</tfoot>
-
-
-</table>
-</div>
-
-
-
-
-<div class="TransportTitle">
-    <span class="material-symbols-outlined">flight</span>
-    <h3>Transportation</h3>
-</div>
-
-
-
-
- <div class="Transport">
-  <table>
-   <thead>
-    <th>Transport</th>
-    <th>Date</th>
-    <th>From</th>
-    <th>To</th>
-    <th>Cost</th>
-  </thead>
-
-
-  <div class="wrapper">
-    <button class= "ButtonAddDelete" id= "addRowTC"><span class="material-symbols-outlined">add</span></button>
-    <button class="ButtonAddDelete" id="deleteRowTC"><span class="material-symbols-outlined">delete</span></button>
-  <tbody id="tableBodyTC">
-    <tr>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true">$</td>
-    </tr>
-  </tbody>
-</div>
-  <tfoot>
-    <tr>
-        <th>Total</th>
-        <div class="total-amount-box"><th contenteditable = "true" colspan="4" class="total-amount-box">$</th></div>
-    </tr>
-  </tfoot>
- </table>
-</div>
-
-
-
-
-<div class="FoodTitle">
-    <span class="material-symbols-outlined">local_dining</span>
-    <h3>Food & Drink</h3>
-</div>
-
-
- <div class="Food">
-    <table id="foodTC">
-    <thead>
-      <th>Purchase</th>
-      <th>Type</th>
-      <th>Date</th>
-      <th>Cost</th>
-    </thead>
-    <div class="wrapper">
-      <button class= "ButtonAddDelete" id= "addRowFC"><span class="material-symbols-outlined">add</span></button>
-      <button class="ButtonAddDelete" id="deleteRowFC"><span class="material-symbols-outlined">delete</span></button>
-      <tr>
-        <td contenteditable="true"></td>
-        <td><select class= "selectFood" name="Type"><span class="material-symbols-outlined">delete</span>
-          <option value ="Select">Select</option>
-          <option value ="Breakfast">Breakfast</option>
-          <option value ="Lunch">Lunch</option>
-          <option value ="Dinner">Dinner</option>
-          <option value ="Snack">Snack</option>
-          <option value ="Drink">Beverage</option>
-          <option value ="Drink">Grocery Run</option>
-          <option value ="Groceries">Night Out</option></select>
-      </td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true">$</td>
-      </tr>
-    </tbody>
+  <h3>Accommodation</h3>
+  <div class="grid-table">
+    <div class="table-header">
+      <div class="header-item">Name of Stay</div>
+      <div class="header-item">Dates</div>
+      <div class="header-item">Rate</div>
+      <div class="header-item">Nights</div>
+      <div class="header-item">Cost</div>
     </div>
-    <tfoot>
-      <tr>
-        <th>Total</th>
-        <div class="total-amount-box"><th contenteditable = "true" colspan="4" class="total-amount-box">$</th></div>
-      </tr>
-  </tfoot>
-   </table>
+    <div class="table-row">
+      <div class="row-item"><input type="text"></div>
+      <div class="row-item"><input type="date"></div>
+      <div class="row-item"><input type="text"></div>
+      <div class="row-item"><input type="text"></div>
+      <div class="row-item"><input type="text"></div>
+    </div>
   </div>
 
 
-  <div class="ActivityTitle">
-    <span class="material-symbols-outlined">
-        surfing
-        </span>
-   
-    <h3>Activites</h3>
+  <h3>Transport</h3>
+  <div class="grid-table">
+    <div class="table-header">
+      <div class="header-item">Transport Type</div>
+      <div class="header-item">Date</div>
+      <div class="header-item">Cost</div>
     </div>
-
-
-  <div class="Activities">
-    <table>
-    <thead>
-      <th>Activity</th>
-      <th>Date</th>
-      <th>Cost</th>
-    </thead>
-    <div class="wrapper">
-      <button class= "ButtonAddDelete" id= "addRowAC"><span class="material-symbols-outlined">add</span></button>
-      <button class="ButtonAddDelete" id="deleteRowAC"><span class="material-symbols-outlined">delete</span></button>
-    <tbody id="tableBodyAC">
-      <tr>
-          <td contenteditable="true"></td>
-          <td contenteditable="true"></td>
-          <td contenteditable="true">$</td>
-      </tr>
-    </tbody>
-   </div>
-    <tfoot>
-      <tr>
-          <th>Total</th>
-          <div class="total-amount-box"><th contenteditable = "true" colspan="4" class="total-amount-box">$</th></div>
-      </tr>
-  </tfoot>
-   </table>
+    <div class="table-row">
+      <div class="row-item"><input type="text"></div>
+      <div class="row-item"><input type="date"></div>
+      <div class="row-item"><input type="text"></div>
+    </div>
   </div>
 
 
-  <div class="ShoppingTitle">
-    <span class="material-symbols-outlined">
-        shopping_bag
-        </span>
-   
-    <h3>Shopping</h3>
+  <h3>Food</h3>
+  <div class="grid-table">
+    <div class="table-header">
+      <div class="header-item">Purchase</div>
+      <div class="header-item">Date</div>
+      <div class="header-item">Cost</div>
     </div>
- 
-  <div class="Shopping">
-    <table>
-    <thead>
-      <th>Item</th>
-      <th>Date</th>
-      <th>Cost</th>
-    </thead>
-    <div class="wrapper">
-      <button class= "ButtonAddDelete" id= "addRowSC"><span class="material-symbols-outlined">add</span></button>
-      <button class="ButtonAddDelete" id="deleteRowSC"><span class="material-symbols-outlined">delete</span></button>
-    <tbody id="tableBodySC">
-      <tr>
-          <td contenteditable="true"></td>
-          <td contenteditable="true"></td>
-          <td contenteditable="true">$</td>
-      </tr>
-    </tbody>
-   </div>
-    <tfoot>
-      <tr>
-          <th>Total</th>
-          <div class="total-amount-box"><th contenteditable = "true" colspan="4" class="total-amount-box">$</th></div>
-      </tr>
-  </tfoot>
-   </table>
+    <div class="table-row">
+      <div class="row-item"><input type="text"></div>
+      <div class="row-item"><input type="date"></div>
+      <div class="row-item"><input type="text"></div>
+    </div>
   </div>
 
 
-
-
-  <div class="parentExtra">
-  <div class="ExtraTitle">
-    <span class="material-symbols-outlined">
-        paid
-        </span>
-   
-    <h3>Extra Expenses</h3>
+  <h3>Activities</h3>
+  <div class="grid-table">
+    <div class="table-header">
+      <div class="header-item">Activity</div>
+      <div class="header-item">Dates</div>
+      <div class="header-item">Cost</div>
     </div>
-
-
-  <div class="ExtraExpenses">
-    <table>
-    <thead>
-      <th>Item</th>
-      <th>Date</th>
-      <th>Cost</th>
-    </thead>
-    <div class="wrapper">
-      <button class= "ButtonAddDelete" id= "addRowEC"><span class="material-symbols-outlined">add</span></button>
-      <button class="ButtonAddDelete" id="deleteRowEC"><span class="material-symbols-outlined">delete</span></button>
-    <tbody id="tableBodyEC">
-      <tr>
-          <td contenteditable="true"></td>
-          <td contenteditable="true"></td>
-          <td contenteditable="true">$</td>
-      </tr>
-    </tbody>
-   </div>
-    <tfoot>
-      <tr>
-          <th>Total</th>
-          <div class="total-amount-box"><th contenteditable = "true" colspan="4" class="total-amount-box">$</th></div>
-      </tr>
-  </tfoot>
-   </table>
+    <div class="table-row">
+      <div class="row-item"><input type="text"></div>
+      <div class="row-item"><input type="date"></div>
+      <div class="row-item"><input type="text"></div>
+    </div>
   </div>
-</div>
 
 
- <script src="script-upcoming.js"></script>
- </body>  
- 
+  <h3>Shopping</h3>
+  <div class="grid-table">
+    <div class="table-header">
+      <div class="header-item">Item</div>
+      <div class="header-item">Date</div>
+      <div class="header-item">Cost</div>
+    </div>
+    <div class="table-row">
+      <div class="row-item"><input type="text"></div>
+      <div class="row-item"><input type="date"></div>
+      <div class="row-item"><input type="text"></div>
+    </div>
+  </div>
 
+  <h3>Extra Expenses</h3>
+  <div class="grid-table">
+    <div class="table-header">
+      <div class="header-item">Item</div>
+      <div class="header-item">Date</div>
+      <div class="header-item">Cost</div>
+    </div>
+    <div class="table-row">
+      <div class="row-item"><input type="text"></div>
+      <div class="row-item"><input type="date"></div>
+      <div class="row-item"><input type="text"></div>
+    </div>
+  </div>
+</body>
 
- </html>
-
+</html>
