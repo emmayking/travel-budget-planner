@@ -4,104 +4,177 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Responsive Grid Table</title>
+  <title>Upcoming Trips</title>
   <link rel="stylesheet" href="style-upcoming.css">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body>
 
-  <h3>Accommodation</h3>
-  <div class="grid-table">
-    <div class="table-header">
-      <div class="header-item">Name of Stay</div>
-      <div class="header-item">Dates</div>
-      <div class="header-item">Rate</div>
-      <div class="header-item">Nights</div>
-      <div class="header-item">Cost</div>
-    </div>
-    <div class="table-row">
-      <div class="row-item"><input type="text"></div>
-      <div class="row-item"><input type="date"></div>
-      <div class="row-item"><input type="text"></div>
-      <div class="row-item"><input type="text"></div>
-      <div class="row-item"><input type="text"></div>
-    </div>
-  </div>
-
-
-  <h3>Transport</h3>
-  <div class="grid-table">
-    <div class="table-header">
-      <div class="header-item">Transport Type</div>
-      <div class="header-item">Date</div>
-      <div class="header-item">Cost</div>
-    </div>
-    <div class="table-row">
-      <div class="row-item"><input type="text"></div>
-      <div class="row-item"><input type="date"></div>
-      <div class="row-item"><input type="text"></div>
-    </div>
-  </div>
-
-
-  <h3>Food</h3>
-  <div class="grid-table">
-    <div class="table-header">
-      <div class="header-item">Purchase</div>
-      <div class="header-item">Date</div>
-      <div class="header-item">Cost</div>
-    </div>
-    <div class="table-row">
-      <div class="row-item"><input type="text"></div>
-      <div class="row-item"><input type="date"></div>
-      <div class="row-item"><input type="text"></div>
+  <div class="table-container">
+    <h3>Accommodation</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Accommodation</th>
+          <th>Date</th>
+          <th>Rate</th>
+          <th>Nights</th>
+          <th>Cost</th>
+        </tr>
+      </thead>
+      <tbody id="accommodationTableBody">
+        <tr>
+          <td><input type="text" placeholder="Enter name of stay"></td>
+          <td><input type="text" placeholder="Select Date"></td>
+          <td><input type="text" class="rate" placeholder="$ / Night"></td>
+          <td><input type="text" class="nights" placeholder="# of Nights"></td>
+          <td><input type="text" class="cost" placeholder="$" disabled></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>Total</th>
+          <th class="total-cost" colspan="4" id="total-accommodation">0</th>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="wrapper"><button id="add-accommodation-button"><span
+          class="material-symbols-outlined">add</span></button>
+      <button id="delete-accommodation-button"><span class="material-symbols-outlined">delete</span></button>
     </div>
   </div>
 
+  <div class="table-container">
+    <h3>Transportation</h3>
+    <table>
+      <thead>
+        <th>Transportation</th>
+        <th>Date</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Cost</th>
+      </thead>
+      <tbody id="transportTableBody">
+        <tr>
+          <td><input type="text" placeholder="Type of Transport"></td>
+          <td><input type="date"></td>
+          <td><input type="text" placeholder="Departure"></td>
+          <td><input type="text" placeholder="Arrival"></td>
+          <td><input type="text" class="transport-cost" placeholder="$"></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>Total</th>
+          <th class="total-cost" id="total-transport" colspan="4">0</th>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="wrapper">
+      <button class="button" id="add-transport-button"><span class="material-symbols-outlined">add</span></button>
+      <button class="button" id="delete-transport-button"><span class="material-symbols-outlined">delete</span></button>
+    </div>
+  </div>
 
-  <h3>Activities</h3>
-  <div class="grid-table">
-    <div class="table-header">
-      <div class="header-item">Activity</div>
-      <div class="header-item">Dates</div>
-      <div class="header-item">Cost</div>
-    </div>
-    <div class="table-row">
-      <div class="row-item"><input type="text"></div>
-      <div class="row-item"><input type="date"></div>
-      <div class="row-item"><input type="text"></div>
-    </div>
+  <div class="table-container">
+    <h3>Activity</h3>
+    <table>
+      <thead>
+        <th>Item</th>
+        <th>Date</th>
+        <th>Cost</th>
+      </thead>
+      <tbody id="activitiesTableBody">
+        <tr>
+          <td><input type="text" placeholder="Enter name of activity"></td>
+          <td> <input type="date"></td>
+          <td><input type="text" class="activity-cost" placeholder="$"></td>
+        </tr>
+      </tbody>
+  </div>
+  <tfoot>
+    <tr>
+      <th>Total</th>
+      <div>
+        <th class="total-cost" id="total-activities" colspan="4">0</th>
+      </div>
+    </tr>
+  </tfoot>
+  </table>
+  <div class="wrapper">
+    <button class="button" id="add-activity-button"><span class="material-symbols-outlined">add</span></button>
+    <button class="button" id="delete-activity-button"><span class="material-symbols-outlined">delete</span></button>
+  </div>
+  </div>
+
+  <div class="table-container">
+    <h3>Shopping</h3>
+    <table>
+      <thead>
+        <th>Purchase</th>
+        <th>Date</th>
+        <th>Cost</th>
+      </thead>
+      <tbody id="shoppingTableBody">
+        <tr>
+          <td><input type="text" placeholder="Enter name of item"></td>
+          <td><input type="date" name="date"></td>
+          <td><input type="text" class="shopping-cost" placeholder="$"></td>
+        </tr>
+      </tbody>
+  </div>
+  <tfoot>
+    <tr>
+      <th>Total</th>
+      <div>
+        <th class="total-cost" id="total-shopping" colspan="4">0</th>
+      </div>
+    </tr>
+  </tfoot>
+  </table>
+  <div class="wrapper">
+    <button class="button" id="add-shopping-button"><span class="material-symbols-outlined">add</span></button>
+    <button class="button" id="delete-shopping-button"><span class="material-symbols-outlined">delete</span></button>
+  </div>
+  </div>
+
+  <div class="table-container">
+    <h3>Extra Expenses</h3>
+    <table>
+      <thead>
+        <th>Purchase</th>
+        <th>Date</th>
+        <th>Cost</th>
+      </thead>
+      <tbody id="extraTableBody">
+        <tr>
+          <td><input type="text" placeholder="Enter name of item"></td>
+          <td><input type="date"></td>
+          <td><input type="text" class="extra-cost" placeholder="$"></td>
+        </tr>
+      </tbody>
+  </div>
+  <tfoot>
+    <tr>
+      <th>Total</th>
+      <th class="total-cost" id="total-extra" colspan="4">0</th>
+      </div>
+    </tr>
+  </tfoot>
+  </table>
+  <div class="wrapper">
+    <button class="button" id="add-extra-button"><span class="material-symbols-outlined">add</span></button>
+    <button class="button" id="delete-extra-button"><span class="material-symbols-outlined">delete</span></button>
+  </div>
   </div>
 
 
-  <h3>Shopping</h3>
-  <div class="grid-table">
-    <div class="table-header">
-      <div class="header-item">Item</div>
-      <div class="header-item">Date</div>
-      <div class="header-item">Cost</div>
-    </div>
-    <div class="table-row">
-      <div class="row-item"><input type="text"></div>
-      <div class="row-item"><input type="date"></div>
-      <div class="row-item"><input type="text"></div>
-    </div>
-  </div>
 
-  <h3>Extra Expenses</h3>
-  <div class="grid-table">
-    <div class="table-header">
-      <div class="header-item">Item</div>
-      <div class="header-item">Date</div>
-      <div class="header-item">Cost</div>
-    </div>
-    <div class="table-row">
-      <div class="row-item"><input type="text"></div>
-      <div class="row-item"><input type="date"></div>
-      <div class="row-item"><input type="text"></div>
-    </div>
-  </div>
+
+  <script src="script-upcoming.js"></script>
+
 </body>
 
 </html>

@@ -7,7 +7,7 @@ document
   .addEventListener("click", function () {
     const newAccRow = document.createElement("tr");
     newAccRow.innerHTML = `
-    <td contenteditable="true"></td>
+    <td></td>
     <td><input type="text" name="dates"></td>
     <td><input type="text" class="rate"></td>
     <td><input type="text" class="nights"></td>
