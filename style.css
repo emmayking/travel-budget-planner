@@ -1,211 +1,408 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 
-.page {
-  margin: 20px;
+.calculator {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  background-color: white;
   padding: 20px;
-  color: #0e1517;
-  font-family: "DM Sans", sans-serif;
-  font-size: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 20vh;
-  background-color: #f5f5f5;
+  width: 240px;
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.1);
+  border-radius: 19px;
 }
 
-h3 {
+.calculator-header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  font-family: "DM Sans", sans-serif;
-  text-align: center;
-  font-size: 60px;
-  font-stretch: extra-condensed;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 
-.new {
-  margin: 20px;
+.close-btn {
+  cursor: pointer;
+  position: fixed;
+  top: 45px;
+  right: 50px;
+}
+
+.calculator-body {
+  padding: 5px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+}
+
+.amount-class {
+  display: block;
+  width: 100%;
   padding: 10px;
-  color: #0e1517;
-  font-family: "DM Sans", sans-serif;
-  font-size: 25px;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  height: 20vh;
+  border-bottom: 3px solid #080808;
+  border-top-style: hidden;
+  border-left-style: hidden;
+  border-right-style: hidden;
+  margin-bottom: 13px;
 }
 
+.drop-down-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.select-currency {
+  width: 100%;
+  padding: 10px;
+  font-weight: 600;
+  border: none;
+  background-color: rgb(21, 21, 21);
+  color: whitesmoke;
+  border-radius: 3px;
+}
+
+.convert-button-class {
+  width: 100%;
+  background-color: #121212;
+  color: #f5f5f5;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.result-class {
+  text-align: center;
+  background-color: #edb8b8;
+  font-size: medium;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "DM Sans";
+}
+
+.new,
+.home,
 .back {
   padding: 10px;
-  margin-left: 10px;
-  margin-top: 0px;
-  color: #0e1517;
-  font-family: "DM Sans", sans-serif;
-  font-size: 25px;
-  display: flex;
-  justify-content: left;
-  align-items: end;
-  height: 20vh;
-}
-
-.home {
-  padding: 10px;
-  margin-left: 10px;
-  margin-top: 0px;
-  color: #0e1517;
-  font-family: "DM Sans", sans-serif;
-  font-size: 25px;
-  display: flex;
-  justify-content: left;
-  align-items: end;
-  height: 20vh;
-}
-
-h1[contenteditable="true"]:focus {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: "DM Sans", sans-serif;
-  text-align: center;
-  font-size: 70px;
-  font-stretch: extra-condensed;
 }
 
 h1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: "DM Sans", sans-serif;
+  padding: 15px;
   text-align: center;
-  font-size: 70px;
-  font-stretch: extra-condensed;
 }
 
-body {
-  background-color: #f5f5f5;
-}
-
-p {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.page {
   font-family: "DM Sans", sans-serif;
-  text-align: center;
-  font-size: 20px;
-  font-stretch: extra-condensed;
-}
-
-.table {
-  max-width: 90%;
-  padding-left: 20px;
-  padding-right: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+h3 {
+  text-align: center;
+  padding: 8px;
+}
+
+.table-container {
+  margin: 20px;
+  overflow-x: auto;
 }
 
 table {
   border-collapse: collapse;
-  width: 70%;
-  background-color: #f5f5f5;
+  width: 100%;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
 th {
-  border: 1px solid;
-  padding: 8px;
-  text-align: left;
-  font-family: "DM Sans", sans-serif;
-  background-color: #b4c3b3;
-  word-wrap: break-word;
-}
-
-td {
-  border: 1px solid;
-  padding: 8px;
-  font-family: "DM Sans", sans-serif;
-  word-wrap: break-word;
-}
-
-tr:hover {
   background-color: #f5f5f5;
+  border: none;
 }
 
-[contenteditable="true"]:focus {
-  outline: 0px solid #000000;
+input {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
 }
 
 .total-cost {
   background-color: #f5f5f5;
   text-align: right;
+  border: none;
 }
 
-.title {
+button {
+  padding: 10px;
+  border-color: none;
+}
+
+.add-delete {
+  background-color: #f5f5f5;
+  padding: 6px;
+  border: #080808;
+}
+
+.add-delete-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: "DM Sans", sans-serif;
-  text-align: center;
-  font-size: 45px;
-  font-stretch: extra-condensed;
-  margin-top: 10px;
+  justify-content: left;
+  border-color: #080808;
 }
 
-.button {
-  font-family: "DM Sans";
-  border: #f5f5f5;
-  background-color: #f5f5f5;
-  display: flex;
-  justify-content: center;
+/*.conversion-button-wrapper {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 6px;
+  color: white;
 }
 
-.nights,
-.rate {
-  font-family: "DM Sans";
-  font-size: 16px;
-  border: #f5f5f5;
-  background-color: #f5f5f5;
-  width: 60px;
-}
-
-.cost,
-.extra-cost,
-.shopping-cost,
-.activity-cost,
-.transport-cost {
-  font-family: "DM Sans";
-  font-size: 16px;
-  border: #f5f5f5;
-  background-color: #f5f5f5;
-  width: 60px;
-}
+.conversion-calculator {
+  display: none;
+} */
 
 .select-food {
-  font-family: "DM Sans";
-  font-size: 16px;
-  border: #f5f5f5;
-  background-color: #f5f5f5;
+  padding: 5px;
+  border-color: #ddd;
+  font-weight: 400;
 }
 
-.toggle {
-  display: none;
-}
+@media (max-width: 500px) {
+  .calculator,
+  table,
+  thead,
+  tbody,
+  tfoot,
+  th,
+  td,
+  tr {
+    display: block;
+  }
 
-.toggle:target {
-  display: table-row;
-}
+  .calculator {
+    position: fixed;
+  }
 
-.total-budget-used {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: "DM Sans", sans-serif;
-  text-align: center;
-  font-size: 45px;
-}
+  .calculator::before {
+    position: fixed;
+  }
 
-input {
-  font-family: "DM Sans";
-  font-size: 16px;
-  border: #f5f5f5;
-  background-color: #f5f5f5;
+  thead tr {
+    display: none;
+  }
+
+  tr {
+    border: 1px solid #121212;
+  }
+
+  th {
+    padding-left: 3%;
+    background-color: #f5f5f5;
+    font-size: large;
+  }
+
+  td {
+    border: none;
+    border-bottom: 1px solid #f5f5f5;
+    position: relative;
+    padding-left: 50%;
+    background-color: #f5f5f5;
+  }
+
+  td:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+  td:nth-of-type(1):before {
+    content: "Accommodation";
+    justify-content: center;
+    padding: 8px;
+    font-weight: bold;
+    border-bottom: #080808;
+  }
+
+  td:nth-of-type(2):before {
+    content: "Date";
+    justify-content: center;
+    padding: 8px;
+    font-weight: bold;
+  }
+
+  td:nth-of-type(3):before {
+    content: "Rate";
+    justify-content: center;
+    padding: 8px;
+    font-weight: bold;
+  }
+
+  td:nth-of-type(4):before {
+    content: "Nights";
+    justify-content: center;
+    padding: 8px;
+    font-weight: bold;
+  }
+
+  td:nth-of-type(5):before {
+    content: "Cost";
+    justify-content: center;
+    padding: 8px;
+    font-weight: bold;
+  }
+
+  .t-cell:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+  .t-cell:nth-of-type(1):before {
+    content: "Transport";
+    justify-content: center;
+    padding: 8px;
+    font-weight: bold;
+    border-bottom: #080808;
+  }
+
+  .t-cell:nth-of-type(2):before {
+    content: "Date";
+    justify-content: center;
+    padding: 8px;
+    font-weight: bold;
+  }
+
+  .t-cell:nth-of-type(3):before {
+    content: "From";
+    justify-content: center;
+    padding: 8px;
+    font-weight: bold;
+  }
+
+  .t-cell:nth-of-type(4):before {
+    content: "To";
+    justify-content: center;
+    padding: 8px;
+    font-weight: bold;
+  }
+
+  .t-cell:nth-of-type(5):before {
+    content: "Cost";
+    justify-content: center;
+    padding: 8px;
+    font-weight: bold;
+  }
+
+  .act-cell:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+  .act-cell:nth-of-type(1):before {
+    content: "Activity";
+    justify-content: center;
+    padding: 8px;
+    font-weight: bold;
+    border-bottom: #080808;
+  }
+
+  .act-cell:nth-of-type(2):before {
+    content: "Date";
+    justify-content: center;
+    padding: 8px;
+    font-weight: bold;
+  }
+
+  .act-cell:nth-of-type(3):before {
+    content: "Cost";
+    justify-content: center;
+    padding: 8px;
+    font-weight: bold;
+  }
+
+  .shop-cell:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+  .shop-cell:nth-of-type(1):before {
+    content: "Purchase";
+    justify-content: center;
+    padding: 8px;
+    font-weight: bold;
+    border-bottom: #080808;
+  }
+
+  .shop-cell:nth-of-type(2):before {
+    content: "Date";
+    justify-content: center;
+    padding: 8px;
+    font-weight: bold;
+  }
+
+  .shop-cell:nth-of-type(3):before {
+    content: "Cost";
+    justify-content: center;
+    padding: 8px;
+    font-weight: bold;
+  }
+
+  .ext-cell:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+  .ext-cell:nth-of-type(1):before {
+    content: "Purchase";
+    justify-content: center;
+    padding: 8px;
+    font-weight: bold;
+    border-bottom: #080808;
+  }
+
+  .ext-cell:nth-of-type(2):before {
+    content: "Date";
+    justify-content: center;
+    padding: 8px;
+    font-weight: bold;
+  }
+
+  .ext-cell:nth-of-type(3):before {
+    content: "Cost";
+    justify-content: center;
+    padding: 8px;
+    font-weight: bold;
+  }
 }

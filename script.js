@@ -1,4 +1,51 @@
-$('input[name="dates"]').daterangepicker();
+// Currency Conversion
+
+function openCalculator() {
+  document.getElementById("calculator").style.display = "block";
+}
+
+function closeCalculator() {
+  document.getElementById("calculator").style.display = "none";
+}
+
+let api =
+  " https://v6.exchangerate-api.com/v6/ffd5bd299cb5cd414b825c77/latest/USD";
+const fromDropDown = document.getElementById("from-currency-select");
+const toDropDown = document.getElementById("to-currency-select");
+
+currencies.forEach((currency) => {
+  const option = document.createElement("option");
+  option.value = currency;
+  option.text = currency;
+  fromDropDown.add(option);
+});
+
+currencies.forEach((currency) => {
+  const option = document.createElement("option");
+  option.value = currency;
+  option.text = currency;
+  toDropDown.add(option);
+});
+
+fromDropDown.value = "CAD";
+toDropDown.value = "EUR";
+
+let convertCurrency = () => {
+  const amount = document.querySelectorAll("amount").value;
+  const fromCurrency = fromDropDown.value;
+  const toCurrency = toDropDown.value;
+
+  if ((amount.length = 0)) {
+    fetch(api)
+      .then((resp) => resp.json())
+      .then((data) => console.log(data));
+  }
+};
+
+document
+  .querySelectorAll("convertButton")
+  .addEventListener("click", convertCurrency);
+window.addEventListener("load", convertCurrency);
 
 // Accommodation
 
@@ -7,11 +54,11 @@ document
   .addEventListener("click", function () {
     const newAccRow = document.createElement("tr");
     newAccRow.innerHTML = `
-    <td></td>
-    <td><input type="text" name="dates"></td>
-    <td><input type="text" class="rate"></td>
-    <td><input type="text" class="nights"></td>
-    <td><input type="text" class="cost" disabled></td>
+    <td><input type="text" placeholder="Enter name of stay"></td>
+    <td><input type="text" placeholder="Select Date"></td>
+    <td><input type="text" class="rate" placeholder="$ / Night"></td>
+    <td><input type="text" class="nights" placeholder="# of Nights"></td>
+    <td><input type="text" class="cost" placeholder="$" disabled></td>
   `;
     document.getElementById("accommodationTableBody").appendChild(newAccRow);
     updateTotalAccCost();
@@ -69,11 +116,11 @@ document
   .addEventListener("click", function () {
     const newTranRow = document.createElement("tr");
     newTranRow.innerHTML = `
-    <td contenteditable="true"></td>
-    <td> <input type="date" name="date" id="daterangepicker"></td>
-    <td contenteditable="true"></td>
-    <td contenteditable="true"></td>
-    <td><input type="text" class="transport-cost"></td>
+     <td class="t-cell"><input type="text" placeholder="Type of Transport"></td>
+          <td class="t-cell"><input type="date"></td>
+          <td class="t-cell"><input type="text" placeholder="Departure"></td>
+          <td class="t-cell"><input type="text" placeholder="Arrival"></td>
+          <td class="t-cell"><input type="text" class="transport-cost" placeholder="$"></td>
   `;
     const newTranInput = newTranRow.querySelector(".transport-cost");
     newTranInput.addEventListener("input", updateTotalTranCost);
@@ -102,8 +149,6 @@ function updateTotalTranCost() {
     totalTranCost.toFixed(2);
 }
 
-// Food
-
 // Activities
 
 function updateInitialActInput() {
@@ -120,9 +165,9 @@ document
   .addEventListener("click", function () {
     const newActRow = document.createElement("tr");
     newActRow.innerHTML = `
-    <td contenteditable="true"></td>
-    <td> <input type="date" name="date" id="daterangepicker"></td>
-    <td><input type="text" class="activity-cost"></td>
+    <td class="act-cell"><input type="text" placeholder="Enter name of activity"></td>
+          <td class="act-cell"> <input type="date"></td>
+          <td class="act-cell"><input type="text" class="activity-cost" placeholder="$"></td>
   `;
     const newActInput = newActRow.querySelector(".activity-cost");
     newActInput.addEventListener("input", updateTotalActCost);
@@ -167,9 +212,9 @@ document
   .addEventListener("click", function () {
     const newShopRow = document.createElement("tr");
     newShopRow.innerHTML = `
-    <td contenteditable="true"></td>
-    <td> <input type="date" name="date" id="daterangepicker"></td>
-    <td><input type="text" class="shopping-cost"></td>
+    <td class="shop-cell"><input type="text" placeholder="Enter name of item"></td>
+          <td class="shop-cell"><input type="date" name="date"></td>
+          <td class="shop-cell"><input type="text" class="shopping-cost" placeholder="$"></td>
   `;
     const newShopInput = newShopRow.querySelector(".shopping-cost");
     newShopInput.addEventListener("input", updateTotalShopCost);
@@ -214,9 +259,9 @@ document
   .addEventListener("click", function () {
     const newExtRow = document.createElement("tr");
     newExtRow.innerHTML = `
-    <td contenteditable="true"></td>
-    <td> <input type="date" name="date" id="daterangepicker"></td>
-    <td><input type="text" class="extra-cost"></td>
+    <td class="ext-cell"><input type="text" placeholder="Enter name of item"></td>
+          <td class="ext-cell"><input type="date"></td>
+          <td class="ext-cell"><input type="text" class="extra-cost" placeholder="$"></td>
   `;
     const newExtInput = newExtRow.querySelector(".extra-cost");
     newExtInput.addEventListener("input", updateTotalExtCost);
