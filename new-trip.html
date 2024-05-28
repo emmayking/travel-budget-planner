@@ -35,22 +35,24 @@
     <div class="overview-row">
       <div class="overview-item"><input type="text" id="budget-input" class="budget-input-class"></div>
       <div class="overview-item" id="grand-total"></div>
-      <div class="overview-item" id="grand-remaining"></div>
+      <div class="overview-item" id="total-remaining"></div>
     </div>
   </div>
 
-  <div class="calculate-button-over-class">
-    <button id="calculate-button-over">Calculate Budget</button>
+  <div id="noCheckboxModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="modal-text">
+        <p>Select the items you would like to delete</p>
+      </div>
+    </div>
   </div>
 
-
-
-  <button onclick="openCalculator()" id="calculator-open-button" class="calculator-open-button"><span
+  <button onclick="toggleCalculator()" id="calculator-open-button" class="calculator-open-button"><span
       class="material-symbols-outlined">currency_exchange</span></button>
 
   <div id="calculator" class="calculator">
     <div class="calculator-header">
-      <span class="close-btn" onclick="closeCalculator()">&times;</span>
       <h1>Currency Conversion</h1>
     </div>
     <div class="calculator-body">
@@ -70,7 +72,7 @@
     <table>
       <thead>
         <tr>
-          <th>
+          <th class="button-header">
             <div class="add-delete-wrapper"><button id="add-accommodation-button" class="add-delete"><span
                   class="material-symbols-outlined">add</span></button>
               <button id="delete-accommodation-button" class="add-delete"><span
@@ -86,7 +88,7 @@
       </thead>
       <tbody id="accommodationTableBody">
         <tr>
-          <td><input type="checkbox" class="row-selector"></td>
+          <td><input type="checkbox" class="row-selector" acc></td>
           <td><input type="text" placeholder="Enter name of stay"></td>
           <td><input type="text" placeholder="Select Date"></td>
           <td><input type="text" class="rate" placeholder="$ / Night"></td>
@@ -107,7 +109,7 @@
     <h2>Transportation</h2>
     <table>
       <thead>
-        <th>
+        <th class="button-header">
           <div class="add-delete-wrapper">
             <button class="add-delete" id="add-transport-button"><span
                 class="material-symbols-outlined">add</span></button>
@@ -123,7 +125,7 @@
       </thead>
       <tbody id="transportTableBody">
         <tr>
-          <td><input type="checkbox" class="row-selector"></td>
+          <td><input type="checkbox" class="row-selector" id="transport-row-selector"></td>
           <td class="t-cell"><input type="text" placeholder="Type of Transport"></td>
           <td class="t-cell"><input type="text" placeholder="Departure"></td>
           <td class="t-cell"><input type="text" placeholder="Arrival"></td>

@@ -1,7 +1,10 @@
 // Currency Conversion
 
-function openCalculator() {
-  document.getElementById("calculator").style.display = "block";
+function toggleCalculator() {
+  const calcButton = document.getElementById("calculator");
+  if (calcButton.style.display === "none") {
+    calcButton.style.display = "block";
+  } else calcButton.style.display = "none";
 }
 
 function closeCalculator() {
@@ -224,7 +227,7 @@ document
   .getElementById("convertButton")
   .addEventListener("click", convertCurrency);
 
-// Grand Total Spent
+// Budget Overview
 
 function calculateGrandTotal() {
   const totalAccommodation = document.getElementById("total-accommodation");
@@ -254,15 +257,44 @@ function calculateGrandTotal() {
     totalUsed.innerText = grandTotal.toFixed(2);
   }
 
+  const budgetInput = document.getElementById("budget-input");
+  const budgetValue = parseFloat(budgetInput.value) || 0;
+
+  const totalRemaining = budgetValue - grandTotal;
+
+  const remainingField = document.getElementById("total-remaining");
+  if (remainingField) {
+    remainingField.innerText = totalRemaining.toFixed(2);
+  }
+
   return grandTotal;
 }
 
-const calculateButtonOver = document.getElementById("calculate-button-over");
-if (calculateButtonOver) {
-  calculateButtonOver.addEventListener("click", calculateGrandTotal);
+function setupAutomaticCalculation() {
+  const elementsToWatch = [
+    "total-accommodation",
+    "total-transport",
+    "total-food",
+    "total-activities",
+    "total-shopping",
+    "total-extra",
+    "budget-input",
+  ];
+
+  elementsToWatch.forEach((id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      if (element.tagName === "INPUT") {
+        element.addEventListener("input", calculateGrandTotal);
+      } else {
+        const observer = new MutationObserver(calculateGrandTotal);
+        observer.observe(element, { childList: true, characterData: true });
+      }
+    }
+  });
 }
 
-//Budget Overview
+document.addEventListener("DOMContentLoaded", setupAutomaticCalculation);
 
 // Accommodation
 
@@ -287,14 +319,37 @@ document
   .addEventListener("click", function () {
     const tableBodyAcc = document.getElementById("accommodationTableBody");
     const rows = tableBodyAcc.querySelectorAll("tr");
+    let anyChecked = false;
+
     rows.forEach((row) => {
       const checkbox = row.querySelector(".row-selector");
       if (checkbox && checkbox.checked) {
+        anyChecked = true;
         tableBodyAcc.removeChild(row);
       }
     });
+
+    if (!anyChecked) {
+      const modal = document.getElementById("noCheckboxModal");
+      modal.style.display = "block";
+    }
+
     updateTotalAccCost();
   });
+
+var modal = document.getElementById("noCheckboxModal");
+
+var span = document.getElementsByClassName("close")[0];
+
+span.onclick = function () {
+  modal.style.display = "none";
+};
+
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
 
 document
   .getElementById("accommodationTableBody")
