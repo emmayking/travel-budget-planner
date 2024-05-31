@@ -329,6 +329,8 @@ document
       }
     });
 
+    // Modal
+
     if (!anyChecked) {
       const modal = document.getElementById("noCheckboxModal");
       modal.style.display = "block";

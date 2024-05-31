@@ -16,7 +16,7 @@
 
   <div class="home"><a href="current-trips.html">Back</a></div>
 
-  <h1 contenteditable="true">Destination</h1>
+  <input type="text" placeholder="Destination" id="destination">
 
   <h2>Travel Dates:</h2>
 
@@ -39,12 +39,12 @@
     </div>
   </div>
 
-  <div id="noCheckboxModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
+  <div class="modal-backdrop" id="noCheckboxModal">
+    <div class="modal">
       <div class="modal-text">
         <p>Select the items you would like to delete</p>
       </div>
+      <div class="modal-footer"><button>Cancel</button></div>
     </div>
   </div>
 
@@ -53,6 +53,7 @@
 
   <div id="calculator" class="calculator">
     <div class="calculator-header">
+      <span class="close-button" onclick="closeCalculator()">&times;</span>
       <h1>Currency Conversion</h1>
     </div>
     <div class="calculator-body">
