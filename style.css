@@ -185,6 +185,48 @@ h3 {
 
 /* Budget Overview */
 
+#destination {
+  font-size: 80px;
+  text-align: center;
+  border-bottom: #080808;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+
+#destination:focus {
+  outline: none;
+}
+
+.destination-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.input-wrapper {
+  padding-right: 15px;
+}
+
+.blinking-cursor {
+  position: absolute;
+  right: 5px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: black;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.input-wrapper:focus + .blinking-cursor {
+  display: none;
+}
+
 .budget-overview {
   display: flex;
   flex-direction: column;

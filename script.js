@@ -1,3 +1,18 @@
+// Blinking Cursor
+
+const inputWrapper = document.querySelector(".input-wrapper");
+const cursor = document.querySelector(".blinking-cursor");
+
+inputWrapper.addEventListener("focus", () => {
+  cursor.style.display = "none";
+});
+
+inputWrapper.addEventListener("blur", () => {
+  if (!inputWrapper.value) {
+    cursor.style.display = "block";
+  }
+});
+
 // Currency Conversion
 
 function toggleCalculator() {
