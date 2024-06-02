@@ -285,8 +285,8 @@ function calculateGrandTotal() {
   return grandTotal;
 }
 
-function setupAutomaticCalculation() {
-  const elementsToWatch = [
+function budgetCalculation() {
+  const spendingCategories = [
     "total-accommodation",
     "total-transport",
     "total-food",
@@ -296,38 +296,29 @@ function setupAutomaticCalculation() {
     "budget-input",
   ];
 
-  elementsToWatch.forEach((id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      if (element.tagName === "INPUT") {
-        element.addEventListener("input", calculateGrandTotal);
+  spendingCategories.forEach((id) => {
+    const category = document.getElementById(id);
+    if (category) {
+      if (category.tagName === "INPUT") {
+        category.addEventListener("input", calculateGrandTotal);
       } else {
         const observer = new MutationObserver(calculateGrandTotal);
-        observer.observe(element, { childList: true, characterData: true });
+        observer.observe(category, { childList: true, characterData: true });
       }
     }
   });
 }
 
-document.addEventListener("DOMContentLoaded", setupAutomaticCalculation);
+document.addEventListener("DOMContentLoaded", budgetCalculation);
 
 // Accommodation
 
 document
   .getElementById("add-accommodation-button")
-  .addEventListener("click", function () {
-    const newAccRow = document.createElement("tr");
-    newAccRow.innerHTML = `
-    <td><input type="checkbox" class="row-selector"></td>
-    <td><input type="text" placeholder="Enter name of stay"></td>
-    <td><input type="text" placeholder="Select Date"></td>
-    <td><input type="text" class="rate" placeholder="$ / Night"></td>
-    <td><input type="text" class="nights" placeholder="# of Nights"></td>
-    <td><input type="text" class="cost" placeholder="$" disabled></td>
-  `;
-    document.getElementById("accommodationTableBody").appendChild(newAccRow);
-    updateTotalAccCost();
-  });
+  .addEventListener("click", addAccommodationRow);
+document
+  .getElementById("hidden-add-accommodation")
+  .addEventListener("click", addAccommodationRow);
 
 document
   .getElementById("delete-accommodation-button")
@@ -340,22 +331,20 @@ document
       const checkbox = row.querySelector(".row-selector");
       if (checkbox && checkbox.checked) {
         anyChecked = true;
-        tableBodyAcc.removeChild(row);
+        row.remove();
       }
     });
 
     // Modal
-
     if (!anyChecked) {
-      const modal = document.getElementById("noCheckboxModal");
+      const modal = document.getElementById("none-selected-modal");
       modal.style.display = "block";
     }
 
     updateTotalAccCost();
   });
 
-var modal = document.getElementById("noCheckboxModal");
-
+var modal = document.getElementById("none-selected-modal");
 var span = document.getElementsByClassName("close")[0];
 
 span.onclick = function () {
@@ -384,6 +373,32 @@ document
     }
   });
 
+function addAccommodationRow() {
+  const newAccRow = document.createElement("tr");
+  newAccRow.innerHTML = `
+        <td class="first-column">
+          <input type="checkbox" class="row-selector">
+          <div class="hidden-delete-wrapper">
+            <button class="hidden-delete-accommodation"><span class="material-symbols-outlined">delete</span></button>
+          </div>
+        </td>
+        <td><input type="text" placeholder="Enter name of stay"></td>
+        <td><input type="text" placeholder="Select Date"></td>
+        <td><input type="text" class="rate" placeholder="$ / Night"></td>
+        <td><input type="text" class="nights" placeholder="# of Nights"></td>
+        <td><input type="text" class="cost" placeholder="$" disabled></td>
+      `;
+  document.getElementById("accommodationTableBody").appendChild(newAccRow);
+  updateTotalAccCost();
+
+  newAccRow
+    .querySelector(".hidden-delete-accommodation")
+    .addEventListener("click", function () {
+      newAccRow.remove();
+      updateTotalAccCost();
+    });
+}
+
 function updateTotalAccCost() {
   const costs = document.querySelectorAll(".cost");
   let totalAccCost = 0;
@@ -393,6 +408,14 @@ function updateTotalAccCost() {
   document.getElementById("total-accommodation").textContent =
     totalAccCost.toFixed(2);
 }
+
+document.querySelectorAll(".hidden-delete-accommodation").forEach((button) => {
+  button.addEventListener("click", function () {
+    const row = button.closest("tr");
+    row.remove();
+    updateTotalAccCost();
+  });
+});
 
 // Transport
 

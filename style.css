@@ -321,8 +321,12 @@ th {
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
-  align-items: center;
+}
+
+.modal-wrapper {
+  display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .modal {
@@ -345,7 +349,7 @@ th {
   color: #aaa;
   font-size: 22px;
   font-weight: bold;
-  float: right;
+  float: left;
   padding-right: 5px;
   margin-top: 0;
 }
@@ -372,6 +376,23 @@ th {
 }
 
 /* Add & Delete Button */
+.hidden-delete-extra,
+.hidden-delete-activities,
+.hidden-delete-shopping,
+.hidden-delete-food,
+.hidden-delete-transport,
+.hidden-delete-accommodation {
+  display: none;
+}
+
+.hidden-add-extra,
+.hidden-add-activities,
+.hidden-add-shopping,
+.hidden-add-food,
+.hidden-add-transport,
+#hidden-add-accommodation {
+  display: none;
+}
 
 .add-delete {
   background-color: #f0f0f0;
@@ -397,12 +418,11 @@ th {
 .add-delete-wrapper {
   display: flex;
   justify-content: left;
-  border-color: #080808;
 }
 
 /* Viewport at 500px */
 
-@media (max-width: 500px) {
+@media (max-width: 650px) {
   table,
   thead,
   tbody,
@@ -413,12 +433,94 @@ th {
     display: block;
   }
 
+  .row-selector {
+    display: none;
+  }
+
+  .first-column {
+    top: 0;
+    padding: 0;
+  }
+
+  .hidden-delete-extra,
+  .hidden-delete-activities,
+  .hidden-delete-shopping,
+  .hidden-delete-food,
+  .hidden-delete-transport,
+  .hidden-delete-accommodation {
+    display: inline-block;
+    padding: 7px;
+    background-color: #f5f5f5;
+    border: 2px solid #0a0a0a;
+    border-top: none;
+    border-left: none;
+    border-bottom-right-radius: 5px;
+    font-size: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    z-index: 1000;
+  }
+
+  .hidden-add-extra,
+  .hidden-add-activities,
+  .hidden-add-shopping,
+  .hidden-add-food,
+  .hidden-add-transport,
+  #hidden-add-accommodation {
+    display: inline-block;
+    background-color: #f0f0f0;
+    border: 2px solid #0a0a0a;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top: none;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+
+  .hidden-add-food:hover,
+  .hidden-delete-food:hover,
+  .hidden-delete-shopping:hover,
+  .hidden-delete-activities:hover,
+  .hidden-delete-extra:hover,
+  .hidden-add-shopping:hover,
+  .hidden-add-extra:hover,
+  .hidden-add-activities:hover,
+  .hidden-add-transport:hover,
+  .hidden-delete-transport:hover,
+  .hidden-delete-accommodation:hover,
+  #hidden-add-accommodation:hover {
+    background-color: #7e7a7a;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-color: #7e7a7a;
+  }
+
+  .material-symbols-outlined {
+    vertical-align: middle;
+  }
+
   thead tr {
     display: none;
   }
 
   tr {
-    border: 1px solid #121212;
+    border: 2px solid #121212;
+    border-bottom: none;
+  }
+
+  .cost {
+    margin-bottom: 20px;
+  }
+
+  #total-transport,
+  #total-activities,
+  #total-food,
+  #total-shopping,
+  #total-extra,
+  #total-accommodation {
+    border-bottom: 2px solid #080808;
   }
 
   th {
@@ -429,7 +531,7 @@ th {
 
   td {
     border: none;
-    border-bottom: 1px solid #f5f5f5;
+    border-bottom: 2px solid #f5f5f5;
     position: relative;
     padding-left: 50%;
     background-color: #f5f5f5;
@@ -442,14 +544,6 @@ th {
     width: 45%;
     padding-right: 10px;
     white-space: nowrap;
-  }
-
-  td:nth-of-type(1):before {
-    content: "";
-    justify-content: center;
-    padding: 8px;
-    font-weight: bold;
-    border-bottom: #080808;
   }
 
   td:nth-of-type(2):before {
@@ -486,6 +580,7 @@ th {
     justify-content: center;
     padding: 8px;
     font-weight: bold;
+    padding-bottom: 30px;
   }
 
   .t-cell:before {

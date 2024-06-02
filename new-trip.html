@@ -44,12 +44,16 @@
     </div>
   </div>
 
-  <div class="modal-backdrop" id="noCheckboxModal">
-    <div class="modal">
-      <div class="modal-text">
-        <p>Select the items you would like to delete</p>
+  <div class="modal-backdrop" id="none-selected-modal">
+    <div class="modal-wrapper">
+      <div class="modal">
+        <div class="modal-text">
+          <p>Select the items you would like to delete</p>
+        </div>
+        <div class="modal-footer">
+          <div class="close"><button>Cancel</button></div>
+        </div>
       </div>
-      <div class="modal-footer"><button>Cancel</button></div>
     </div>
   </div>
 
@@ -94,7 +98,12 @@
       </thead>
       <tbody id="accommodationTableBody">
         <tr>
-          <td><input type="checkbox" class="row-selector" acc></td>
+          <td class="first-column">
+            <input type="checkbox" acc class="row-selector">
+            <div class="hidden-delete-wrapper"><button class="hidden-delete-accommodation"><span
+                  class="material-symbols-outlined">delete</span></button>
+            </div>
+          </td>
           <td><input type="text" placeholder="Enter name of stay"></td>
           <td><input type="text" placeholder="Select Date"></td>
           <td><input type="text" class="rate" placeholder="$ / Night"></td>
@@ -109,6 +118,8 @@
         </tr>
       </tfoot>
     </table>
+    <div><button id="hidden-add-accommodation"><span class="material-symbols-outlined">add</span></button>
+    </div>
   </div>
 
   <div class="table-container">
@@ -131,7 +142,10 @@
       </thead>
       <tbody id="transportTableBody">
         <tr>
-          <td><input type="checkbox" class="row-selector" id="transport-row-selector"></td>
+          <td class="first-column"><input type="checkbox" class="row-selector" id="transport-row-selector">
+            <div><button class="hidden-delete-transport"><span class="material-symbols-outlined">delete</span></button>
+            </div>
+          </td>
           <td class="t-cell"><input type="text" placeholder="Type of Transport"></td>
           <td class="t-cell"><input type="text" placeholder="Departure"></td>
           <td class="t-cell"><input type="text" placeholder="Arrival"></td>
@@ -146,6 +160,7 @@
         </tr>
       </tfoot>
     </table>
+    <div><button class="hidden-add-transport"><span class="material-symbols-outlined">add</span></button></div>
   </div>
 
   <div class="table-container">
@@ -166,7 +181,11 @@
       </thead>
       <tbody id="foodTableBody">
         <tr>
-          <td class="f-cell"><input type="checkbox" class="row-selector"></td>
+          <td class="first-column"><input type="checkbox" class="row-selector">
+            <div class="hidden-delete-wrapper"><button class="hidden-delete-food"><span
+                  class="material-symbols-outlined">delete</span></button>
+            </div>
+          </td>
           <td class="f-cell"><input type="text" placeholder="Enter name of item"></td>
           <td class="f-cell"><select class="select-food" name="Type"><span
                 class="material-symbols-outlined">delete</span>
@@ -192,6 +211,8 @@
     </tr>
   </tfoot>
   </table>
+  <div><button class="hidden-add-food"><span class="material-symbols-outlined">add</span></button></div>
+  </div>
   </div>
 
   <div class="table-container">
@@ -212,7 +233,11 @@
       </thead>
       <tbody id="activitiesTableBody">
         <tr>
-          <td><input type="checkbox" class="row-selector"></td>
+          <td class="first-column"><input type="checkbox" class="row-selector">
+            <div class="hidden-delete-wrapper"><button class="hidden-delete-food"><span
+                  class="material-symbols-outlined">delete</span></button>
+            </div>
+          </td>
           <td class="act-cell"><input type="text" placeholder="Enter name of activity"></td>
           <td class="act-cell"> <input type="date"></td>
           <td class="act-cell"><input type="text" class="activity-cost" placeholder="$"></td>
@@ -228,6 +253,8 @@
     </tr>
   </tfoot>
   </table>
+  <div><button class="hidden-add-activities"><span class="material-symbols-outlined">add</span></button></div>
+  </div>
   </div>
 
   <div class="table-container">
@@ -248,7 +275,11 @@
       </thead>
       <tbody id="shoppingTableBody">
         <tr>
-          <td><input type="checkbox" class="row-selector"></td>
+          <td class="first-column"><input type="checkbox" class="row-selector">
+            <div class="hidden-delete-wrapper"><button class="hidden-delete-shopping"><span
+                  class="material-symbols-outlined">delete</span></button>
+            </div>
+          </td>
           <td class="shop-cell"><input type="text" placeholder="Enter name of item"></td>
           <td class="shop-cell"><input type="date" name="date"></td>
           <td class="shop-cell"><input type="text" class="shopping-cost" placeholder="$"></td>
@@ -264,6 +295,8 @@
     </tr>
   </tfoot>
   </table>
+  <div><button class="hidden-add-shopping"><span class="material-symbols-outlined">add</span></button></div>
+  </div>
   </div>
 
   <div class="extra-table-container">
@@ -283,7 +316,11 @@
       </thead>
       <tbody id="extraTableBody">
         <tr>
-          <td><input type="checkbox" class="row-selector"></td>
+          <td class="first-column"><input type="checkbox" class="row-selector">
+            <div class="hidden-delete-wrapper"><button class="hidden-delete-extra"><span
+                  class="material-symbols-outlined">delete</span></button>
+            </div>
+          </td>
           <td class="ext-cell"><input type="text" placeholder="Enter name of item"></td>
           <td class="ext-cell"><input type="date"></td>
           <td class="ext-cell"><input type="text" class="extra-cost" placeholder="$"></td>
@@ -298,9 +335,9 @@
     </tr>
   </tfoot>
   </table>
+  <div><button class="hidden-add-extra"><span class="material-symbols-outlined">add</span></button></div>
   </div>
-
-  <div class="page-footer"></div>
+  </div>
 
 
   <script src="api-key.js"></script>
