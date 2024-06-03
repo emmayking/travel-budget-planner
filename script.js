@@ -190,6 +190,8 @@ const currencies = [
   "ZWL",
 ];
 
+// use api or move to seperate
+
 const fromDropDown = document.getElementById("from-currency-select");
 const toDropDown = document.getElementById("to-currency-select");
 
