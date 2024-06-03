@@ -207,16 +207,6 @@ h3 {
   padding-right: 15px;
 }
 
-.blinking-cursor {
-  position: absolute;
-  right: 5px;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background-color: black;
-  animation: blink 1s step-start infinite;
-}
-
 @keyframes blink {
   50% {
     opacity: 0;
