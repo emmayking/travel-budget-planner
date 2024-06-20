@@ -1,18 +1,3 @@
-// Blinking Cursor
-
-const inputWrapper = document.querySelector(".input-wrapper");
-const cursor = document.querySelector(".blinking-cursor");
-
-inputWrapper.addEventListener("focus", () => {
-  cursor.style.display = "none";
-});
-
-inputWrapper.addEventListener("blur", () => {
-  if (!inputWrapper.value) {
-    cursor.style.display = "block";
-  }
-});
-
 // Currency Conversion
 
 function toggleCalculator() {
@@ -190,8 +175,6 @@ const currencies = [
   "ZWL",
 ];
 
-// use api or move to seperate
-
 const fromDropDown = document.getElementById("from-currency-select");
 const toDropDown = document.getElementById("to-currency-select");
 
@@ -283,7 +266,6 @@ function calculateGrandTotal() {
   if (remainingField) {
     remainingField.innerText = totalRemaining.toFixed(2);
   }
-
   return grandTotal;
 }
 
@@ -327,37 +309,60 @@ document
   .addEventListener("click", function () {
     const tableBodyAcc = document.getElementById("accommodationTableBody");
     const rows = tableBodyAcc.querySelectorAll("tr");
-    let anyChecked = false;
+    let checkedRows = [];
 
     rows.forEach((row) => {
       const checkbox = row.querySelector(".row-selector");
       if (checkbox && checkbox.checked) {
-        anyChecked = true;
-        row.remove();
+        checkedRows.push(row);
       }
     });
 
-    // Modal
-    if (!anyChecked) {
+    if (checkedRows.length === 0) {
       const modal = document.getElementById("none-selected-modal");
-      modal.style.display = "block";
+      modal.style.display = "flex";
+    } else if (checkedRows.length === 1) {
+      checkedRows[0].remove();
+      updateTotalAccCost();
+    } else {
+      const confirmModal = document.getElementById("confirm-deletion-modal");
+      confirmModal.style.display = "flex";
     }
-
-    updateTotalAccCost();
   });
 
-var modal = document.getElementById("none-selected-modal");
-var span = document.getElementsByClassName("close")[0];
+var confirmModal = document.getElementById("confirm-deletion-modal");
 
-span.onclick = function () {
-  modal.style.display = "none";
+document.getElementById("confirm-button").onclick = function () {
+  const tableBodyAcc = document.getElementById("accommodationTableBody");
+  const rows = tableBodyAcc.querySelectorAll("tr");
+
+  rows.forEach((row) => {
+    const checkbox = row.querySelector(".row-selector");
+    if (checkbox && checkbox.checked) {
+      row.remove();
+    }
+  });
+
+  confirmModal.style.display = "none";
+  updateTotalAccCost();
 };
+
+document.getElementById("cancel-button").onclick =
+  function confirmDeleteModal() {
+    confirmModal.style.display = "none";
+  };
 
 window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if (event.target.classList.contains("modal-backdrop")) {
+    event.target.style.display = "none";
   }
 };
+
+document.querySelectorAll(".close").forEach((span) => {
+  span.onclick = function () {
+    span.closest(".modal-backdrop").style.display = "none";
+  };
+});
 
 document
   .getElementById("accommodationTableBody")
@@ -378,18 +383,18 @@ document
 function addAccommodationRow() {
   const newAccRow = document.createElement("tr");
   newAccRow.innerHTML = `
-        <td class="first-column">
-          <input type="checkbox" class="row-selector">
-          <div class="hidden-delete-wrapper">
-            <button class="hidden-delete-accommodation"><span class="material-symbols-outlined">delete</span></button>
-          </div>
-        </td>
-        <td><input type="text" placeholder="Enter name of stay"></td>
-        <td><input type="text" placeholder="Select Date"></td>
-        <td><input type="text" class="rate" placeholder="$ / Night"></td>
-        <td><input type="text" class="nights" placeholder="# of Nights"></td>
-        <td><input type="text" class="cost" placeholder="$" disabled></td>
-      `;
+    <td class="first-column">
+      <input type="checkbox" class="row-selector">
+      <div class="hidden-delete-wrapper">
+        <button class="hidden-delete-accommodation"><span class="material-symbols-outlined">delete</span></button>
+      </div>
+    </td>
+    <td><input type="text" placeholder="Enter name of stay"></td>
+    <td><input type="text" placeholder="Select Date"></td>
+    <td><input type="text" class="rate" placeholder="$ / Night"></td>
+    <td><input type="text" class="nights" placeholder="# of Nights"></td>
+    <td><input type="text" class="cost" placeholder="$" disabled></td>
+  `;
   document.getElementById("accommodationTableBody").appendChild(newAccRow);
   updateTotalAccCost();
 
@@ -421,273 +426,603 @@ document.querySelectorAll(".hidden-delete-accommodation").forEach((button) => {
 
 // Transport
 
-function updateInitialTranRow() {
+document.addEventListener("DOMContentLoaded", function () {
+  document
+    .getElementById("add-transport-button")
+    .addEventListener("click", addTransportRow);
+  document
+    .querySelector(".hidden-add-transport")
+    .addEventListener("click", addTransportRow);
+
+  document
+    .getElementById("delete-transport-button")
+    .addEventListener("click", function () {
+      const tableBodyTran = document.getElementById("transportTableBody");
+      const rows = tableBodyTran.querySelectorAll("tr");
+      let checkedRows = [];
+
+      rows.forEach((row) => {
+        const checkbox = row.querySelector(".row-selector");
+        if (checkbox && checkbox.checked) {
+          checkedRows.push(row);
+        }
+      });
+
+      if (checkedRows.length === 0) {
+        const modal = document.getElementById("none-selected-tran");
+        modal.style.display = "flex";
+      } else if (checkedRows.length === 1) {
+        checkedRows[0].remove();
+        updateTotalTranCost();
+      } else {
+        const confirmModal = document.getElementById("confirm-deletion-tran");
+        confirmModal.style.display = "flex";
+      }
+    });
+
+  var confirmModal = document.getElementById("confirm-deletion-tran");
+
+  document.getElementById("confirm-button-tran").onclick = function () {
+    const tableBodyTran = document.getElementById("transportTableBody");
+    const rows = tableBodyTran.querySelectorAll("tr");
+
+    rows.forEach((row) => {
+      const checkbox = row.querySelector(".row-selector");
+      if (checkbox && checkbox.checked) {
+        row.remove();
+      }
+    });
+
+    confirmModal.style.display = "none";
+    updateTotalTranCost();
+  };
+
+  document.getElementById("cancel-button-tran").onclick = function () {
+    confirmModal.style.display = "none";
+  };
+
+  window.onclick = function (event) {
+    if (event.target.classList.contains("modal-backdrop")) {
+      event.target.style.display = "none";
+    }
+  };
+
+  document.querySelectorAll(".close").forEach((span) => {
+    span.onclick = function () {
+      span.closest(".modal-backdrop").style.display = "none";
+    };
+  });
+
+  function addTransportRow() {
+    const newTranRow = document.createElement("tr");
+    newTranRow.innerHTML = `
+      <td class="first-column">
+        <input type="checkbox" class="row-selector">
+        <div><button class="hidden-delete-transport"><span class="material-symbols-outlined">delete</span></button></div>
+      </td>
+      <td class="t-cell"><input type="text" placeholder="Type of Transport"></td>
+      <td class="t-cell"><input type="text" placeholder="Departure"></td>
+      <td class="t-cell"><input type="text" placeholder="Arrival"></td>
+      <td class="t-cell"><input type="date"></td>
+      <td class="t-cell"><input type="text" class="transport-cost" placeholder="$"></td>
+    `;
+    document.getElementById("transportTableBody").appendChild(newTranRow);
+    updateTotalTranCost();
+
+    newTranRow
+      .querySelector(".transport-cost")
+      .addEventListener("input", updateTotalTranCost);
+    newTranRow
+      .querySelector(".hidden-delete-transport")
+      .addEventListener("click", function () {
+        newTranRow.remove();
+        updateTotalTranCost();
+      });
+  }
+
+  function updateTotalTranCost() {
+    const costs = document.querySelectorAll(".transport-cost");
+    let totalTranCost = 0;
+    costs.forEach((costInput) => {
+      totalTranCost += parseFloat(costInput.value) || 0;
+    });
+    document.getElementById("total-transport").textContent =
+      totalTranCost.toFixed(2);
+  }
+
+  document.querySelectorAll(".hidden-delete-transport").forEach((button) => {
+    button.addEventListener("click", function () {
+      const row = button.closest("tr");
+      row.remove();
+      updateTotalTranCost();
+    });
+  });
+
   const existingCostInputs = document.querySelectorAll(".transport-cost");
   existingCostInputs.forEach((input) => {
     input.addEventListener("input", updateTotalTranCost);
   });
-}
+});
 
-document.addEventListener("DOMContentLoaded", updateInitialTranRow);
+// Food
 
-document
-  .getElementById("add-transport-button")
-  .addEventListener("click", function () {
-    const newTranRow = document.createElement("tr");
-    newTranRow.innerHTML = `
-      <td><input type="checkbox" class="row-selector"></td>
-     <td class="t-cell"><input type="text" placeholder="Type of Transport"></td>
-          <td class="t-cell"><input type="text" placeholder="Departure"></td>
-          <td class="t-cell"><input type="text" placeholder="Arrival"></td>
-           <td class="t-cell"><input type="date"></td>
-          <td class="t-cell"><input type="text" class="transport-cost" placeholder="$"></td>
-  `;
-    const newTranInput = newTranRow.querySelector(".transport-cost");
-    newTranInput.addEventListener("input", updateTotalTranCost);
+document.addEventListener("DOMContentLoaded", function () {
+  document
+    .getElementById("add-food-button")
+    .addEventListener("click", addFoodRow);
+  document
+    .querySelector(".hidden-add-food")
+    .addEventListener("click", addFoodRow);
 
-    document.getElementById("transportTableBody").appendChild(newTranRow);
-    updateTotalTranCost();
-  });
+  document
+    .getElementById("delete-food-button")
+    .addEventListener("click", function () {
+      const tableBodyFood = document.getElementById("foodTableBody");
+      const rows = tableBodyFood.querySelectorAll("tr");
+      let checkedRows = [];
 
-document
-  .getElementById("delete-transport-button")
-  .addEventListener("click", function () {
-    const tableBodyTran = document.getElementById("transportTableBody");
-    const tranRows = tableBodyTran.querySelectorAll("tr");
-    tranRows.forEach((row) => {
-      const tranCheckbox = row.querySelector(".row-selector");
-      if (tranCheckbox && tranCheckbox.checked) {
-        tableBodyTran.removeChild(row);
+      rows.forEach((row) => {
+        const checkbox = row.querySelector(".row-selector");
+        if (checkbox && checkbox.checked) {
+          checkedRows.push(row);
+        }
+      });
+
+      if (checkedRows.length === 0) {
+        const modal = document.getElementById("none-selected-food");
+        modal.style.display = "flex";
+      } else if (checkedRows.length === 1) {
+        checkedRows[0].remove();
+        updateTotalFoodCost();
+      } else {
+        const confirmModal = document.getElementById("confirm-deletion-food");
+        confirmModal.style.display = "flex";
       }
     });
-    updateTotalTranCost();
+
+  var confirmModal = document.getElementById("confirm-deletion-food");
+
+  document.getElementById("confirm-button-food").onclick = function () {
+    const tableBodyFood = document.getElementById("foodTableBody");
+    const rows = tableBodyFood.querySelectorAll("tr");
+
+    rows.forEach((row) => {
+      const checkbox = row.querySelector(".row-selector");
+      if (checkbox && checkbox.checked) {
+        row.remove();
+      }
+    });
+
+    confirmModal.style.display = "none";
+    updateTotalFoodCost();
+  };
+
+  document.getElementById("cancel-button-food").onclick = function () {
+    confirmModal.style.display = "none";
+  };
+
+  window.onclick = function (event) {
+    if (event.target.classList.contains("modal-backdrop")) {
+      event.target.style.display = "none";
+    }
+  };
+
+  document.querySelectorAll(".close").forEach((span) => {
+    span.onclick = function () {
+      span.closest(".modal-backdrop").style.display = "none";
+    };
   });
 
-function updateTotalTranCost() {
-  const costs = document.querySelectorAll(".transport-cost");
-  let totalTranCost = 0;
-  costs.forEach((costInput) => {
-    totalTranCost += parseFloat(costInput.value) || 0;
-  });
-  document.getElementById("total-transport").textContent =
-    totalTranCost.toFixed(2);
-}
-
-//Food
-
-function updateInitialFoodRow() {
-  const initialFoodInputs = document.querySelectorAll(".food-cost");
-  initialFoodInputs.forEach((input) => {
-    input.addEventListener("input", updateTotalFoodCost);
-  });
-}
-
-document.addEventListener("DOMContentLoaded", updateInitialFoodRow);
-
-document
-  .getElementById("add-food-button")
-  .addEventListener("click", function () {
+  function addFoodRow() {
     const newFoodRow = document.createElement("tr");
     newFoodRow.innerHTML = `
-      <td class="f-cell"><input type="checkbox" class="row-selector"></td>
-    <td class="f-cell"><input type="text" placeholder="Enter name of item"></td>
-     <td class="f-cell"><select class="select-food" name="Type"><span class="material-symbols-outlined">delete</span>
-              <option value="Select">Select</option>
-              <option value="Breakfast">Breakfast</option>
-              <option value="Lunch">Lunch</option>
-              <option value="Dinner">Dinner</option>
-              <option value="Snack">Snack</option>
-              <option value="Drink">Beverage</option>
-              <option value="Drink">Grocery Run</option>
-              <option value="Groceries">Night Out</option>
-            </select>
-          </td>
-          <td class="f-cell"><input type="date"></td>
-          <td class="f-cell"><input type="text" placeholder="$" class= "food-cost"></td>
-        </tr>
-  `;
+      <td class="first-column">
+        <input type="checkbox" class="row-selector">
+        <div class="hidden-delete-wrapper"><button class="hidden-delete-food"><span class="material-symbols-outlined">delete</span></button></div>
+      </td>
+      <td class="f-cell"><input type="text" placeholder="Enter name of item"></td>
+      <td class="f-cell">
+        <select class="select-food" name="Type">
+          <option value="Select">Select</option>
+          <option value="Breakfast">Breakfast</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Dinner">Dinner</option>
+          <option value="Snack">Snack</option>
+          <option value="Drink">Beverage</option>
+          <option value="Drink">Grocery Run</option>
+          <option value="Groceries">Night Out</option>
+        </select>
+      </td>
+      <td class="f-cell"><input type="date" name="date"></td>
+      <td class="f-cell"><input type="text" placeholder="$" class="food-cost"></td>
+    `;
     document.getElementById("foodTableBody").appendChild(newFoodRow);
-
-    const newFoodInput = newFoodRow.querySelector(".food-cost");
-    newFoodInput.addEventListener("input", updateTotalFoodCost);
-
     updateTotalFoodCost();
-  });
 
-document
-  .getElementById("delete-food-button")
-  .addEventListener("click", function () {
-    const tableBodyFood = document.getElementById("foodTableBody");
-    const foodRows = tableBodyFood.querySelectorAll("tr");
-    foodRows.forEach((row) => {
-      const foodCheckbox = row.querySelector(".row-selector");
-      if (foodCheckbox && foodCheckbox.checked) {
-        tableBodyFood.removeChild(row);
-      }
+    newFoodRow
+      .querySelector(".food-cost")
+      .addEventListener("input", updateTotalFoodCost);
+    newFoodRow
+      .querySelector(".hidden-delete-food")
+      .addEventListener("click", function () {
+        newFoodRow.remove();
+        updateTotalFoodCost();
+      });
+  }
+
+  function updateTotalFoodCost() {
+    const costs = document.querySelectorAll(".food-cost");
+    let totalFoodCost = 0;
+    costs.forEach((costInput) => {
+      totalFoodCost += parseFloat(costInput.value) || 0;
     });
-    updateTotalFoodCost();
+    document.getElementById("total-food").textContent =
+      totalFoodCost.toFixed(2);
+  }
+
+  document.querySelectorAll(".hidden-delete-food").forEach((button) => {
+    button.addEventListener("click", function () {
+      const row = button.closest("tr");
+      row.remove();
+      updateTotalFoodCost();
+    });
   });
 
-function updateTotalFoodCost() {
-  const costs = document.querySelectorAll(".food-cost");
-  let totalFoodCost = 0;
-  costs.forEach((costInput) => {
-    totalFoodCost += parseFloat(costInput.value) || 0;
+  const existingCostInputs = document.querySelectorAll(".food-cost");
+  existingCostInputs.forEach((input) => {
+    input.addEventListener("input", updateTotalFoodCost);
   });
-  document.getElementById("total-food").textContent = totalFoodCost.toFixed(2);
-}
+});
 
 // Activities
 
-function updateInitialActInput() {
-  const initialActInputs = document.querySelectorAll(".activity-cost");
-  initialActInputs.forEach((input) => {
-    input.addEventListener("input", updateTotalActCost);
+document.addEventListener("DOMContentLoaded", function () {
+  document
+    .getElementById("add-activity-button")
+    .addEventListener("click", addActivityRow);
+  document
+    .querySelector(".hidden-add-activities")
+    .addEventListener("click", addActivityRow);
+  document
+    .getElementById("delete-activity-button")
+    .addEventListener("click", function () {
+      const tableBodyAct = document.getElementById("activitiesTableBody");
+      const rows = tableBodyAct.querySelectorAll("tr");
+      let checkedRows = [];
+
+      rows.forEach((row) => {
+        const checkbox = row.querySelector(".row-selector");
+        if (checkbox && checkbox.checked) {
+          checkedRows.push(row);
+        }
+      });
+
+      if (checkedRows.length === 0) {
+        const modal = document.getElementById("none-selected-act");
+        modal.style.display = "flex";
+      } else if (checkedRows.length === 1) {
+        checkedRows[0].remove();
+        updateTotalActCost();
+      } else {
+        const confirmModal = document.getElementById("confirm-deletion-act");
+        confirmModal.style.display = "flex";
+      }
+    });
+
+  var confirmModal = document.getElementById("confirm-deletion-act");
+
+  document.getElementById("confirm-button-act").onclick = function () {
+    const tableBodyAct = document.getElementById("activitiesTableBody");
+    const rows = tableBodyAct.querySelectorAll("tr");
+
+    rows.forEach((row) => {
+      const checkbox = row.querySelector(".row-selector");
+      if (checkbox && checkbox.checked) {
+        row.remove();
+      }
+    });
+
+    confirmModal.style.display = "none";
+    updateTotalActCost();
+  };
+
+  document.getElementById("cancel-button-act").onclick = function () {
+    confirmModal.style.display = "none";
+  };
+
+  window.onclick = function (event) {
+    if (event.target.classList.contains("modal-backdrop")) {
+      event.target.style.display = "none";
+    }
+  };
+
+  document.querySelectorAll(".close").forEach((span) => {
+    span.onclick = function () {
+      span.closest(".modal-backdrop").style.display = "none";
+    };
   });
-}
 
-document.addEventListener("DOMContentLoaded", updateInitialActInput);
-
-document
-  .getElementById("add-activity-button")
-  .addEventListener("click", function () {
+  function addActivityRow() {
     const newActRow = document.createElement("tr");
     newActRow.innerHTML = `
-    <td><input type="checkbox" class="row-selector"></td>
-    <td class="act-cell"><input type="text" placeholder="Enter name of activity"></td>
-          <td class="act-cell"> <input type="date"></td>
-          <td class="act-cell"><input type="text" class="activity-cost" placeholder="$"></td>
-  `;
-    const newActInput = newActRow.querySelector(".activity-cost");
-    newActInput.addEventListener("input", updateTotalActCost);
-
+      <td class="first-column">
+        <input type="checkbox" class="row-selector">
+        <div class="hidden-delete-wrapper"><button class="hidden-delete-food"><span class="material-symbols-outlined">delete</span></button></div>
+      </td>
+      <td class="act-cell"><input type="text" placeholder="Enter name of activity"></td>
+      <td class="act-cell"><input type="date"></td>
+      <td class="act-cell"><input type="text" class="activity-cost" placeholder="$"></td>
+    `;
     document.getElementById("activitiesTableBody").appendChild(newActRow);
     updateTotalActCost();
+
+    newActRow
+      .querySelector(".activity-cost")
+      .addEventListener("input", updateTotalActCost);
+    newActRow
+      .querySelector(".hidden-delete-food")
+      .addEventListener("click", function () {
+        newActRow.remove();
+        updateTotalActCost();
+      });
+  }
+
+  function updateTotalActCost() {
+    const costs = document.querySelectorAll(".activity-cost");
+    let totalActCost = 0;
+    costs.forEach((costInput) => {
+      totalActCost += parseFloat(costInput.value) || 0;
+    });
+    document.getElementById("total-activities").textContent =
+      totalActCost.toFixed(2);
+  }
+
+  document.querySelectorAll(".hidden-delete-food").forEach((button) => {
+    button.addEventListener("click", function () {
+      const row = button.closest("tr");
+      row.remove();
+      updateTotalActCost();
+    });
   });
 
-document
-  .getElementById("delete-activity-button")
-  .addEventListener("click", function () {
-    const tableBodyAct = document.getElementById("activitiesTableBody");
-    const actRows = tableBodyAct.querySelectorAll("tr");
-    actRows.forEach((row) => {
-      const actCheckbox = row.querySelector(".row-selector");
-      if (actCheckbox && actCheckbox.checked) {
-        tableBodyAct.removeChild(row);
+  const existingCostInputs = document.querySelectorAll(".activity-cost");
+  existingCostInputs.forEach((input) => {
+    input.addEventListener("input", updateTotalActCost);
+  });
+});
+
+// Shopping
+
+document.addEventListener("DOMContentLoaded", function () {
+  document
+    .getElementById("add-shopping-button")
+    .addEventListener("click", addShoppingRow);
+  document
+    .querySelector(".hidden-add-shopping")
+    .addEventListener("click", addShoppingRow);
+
+  document
+    .getElementById("delete-shopping-button")
+    .addEventListener("click", function () {
+      const tableBodyShop = document.getElementById("shoppingTableBody");
+      const rows = tableBodyShop.querySelectorAll("tr");
+      let checkedRows = [];
+
+      rows.forEach((row) => {
+        const checkbox = row.querySelector(".row-selector");
+        if (checkbox && checkbox.checked) {
+          checkedRows.push(row);
+        }
+      });
+
+      if (checkedRows.length === 0) {
+        const modal = document.getElementById("none-selected-shop");
+        modal.style.display = "flex";
+      } else if (checkedRows.length === 1) {
+        checkedRows[0].remove();
+        updateTotalShopCost();
+      } else {
+        const confirmModal = document.getElementById("confirm-deletion-shop");
+        confirmModal.style.display = "flex";
       }
     });
-    updateTotalActCost();
+
+  var confirmModal = document.getElementById("confirm-deletion-shop");
+
+  document.getElementById("confirm-button-shop").onclick = function () {
+    const tableBodyShop = document.getElementById("shoppingTableBody");
+    const rows = tableBodyShop.querySelectorAll("tr");
+
+    rows.forEach((row) => {
+      const checkbox = row.querySelector(".row-selector");
+      if (checkbox && checkbox.checked) {
+        row.remove();
+      }
+    });
+
+    confirmModal.style.display = "none";
+    updateTotalShopCost();
+  };
+
+  document.getElementById("cancel-button-shop").onclick = function () {
+    confirmModal.style.display = "none";
+  };
+
+  window.onclick = function (event) {
+    if (event.target.classList.contains("modal-backdrop")) {
+      event.target.style.display = "none";
+    }
+  };
+
+  document.querySelectorAll(".close").forEach((span) => {
+    span.onclick = function () {
+      span.closest(".modal-backdrop").style.display = "none";
+    };
   });
 
-function updateTotalActCost() {
-  const costs = document.querySelectorAll(".activity-cost");
-  let totalActCost = 0;
-  costs.forEach((costInput) => {
-    totalActCost += parseFloat(costInput.value) || 0;
-  });
-  document.getElementById("total-activities").textContent =
-    totalActCost.toFixed(2);
-}
-
-//Shopping
-
-function updateInitialShopInput() {
-  const initialShopInputs = document.querySelectorAll(".shopping-cost");
-  initialShopInputs.forEach((input) => {
-    input.addEventListener("input", updateTotalShopCost);
-  });
-}
-
-document.addEventListener("DOMContentLoaded", updateInitialShopInput);
-
-document
-  .getElementById("add-shopping-button")
-  .addEventListener("click", function () {
+  function addShoppingRow() {
     const newShopRow = document.createElement("tr");
     newShopRow.innerHTML = `
-    <td><input type="checkbox" class="row-selector"></td>
-    <td class="shop-cell"><input type="text" placeholder="Enter name of item"></td>
-          <td class="shop-cell"><input type="date" name="date"></td>
-          <td class="shop-cell"><input type="text" class="shopping-cost" placeholder="$"></td>
-  `;
-    const newShopInput = newShopRow.querySelector(".shopping-cost");
-    newShopInput.addEventListener("input", updateTotalShopCost);
-
+      <td class="first-column">
+        <input type="checkbox" class="row-selector">
+        <div class="hidden-delete-wrapper"><button class="hidden-delete-shopping"><span class="material-symbols-outlined">delete</span></button></div>
+      </td>
+      <td class="shop-cell"><input type="text" placeholder="Enter name of item"></td>
+      <td class="shop-cell"><input type="date" name="date"></td>
+      <td class="shop-cell"><input type="text" class="shopping-cost" placeholder="$"></td>
+    `;
     document.getElementById("shoppingTableBody").appendChild(newShopRow);
     updateTotalShopCost();
-  });
 
-document
-  .getElementById("delete-shopping-button")
-  .addEventListener("click", function () {
-    const tableBodyShop = document.getElementById("shoppingTableBody");
-    const shopRows = tableBodyShop.querySelectorAll("tr");
-    shopRows.forEach((row) => {
-      const shopCheckbox = row.querySelector(".row-selector");
-      if (shopCheckbox && shopCheckbox.checked) {
-        tableBodyShop.removeChild(row);
-      }
+    newShopRow
+      .querySelector(".shopping-cost")
+      .addEventListener("input", updateTotalShopCost);
+    newShopRow
+      .querySelector(".hidden-delete-shopping")
+      .addEventListener("click", function () {
+        newShopRow.remove();
+        updateTotalShopCost();
+      });
+  }
+
+  function updateTotalShopCost() {
+    const costs = document.querySelectorAll(".shopping-cost");
+    let totalShopCost = 0;
+    costs.forEach((costInput) => {
+      totalShopCost += parseFloat(costInput.value) || 0;
     });
-    updateTotalShopCost();
+    document.getElementById("total-shopping").textContent =
+      totalShopCost.toFixed(2);
+  }
+
+  document.querySelectorAll(".hidden-delete-shopping").forEach((button) => {
+    button.addEventListener("click", function () {
+      const row = button.closest("tr");
+      row.remove();
+      updateTotalShopCost();
+    });
   });
 
-function updateTotalShopCost() {
-  const costs = document.querySelectorAll(".shopping-cost");
-  let totalShopCost = 0;
-  costs.forEach((costInput) => {
-    totalShopCost += parseFloat(costInput.value) || 0;
+  const existingCostInputs = document.querySelectorAll(".shopping-cost");
+  existingCostInputs.forEach((input) => {
+    input.addEventListener("input", updateTotalShopCost);
   });
-  document.getElementById("total-shopping").textContent =
-    totalShopCost.toFixed(2);
-}
+});
 
 // Extra Expenses
 
-function updateInitialExtInput() {
-  const initialExtInputs = document.querySelectorAll(".extra-cost");
-  initialExtInputs.forEach((input) => {
-    input.addEventListener("input", updateTotalExtCost);
-  });
-}
+document.addEventListener("DOMContentLoaded", function () {
+  document
+    .getElementById("add-extra-button")
+    .addEventListener("click", addExtraRow);
+  document
+    .querySelector(".hidden-add-extra")
+    .addEventListener("click", addExtraRow);
 
-document.addEventListener("DOMContentLoaded", updateInitialExtInput);
+  document
+    .getElementById("delete-extra-button")
+    .addEventListener("click", function () {
+      const tableBodyExt = document.getElementById("extraTableBody");
+      const rows = tableBodyExt.querySelectorAll("tr");
+      let checkedRows = [];
 
-document
-  .getElementById("add-extra-button")
-  .addEventListener("click", function () {
-    const newExtRow = document.createElement("tr");
-    newExtRow.innerHTML = `
-    <td><input type="checkbox" class="row-selector"></td>
-    <td class="ext-cell"><input type="text" placeholder="Enter name of item"></td>
-          <td class="ext-cell"><input type="date"></td>
-          <td class="ext-cell"><input type="text" class="extra-cost" placeholder="$"></td>
-  `;
-    const newExtInput = newExtRow.querySelector(".extra-cost");
-    newExtInput.addEventListener("input", updateTotalExtCost);
+      rows.forEach((row) => {
+        const checkbox = row.querySelector(".row-selector");
+        if (checkbox && checkbox.checked) {
+          checkedRows.push(row);
+        }
+      });
 
-    document.getElementById("extraTableBody").appendChild(newExtRow);
-    updateTotalExtCost();
-  });
-
-document
-  .getElementById("delete-extra-button")
-  .addEventListener("click", function () {
-    const tableBodyExt = document.getElementById("extraTableBody");
-    const extraRows = tableBodyExt.querySelectorAll("tr");
-    extraRows.forEach((row) => {
-      const extraCheckbox = row.querySelector(".row-selector");
-      if (extraCheckbox && extraCheckbox.checked) {
-        tableBodyExt.removeChild(row);
+      if (checkedRows.length === 0) {
+        const modal = document.getElementById("none-selected-ext");
+        modal.style.display = "flex";
+      } else if (checkedRows.length === 1) {
+        checkedRows[0].remove();
+        updateTotalExtraCost();
+      } else {
+        const confirmModal = document.getElementById("confirm-deletion-ext");
+        confirmModal.style.display = "flex";
       }
     });
-    updateTotalExtCost();
+
+  var confirmModal = document.getElementById("confirm-deletion-ext");
+
+  document.getElementById("confirm-button-ext").onclick = function () {
+    const tableBodyExt = document.getElementById("extraTableBody");
+    const rows = tableBodyExt.querySelectorAll("tr");
+
+    rows.forEach((row) => {
+      const checkbox = row.querySelector(".row-selector");
+      if (checkbox && checkbox.checked) {
+        row.remove();
+      }
+    });
+
+    confirmModal.style.display = "none";
+    updateTotalExtraCost();
+  };
+
+  document.getElementById("cancel-button-ext").onclick = function () {
+    confirmModal.style.display = "none";
+  };
+
+  window.onclick = function (event) {
+    if (event.target.classList.contains("modal-backdrop")) {
+      event.target.style.display = "none";
+    }
+  };
+
+  document.querySelectorAll(".close").forEach((span) => {
+    span.onclick = function () {
+      span.closest(".modal-backdrop").style.display = "none";
+    };
   });
 
-function updateTotalExtCost() {
-  const costs = document.querySelectorAll(".extra-cost");
-  let totalExtCost = 0;
-  costs.forEach((costInput) => {
-    totalExtCost += parseFloat(costInput.value) || 0;
+  function addExtraRow() {
+    const newExtRow = document.createElement("tr");
+    newExtRow.innerHTML = `
+      <td class="first-column">
+        <input type="checkbox" class="row-selector">
+        <div class="hidden-delete-wrapper"><button class="hidden-delete-extra"><span class="material-symbols-outlined">delete</span></button></div>
+      </td>
+      <td class="ext-cell"><input type="text" placeholder="Enter name of item"></td>
+      <td class="ext-cell"><input type="date"></td>
+      <td class="ext-cell"><input type="text" class="extra-cost" placeholder="$"></td>
+    `;
+    document.getElementById("extraTableBody").appendChild(newExtRow);
+    updateTotalExtraCost();
+
+    newExtRow
+      .querySelector(".extra-cost")
+      .addEventListener("input", updateTotalExtraCost);
+    newExtRow
+      .querySelector(".hidden-delete-extra")
+      .addEventListener("click", function () {
+        newExtRow.remove();
+        updateTotalExtraCost();
+      });
+  }
+
+  function updateTotalExtraCost() {
+    const costs = document.querySelectorAll(".extra-cost");
+    let totalExtraCost = 0;
+    costs.forEach((costInput) => {
+      totalExtraCost += parseFloat(costInput.value) || 0;
+    });
+    document.getElementById("total-extra").textContent =
+      totalExtraCost.toFixed(2);
+  }
+
+  document.querySelectorAll(".hidden-delete-extra").forEach((button) => {
+    button.addEventListener("click", function () {
+      const row = button.closest("tr");
+      row.remove();
+      updateTotalExtraCost();
+    });
   });
-  document.getElementById("total-extra").textContent = totalExtCost.toFixed(2);
-}
+
+  const existingCostInputs = document.querySelectorAll(".extra-cost");
+  existingCostInputs.forEach((input) => {
+    input.addEventListener("input", updateTotalExtraCost);
+  });
+});

@@ -201,6 +201,7 @@ h3 {
 .destination-wrapper {
   position: relative;
   display: inline-block;
+  border-bottom: #080808;
 }
 
 .input-wrapper {
@@ -317,11 +318,12 @@ th {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .modal {
   background-color: #fefefe;
-  margin: 20px;
   padding: 8px;
   max-width: 500px;
   border: 1px solid #888;
@@ -332,40 +334,93 @@ th {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px;
+  padding: 9px;
+  margin-top: 10px;
+  margin-bottom: 3px;
 }
 
 .close {
   color: #aaa;
-  font-size: 22px;
-  font-weight: bold;
-  float: left;
-  padding-right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 0;
+  margin-bottom: 4px;
 }
 
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+#confirm-button-tran,
+#confirm-button-food,
+#confirm-button-act,
+#confirm-button-ext,
+#confirm-button-shop,
+#cancel-button-tran,
+#cancel-button-food,
+#cancel-button-act,
+#cancel-button-ext,
+#cancel-button-shop,
+.cancel-button-tran,
+.cancel-button-food,
+.cancel-button-act,
+.cancel-button-ext,
+.cancel-button-shop,
+.cancel-button,
+#cancel-button,
+#confirm-button {
+  border: 1.5px solid #080808;
+  border-radius: 6px;
+  font-weight: 600;
+  padding: 5px;
+  display: inline-block;
 }
 
-#confirmDeleteButton {
-  background-color: #d9534f;
+#confirm-button-tran:hover,
+#confirm-button-tran:focus,
+#confirm-button-act:hover,
+#confirm-button-act:focus,
+#confirm-button-food:hover,
+#confirm-button-food:focus,
+#confirm-button-ext:hover,
+#confirm-button-ext:focus,
+#confirm-button-shop:hover,
+#confirm-button-shop:focus,
+#confirm-button:hover,
+#confirm-button:focus {
+  background-color: #cf5c5c;
   color: white;
-  border-radius: 10px;
-  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
 }
 
-#cancelDeleteButton {
-  background-color: #aaa;
+#cancel-button-tran:hover,
+#cancel-button-tran:focus,
+#cancel-button-food:hover,
+#cancel-button-food:focus,
+#cancel-button-act:hover,
+#cancel-button-act:focus,
+#cancel-button-ext:hover,
+#cancel-button-ext:focus,
+#cancel-button-shop:hover,
+#cancel-button-shop:focus,
+.cancel-button-tran:hover,
+.cancel-button-tran:focus,
+.cancel-button-food:hover,
+.cancel-button-food:focus,
+.cancel-button-act:hover,
+.cancel-button-act:focus,
+.cancel-button-ext:hover,
+.cancel-button-ext:focus,
+.cancel-button-shop:hover,
+.cancel-button-shop:focus,
+.cancel-button:hover,
+.cancel-button:focus,
+#cancel-button:hover,
+#cancel-button:focus {
+  background-color: #7e7a7a;
   color: white;
-  border-radius: 10px;
-  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
 }
 
 /* Add & Delete Button */
+
 .hidden-delete-extra,
 .hidden-delete-activities,
 .hidden-delete-shopping,
@@ -384,7 +439,8 @@ th {
   display: none;
 }
 
-.add-delete {
+.add,
+.delete {
   background-color: #f0f0f0;
   border: 1px solid #f7f4f4;
   border-radius: 5px;
@@ -394,8 +450,15 @@ th {
   transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-.add-delete:hover {
-  background-color: #7e7a7a;
+.add:hover {
+  background-color: #71a36a;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-color: #7e7a7a;
+}
+
+.delete:hover {
+  background-color: #cf5c5c;
   color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-color: #7e7a7a;
@@ -412,7 +475,7 @@ th {
 
 /* Viewport at 500px */
 
-@media (max-width: 650px) {
+@media (max-width: 500px) {
   table,
   thead,
   tbody,
@@ -470,21 +533,27 @@ th {
   }
 
   .hidden-add-food:hover,
-  .hidden-delete-food:hover,
-  .hidden-delete-shopping:hover,
-  .hidden-delete-activities:hover,
-  .hidden-delete-extra:hover,
   .hidden-add-shopping:hover,
   .hidden-add-extra:hover,
   .hidden-add-activities:hover,
   .hidden-add-transport:hover,
-  .hidden-delete-transport:hover,
-  .hidden-delete-accommodation:hover,
   #hidden-add-accommodation:hover {
-    background-color: #7e7a7a;
+    background-color: #71a36a;
     color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-color: #7e7a7a;
+    border-color: #51754c;
+  }
+
+  .hidden-delete-food:hover,
+  .hidden-delete-shopping:hover,
+  .hidden-delete-activities:hover,
+  .hidden-delete-extra:hover,
+  .hidden-delete-transport:hover,
+  .hidden-delete-accommodation:hover {
+    background-color: #cf5c5c;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-color: #ac5252;
   }
 
   .material-symbols-outlined {
@@ -788,4 +857,9 @@ th {
     padding: 8px;
     font-weight: bold;
   }
+}
+
+/* Viewport at 333px (Mobile) */
+
+@media (max-width: 500px) {
 }
