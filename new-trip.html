@@ -19,7 +19,6 @@
   <div class="destination-wrapper">
     <div class="input-wrapper"><input type="text" placeholder="Destination" id="destination">
       <div class="blinking-cursor"></div>
-      <!-- Add alignment -->
     </div>
   </div>
 
@@ -45,18 +44,7 @@
     </div>
   </div>
 
-  <div class="modal-backdrop" id="none-selected-modal">
-    <div class="modal-wrapper">
-      <div class="modal">
-        <div class="modal-text">
-          <p>Select the items you would like to delete</p>
-        </div>
-        <div class="modal-footer">
-          <div class="close"><button>Cancel</button></div>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
   <button onclick="toggleCalculator()" id="calculator-open-button" class="calculator-open-button"><span
       class="material-symbols-outlined">currency_exchange</span></button>
@@ -84,9 +72,9 @@
       <thead>
         <tr>
           <th class="button-header">
-            <div class="add-delete-wrapper"><button id="add-accommodation-button" class="add-delete"><span
+            <div class="add-delete-wrapper"><button id="add-accommodation-button" class="add"><span
                   class="material-symbols-outlined">add</span></button>
-              <button id="delete-accommodation-button" class="add-delete"><span
+              <button id="delete-accommodation-button" class="delete"><span
                   class="material-symbols-outlined">delete</span></button>
             </div>
           </th>
@@ -123,15 +111,69 @@
     </div>
   </div>
 
+  <div class="modal-backdrop" id="none-selected-modal">
+    <div class="modal-wrapper">
+      <div class="modal">
+        <div class="modal-text">
+          <h3>Select the items you would like to delete</h3>
+        </div>
+        <div class="modal-footer">
+          <div class="close"><button class="cancel-button">Cancel</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="confirm-deletion-modal" class="modal-backdrop">
+    <div class="modal-wrapper">
+      <div class="modal">
+        <div class="modal-text">
+          <h3>Are you sure you want to delete the selected rows?</h3>
+        </div>
+      </div>
+      <button id="confirm-button">Delete</button>
+      <button id="cancel-button">Cancel</button>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="none-selected-modal">
+    <div class="modal-wrapper">
+      <div class="modal">
+        <div class="modal-text">
+          <h3>Select the items you would like to delete</h3>
+        </div>
+        <div class="modal-footer">
+          <div class="close"><button class="cancel-button">Cancel</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm Deletion Modal for Hidden Delete -->
+  <div id="confirm-deletion-modal-hidden" class="modal-backdrop">
+    <div class="modal-wrapper">
+      <div class="modal">
+        <div class="modal-text">Are you sure you want to delete this accommodation row?</div>
+        <div class="modal-footer">
+          <button id="confirm-delete-hidden" class="confirm-button">Yes</button>
+          <button id="cancel-delete-hidden" class="cancel-button">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Transport -->
+
   <div class="table-container">
     <h2>Transportation</h2>
     <table>
       <thead>
         <th class="button-header">
           <div class="add-delete-wrapper">
-            <button class="add-delete" id="add-transport-button"><span
-                class="material-symbols-outlined">add</span></button>
-            <button class="add-delete" id="delete-transport-button"><span
+            <button class="add" id="add-transport-button"><span class="material-symbols-outlined">add</span></button>
+            <button class="delete" id="delete-transport-button"><span
                 class="material-symbols-outlined">delete</span></button>
           </div>
         </th>
@@ -164,14 +206,43 @@
     <div><button class="hidden-add-transport"><span class="material-symbols-outlined">add</span></button></div>
   </div>
 
+  <div id="confirm-deletion-tran" class="modal-backdrop">
+    <div class="modal-wrapper">
+      <div class="modal">
+        <div class="modal-text">
+          <h3>Are you sure you want to delete the selected rows?</h3>
+        </div>
+      </div>
+      <button id="confirm-button-tran">Delete</button>
+      <button id="cancel-button-tran">Cancel</button>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="none-selected-tran">
+    <div class="modal-wrapper">
+      <div class="modal">
+        <div class="modal-text">
+          <h3>Select the items you would like to delete</h3>
+        </div>
+        <div class="modal-footer">
+          <div class="close"><button class="cancel-button-tran">Cancel</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Food & Drink -->
+
   <div class="table-container">
     <h2>Food & Drink</h2>
     <table>
       <thead>
         <th class="button-header">
           <div class="add-delete-wrapper">
-            <button class="add-delete" id="add-food-button"><span class="material-symbols-outlined">add</span></button>
-            <button class="add-delete" id="delete-food-button"><span
+            <button class="add" id="add-food-button"><span class="material-symbols-outlined">add</span></button>
+            <button class="delete" id="delete-food-button"><span
                 class="material-symbols-outlined">delete</span></button>
           </div>
         </th>
@@ -216,15 +287,42 @@
   </div>
   </div>
 
+  <div id="confirm-deletion-food" class="modal-backdrop">
+    <div class="modal-wrapper">
+      <div class="modal">
+        <div class="modal-text">
+          <h3>Are you sure you want to delete the selected rows?</h3>
+        </div>
+      </div>
+      <button id="confirm-button-food">Delete</button>
+      <button id="cancel-button-food">Cancel</button>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="none-selected-food">
+    <div class="modal-wrapper">
+      <div class="modal">
+        <div class="modal-text">
+          <h3>Select the items you would like to delete</h3>
+        </div>
+        <div class="modal-footer">
+          <div class="close"><button class="cancel-button-food">Cancel</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Activities -->
+
   <div class="table-container">
     <h2>Activities</h2>
     <table>
       <thead>
         <th class="button-header">
           <div class="add-delete-wrapper">
-            <button class="add-delete" id="add-activity-button"><span
-                class="material-symbols-outlined">add</span></button>
-            <button class="add-delete" id="delete-activity-button"><span
+            <button class="add" id="add-activity-button"><span class="material-symbols-outlined">add</span></button>
+            <button class="delete" id="delete-activity-button"><span
                 class="material-symbols-outlined">delete</span></button>
           </div>
         </th>
@@ -258,15 +356,41 @@
   </div>
   </div>
 
+  <div id="confirm-deletion-act" class="modal-backdrop">
+    <div class="modal-wrapper">
+      <div class="modal">
+        <div class="modal-text">
+          <h3>Are you sure you want to delete the selected rows?</h3>
+        </div>
+      </div>
+      <button id="confirm-button-act">Delete</button>
+      <button id="cancel-button-act">Cancel</button>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="none-selected-act">
+    <div class="modal-wrapper">
+      <div class="modal">
+        <div class="modal-text">
+          <h3>Select the items you would like to delete</h3>
+        </div>
+        <div class="modal-footer">
+          <div class="close"><button class="cancel-button-act">Cancel</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shopping -->
+
   <div class="table-container">
     <h2>Shopping</h2>
     <table>
       <thead>
         <th class="button-header">
           <div class="add-delete-wrapper">
-            <button class="add-delete" id="add-shopping-button"><span
-                class="material-symbols-outlined">add</span></button>
-            <button class="add-delete" id="delete-shopping-button"><span
+            <button class="add" id="add-shopping-button"><span class="material-symbols-outlined">add</span></button>
+            <button class="delete" id="delete-shopping-button"><span
                 class="material-symbols-outlined">delete</span></button>
           </div>
         </th>
@@ -300,14 +424,41 @@
   </div>
   </div>
 
+  <div id="confirm-deletion-shop" class="modal-backdrop">
+    <div class="modal-wrapper">
+      <div class="modal">
+        <div class="modal-text">
+          <h3>Are you sure you want to delete these items?</h3>
+        </div>
+      </div>
+      <button id="confirm-button-shop">Delete</button>
+      <button id="cancel-button-shop">Cancel</button>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="none-selected-shop">
+    <div class="modal-wrapper">
+      <div class="modal">
+        <div class="modal-text">
+          <h3>Select the items you would like to delete</h3>
+        </div>
+        <div class="modal-footer">
+          <div class="close"><button class="cancel-button-shop">Cancel</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Extra Expenses -->
+
   <div class="extra-table-container">
     <h2>Extra Expenses</h2>
     <table>
       <thead>
         <th class="button-header">
           <div class="add-delete-wrapper">
-            <button class="add-delete" id="add-extra-button"><span class="material-symbols-outlined">add</span></button>
-            <button class="add-delete" id="delete-extra-button"><span
+            <button class="add" id="add-extra-button"><span class="material-symbols-outlined">add</span></button>
+            <button class="delete" id="delete-extra-button"><span
                 class="material-symbols-outlined">delete</span></button>
           </div>
         </th>
@@ -338,6 +489,31 @@
   </table>
   <div><button class="hidden-add-extra"><span class="material-symbols-outlined">add</span></button></div>
   </div>
+  </div>
+
+  <div id="confirm-deletion-ext" class="modal-backdrop">
+    <div class="modal-wrapper">
+      <div class="modal">
+        <div class="modal-text">
+          <h3>Are you sure you want to delete these items?</h3>
+        </div>
+      </div>
+      <button id="confirm-button-ext">Delete</button>
+      <button id="cancel-button-ext">Cancel</button>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="none-selected-ext">
+    <div class="modal-wrapper">
+      <div class="modal">
+        <div class="modal-text">
+          <h3>Select the items you would like to delete</h3>
+        </div>
+        <div class="modal-footer">
+          <div class="close"><button class="cancel-button-ext">Cancel</button></div>
+        </div>
+      </div>
+    </div>
   </div>
 
 
