@@ -17,37 +17,54 @@
   <div class="home"><a href="current-trips.html">Back</a></div>
 
   <div class="destination-wrapper">
-    <div class="input-wrapper"><input type="text" placeholder="Destination" id="destination">
-      <div class="blinking-cursor"></div>
-    </div>
+    <input type="text" placeholder="Destination" id="destination">
   </div>
 
 
-  <h2>Travel Dates:</h2>
+
+
+  <div class="travel-dates">
+    <h3>Travel Dates:</h3>
+    <div class="date-wrapper"><input type="date" class="date"></div>
+    <div>to</div>
+    <div class="date-wrapper"><input type="date" class=" date"></div>
+  </div>
+
+
 
   <div class="budget-overview">
     <div class="overview-row overview-header">
       <div class="overview-item">
-        <h3>Budget:</h3>
+        <h2>Budget</h2>
       </div>
       <div class="overview-item">
-        <h3>Total Spent:</h3>
+        <h2>Total Spent</h2>
       </div>
       <div class="overview-item">
-        <h3>Total Remaining:</h3>
+        <h2>Total Remaining</h2>
       </div>
     </div>
     <div class="overview-row">
-      <div class="overview-item"><input type="text" id="budget-input" class="budget-input-class"></div>
-      <div class="overview-item" id="grand-total"></div>
-      <div class="overview-item" id="total-remaining"></div>
+      <div class="overview-item">
+        <h2 class="hidden-budget-titles">Budget:</h2><input type="text" id="budget-input" placeholder="0.00">
+      </div>
+      <div class="overview-item">
+        <h2 class="hidden-budget-titles">Total Spent:</h2>
+        <div id="grand-total">0.00</div>
+      </div>
+      <div class="overview-item">
+        <h2 class="hidden-budget-titles">Total Remaining:</h2>
+        <div id="total-remaining">0.00</div>
+      </div>
     </div>
   </div>
 
 
 
-  <button onclick="toggleCalculator()" id="calculator-open-button" class="calculator-open-button"><span
-      class="material-symbols-outlined">currency_exchange</span></button>
+  <button onclick="toggleCalculator()" id="calculator-open-button" class="calculator-open-button">
+    <span class="material-symbols-outlined">currency_exchange</span>
+  </button>
+  <div id="tooltip" class="tooltip">Currency Converter</div>
 
   <div id="calculator" class="calculator">
     <div class="calculator-header">
@@ -65,6 +82,7 @@
       <p id="result" class="result-class"></p>
     </div>
   </div>
+
 
   <div class="table-container">
     <h2>Accommodation</h2>
@@ -93,8 +111,8 @@
                   class="material-symbols-outlined">delete</span></button>
             </div>
           </td>
-          <td><input type="text" placeholder="Enter name of stay"></td>
-          <td><input type="text" placeholder="Select Date"></td>
+          <td><input type="text" placeholder="Enter name of stay" class="table-inputs"></td>
+          <td><input type="text" placeholder="Select Date" class="table-inputs"></td>
           <td><input type="text" class="rate" placeholder="$ / Night"></td>
           <td><input type="text" class="nights" placeholder="# of Nights"></td>
           <td><input type="text" class="cost" placeholder="$" disabled></td>
@@ -149,7 +167,6 @@
     </div>
   </div>
 
-  <!-- Confirm Deletion Modal for Hidden Delete -->
   <div id="confirm-deletion-modal-hidden" class="modal-backdrop">
     <div class="modal-wrapper">
       <div class="modal">
@@ -161,8 +178,6 @@
       </div>
     </div>
   </div>
-
-
 
   <!-- Transport -->
 
@@ -189,11 +204,11 @@
             <div><button class="hidden-delete-transport"><span class="material-symbols-outlined">delete</span></button>
             </div>
           </td>
-          <td class="t-cell"><input type="text" placeholder="Type of Transport"></td>
-          <td class="t-cell"><input type="text" placeholder="Departure"></td>
-          <td class="t-cell"><input type="text" placeholder="Arrival"></td>
-          <td class="t-cell"><input type="date"></td>
-          <td class="t-cell"><input type="text" class="transport-cost" placeholder="$"></td>
+          <td class="t-cell"><input type="text" placeholder="Type of Transport" class="table-inputs"></td>
+          <td class="t-cell"><input type="text" placeholder="Departure" class="table-inputs"></td>
+          <td class="t-cell"><input type="text" placeholder="Arrival" class="table-inputs"></td>
+          <td class="t-cell"><input type="date" class="table-inputs"></td>
+          <td class="t-cell"><input type="text" class="transport-cost" placeholder="$" class="table-inputs"></td>
         </tr>
       </tbody>
       <tfoot>
@@ -258,7 +273,7 @@
                   class="material-symbols-outlined">delete</span></button>
             </div>
           </td>
-          <td class="f-cell"><input type="text" placeholder="Enter name of item"></td>
+          <td class="f-cell"><input type="text" placeholder="Enter name of item" class="table-inputs"></td>
           <td class="f-cell"><select class="select-food" name="Type"><span
                 class="material-symbols-outlined">delete</span>
               <option value="Select">Select</option>
@@ -271,7 +286,7 @@
               <option value="Groceries">Night Out</option>
             </select>
           </td>
-          <td class="f-cell"><input type="date" name="date" id="daterangepicker"></td>
+          <td class="f-cell"><input type="date" class="table-inputs"></td>
           <td class="f-cell"><input type="text" placeholder="$" class="food-cost"></td>
         </tr>
       </tbody>
@@ -337,8 +352,8 @@
                   class="material-symbols-outlined">delete</span></button>
             </div>
           </td>
-          <td class="act-cell"><input type="text" placeholder="Enter name of activity"></td>
-          <td class="act-cell"> <input type="date"></td>
+          <td class="act-cell"><input type="text" placeholder="Enter name of activity" class="table-inputs"></td>
+          <td class="act-cell"> <input type="date" class="table-inputs"></td>
           <td class="act-cell"><input type="text" class="activity-cost" placeholder="$"></td>
         </tr>
       </tbody>
@@ -405,8 +420,8 @@
                   class="material-symbols-outlined">delete</span></button>
             </div>
           </td>
-          <td class="shop-cell"><input type="text" placeholder="Enter name of item"></td>
-          <td class="shop-cell"><input type="date" name="date"></td>
+          <td class="shop-cell"><input type="text" placeholder="Enter name of item" class="table-inputs"></td>
+          <td class="shop-cell"><input type="date" name="date" class="table-inputs"></td>
           <td class="shop-cell"><input type="text" class="shopping-cost" placeholder="$"></td>
         </tr>
       </tbody>
@@ -473,8 +488,8 @@
                   class="material-symbols-outlined">delete</span></button>
             </div>
           </td>
-          <td class="ext-cell"><input type="text" placeholder="Enter name of item"></td>
-          <td class="ext-cell"><input type="date"></td>
+          <td class="ext-cell"><input type="text" placeholder="Enter name of item" class="table-inputs"></td>
+          <td class="ext-cell"><input type="date" class="table-inputs"></td>
           <td class="ext-cell"><input type="text" class="extra-cost" placeholder="$"></td>
         </tr>
       </tbody>
@@ -496,10 +511,12 @@
       <div class="modal">
         <div class="modal-text">
           <h3>Are you sure you want to delete these items?</h3>
+          <div class=".close">
+            <button id="confirm-button-ext">Delete</button>
+            <button id="cancel-button-ext">Cancel</button>
+          </div>
         </div>
       </div>
-      <button id="confirm-button-ext">Delete</button>
-      <button id="cancel-button-ext">Cancel</button>
     </div>
   </div>
 

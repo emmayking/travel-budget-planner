@@ -227,6 +227,8 @@ document
   .getElementById("convertButton")
   .addEventListener("click", convertCurrency);
 
+// Date Range Picker
+
 // Budget Overview
 
 function calculateGrandTotal() {
