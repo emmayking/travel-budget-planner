@@ -1028,3 +1028,48 @@ document.addEventListener("DOMContentLoaded", function () {
     input.addEventListener("input", updateTotalExtraCost);
   });
 });
+
+// Save to Local Storage
+
+document
+  .querySelector('button[type="submit"]')
+  .addEventListener("click", saveTrip);
+
+function saveTrip(event) {
+  event.preventDefault();
+
+  const destination = document.getElementById("destination").value;
+  const travelDates = document.querySelectorAll(
+    ".travel-dates .date-wrapper input"
+  );
+  const startDate = travelDates[0].value;
+  const endDate = travelDates[1].value;
+  const budget = parseFloat(document.getElementById("budget-input").value);
+  const accommodation = parseFloat(
+    document.getElementById("total-accommodation").value
+  );
+  const transportation = parseFloat(
+    document.getElementById("total-transport").value
+  );
+  const food = parseFloat(document.getElementById("total-food").value);
+  const activities = parseFloat(
+    document.getElementById("total-activities").value
+  );
+
+  const trip = {
+    destination,
+    startDate,
+    endDate,
+    budget,
+    accommodation,
+    transportation,
+    food,
+    activities,
+  };
+
+  let trips = JSON.parse(localStorage.getItem("trips")) || [];
+
+  trips.push(trip);
+
+  localStorage.setItem("trips", JSON.stringify(trips));
+}
