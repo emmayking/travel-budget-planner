@@ -47,15 +47,15 @@
     </div>
     <div class="overview-row">
       <div class="overview-item">
-        <h2 class="hidden-budget-titles">Budget:</h2><input type="text" id="budget-input" placeholder="0.00">
+        <h2 class="hidden-budget-titles">Budget:</h2><input type="number" id="budget-input" placeholder="0.00">
       </div>
       <div class="overview-item">
         <h2 class="hidden-budget-titles">Total Spent:</h2>
-        <div id="grand-total">0.00</div>
+        <input type="number" id="grand-total" placeholder="0.00" disabled>
       </div>
       <div class="overview-item">
         <h2 class="hidden-budget-titles">Total Remaining:</h2>
-        <div id="total-remaining">0.00</div>
+        <input type="number" id="total-remaining" placeholder="0.00" disabled>
       </div>
     </div>
   </div>
@@ -91,10 +91,13 @@
       <thead>
         <tr>
           <th class="button-header">
-            <div class="add-delete-wrapper"><button id="add-accommodation-button" class="add"><span
-                  class="material-symbols-outlined">add</span></button>
-              <button id="delete-accommodation-button" class="delete"><span
-                  class="material-symbols-outlined">delete</span></button>
+            <div class="add-delete-wrapper">
+              <button id="add-accommodation-button" class="add">
+                <span class="material-symbols-outlined">add</span>
+              </button>
+              <button id="delete-accommodation-button" class="delete">
+                <span class="material-symbols-outlined">delete</span>
+              </button>
             </div>
           </th>
           <th>Accommodation</th>
@@ -107,26 +110,33 @@
       <tbody id="accommodationTableBody">
         <tr>
           <td class="first-column">
-            <input type="checkbox" acc class="row-selector">
-            <div class="hidden-delete-wrapper"><button class="hidden-delete-accommodation"><span
-                  class="material-symbols-outlined">delete</span></button>
+            <input type="checkbox" class="row-selector">
+            <div class="hidden-delete-wrapper">
+              <button class="hidden-delete-accommodation">
+                <span class="material-symbols-outlined">delete</span>
+              </button>
             </div>
           </td>
           <td><input type="text" placeholder="Enter name of stay" class="table-inputs"></td>
           <td><input type="text" placeholder="Select Date" class="table-inputs"></td>
-          <td><input type="text" class="rate" placeholder="$ / Night"></td>
-          <td><input type="text" class="nights" placeholder="# of Nights"></td>
-          <td><input type="text" class="cost" placeholder="$" disabled></td>
+          <td><input type="number" class="rate" placeholder="$ / Night"></td>
+          <td><input type="number" class="nights" placeholder="# of Nights"></td>
+          <td><input type="number" class="cost" placeholder="$" readonly></td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
           <th>Total</th>
-          <th class="total-cost" colspan="5" id="total-accommodation">0</th>
+          <th colspan="5">
+            <input type="number" class="total-cost" id="total-accommodation" readonly placeholder="0.00">
+          </th>
         </tr>
       </tfoot>
     </table>
-    <div><button id="hidden-add-accommodation"><span class="material-symbols-outlined">add</span></button>
+    <div>
+      <button id="hidden-add-accommodation">
+        <span class="material-symbols-outlined">add</span>
+      </button>
     </div>
   </div>
 
@@ -155,30 +165,6 @@
     </div>
   </div>
 
-  <div class="modal-backdrop" id="none-selected-modal">
-    <div class="modal-wrapper">
-      <div class="modal">
-        <div class="modal-text">
-          <h3>Select the items you would like to delete</h3>
-        </div>
-        <div class="modal-footer">
-          <div class="close"><button class="cancel-button">Cancel</button></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="confirm-deletion-modal-hidden" class="modal-backdrop">
-    <div class="modal-wrapper">
-      <div class="modal">
-        <div class="modal-text">Are you sure you want to delete this accommodation row?</div>
-        <div class="modal-footer">
-          <button id="confirm-delete-hidden" class="confirm-button">Yes</button>
-          <button id="cancel-delete-hidden" class="cancel-button">No</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Transport -->
 
@@ -209,13 +195,13 @@
           <td class="t-cell"><input type="text" placeholder="Departure" class="table-inputs"></td>
           <td class="t-cell"><input type="text" placeholder="Arrival" class="table-inputs"></td>
           <td class="t-cell"><input type="date" class="table-inputs"></td>
-          <td class="t-cell"><input type="text" class="transport-cost" placeholder="$" class="table-inputs"></td>
+          <td class="t-cell"><input type="number" class="transport-cost" placeholder="$" class="table-inputs"></td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
           <th>Total</th>
-          <th class="total-cost" id="total-transport" colspan="5">0</th>
+          <th colspan="5"><input type="number" class="total-cost" id="total-transport" placeholder="0.00" readonly></th>
         </tr>
       </tfoot>
     </table>
@@ -255,28 +241,29 @@
     <h2>Food & Drink</h2>
     <table>
       <thead>
-        <th class="button-header">
-          <div class="add-delete-wrapper">
-            <button class="add" id="add-food-button"><span class="material-symbols-outlined">add</span></button>
-            <button class="delete" id="delete-food-button"><span
-                class="material-symbols-outlined">delete</span></button>
-          </div>
-        </th>
-        <th>Purchase</th>
-        <th>Type</th>
-        <th>Date</th>
-        <th>Cost</th>
+        <tr>
+          <th class="button-header">
+            <div class="add-delete-wrapper">
+              <button class="add" id="add-food-button"><span class="material-symbols-outlined">add</span></button>
+              <button class="delete" id="delete-food-button"><span
+                  class="material-symbols-outlined">delete</span></button>
+            </div>
+          </th>
+          <th>Purchase</th>
+          <th>Type</th>
+          <th>Date</th>
+          <th>Cost</th>
+        </tr>
       </thead>
       <tbody id="foodTableBody">
         <tr>
           <td class="first-column"><input type="checkbox" class="row-selector">
             <div class="hidden-delete-wrapper"><button class="hidden-delete-food"><span
-                  class="material-symbols-outlined">delete</span></button>
-            </div>
+                  class="material-symbols-outlined">delete</span></button></div>
           </td>
           <td class="f-cell"><input type="text" placeholder="Enter name of item" class="table-inputs"></td>
-          <td class="f-cell"><select class="select-food" name="Type"><span
-                class="material-symbols-outlined">delete</span>
+          <td class="f-cell">
+            <select class="select-food" name="Type">
               <option value="Select">Select</option>
               <option value="Breakfast">Breakfast</option>
               <option value="Lunch">Lunch</option>
@@ -288,19 +275,17 @@
             </select>
           </td>
           <td class="f-cell"><input type="date" class="table-inputs"></td>
-          <td class="f-cell"><input type="text" placeholder="$" class="food-cost"></td>
+          <td class="f-cell"><input type="number" placeholder="$" class="food-cost"></td>
         </tr>
       </tbody>
-  </div>
-  <tfoot>
-    <tr>
-      <th>Total</th>
-      <th class="total-cost" id="total-food" colspan="4">0</th>
-    </tr>
-  </tfoot>
-  </table>
-  <div><button class="hidden-add-food"><span class="material-symbols-outlined">add</span></button></div>
-  </div>
+      <tfoot>
+        <tr>
+          <th>Total</th>
+          <th colspan="4"><input type="number" class="total-cost" id="total-food" placeholder="0.00" readonly></th>
+        </tr>
+      </tfoot>
+    </table>
+    <div><button class="hidden-add-food"><span class="material-symbols-outlined">add</span></button></div>
   </div>
 
   <div id="confirm-deletion-food" class="modal-backdrop">
@@ -335,41 +320,40 @@
     <h2>Activities</h2>
     <table>
       <thead>
-        <th class="button-header">
-          <div class="add-delete-wrapper">
-            <button class="add" id="add-activity-button"><span class="material-symbols-outlined">add</span></button>
-            <button class="delete" id="delete-activity-button"><span
-                class="material-symbols-outlined">delete</span></button>
-          </div>
-        </th>
-        <th>Activity</th>
-        <th>Date</th>
-        <th>Cost</th>
+        <tr>
+          <th class="button-header">
+            <div class="add-delete-wrapper">
+              <button class="add" id="add-activity-button"><span class="material-symbols-outlined">add</span></button>
+              <button class="delete" id="delete-activity-button"><span
+                  class="material-symbols-outlined">delete</span></button>
+            </div>
+          </th>
+          <th>Activity</th>
+          <th>Date</th>
+          <th>Cost</th>
+        </tr>
       </thead>
       <tbody id="activitiesTableBody">
         <tr>
-          <td class="first-column"><input type="checkbox" class="row-selector">
-            <div class="hidden-delete-wrapper"><button class="hidden-delete-food"><span
-                  class="material-symbols-outlined">delete</span></button>
-            </div>
+          <td class="first-column">
+            <input type="checkbox" class="row-selector">
+            <div class="hidden-delete-wrapper"><button class="hidden-delete-activities"><span
+                  class="material-symbols-outlined">delete</span></button></div>
           </td>
           <td class="act-cell"><input type="text" placeholder="Enter name of activity" class="table-inputs"></td>
-          <td class="act-cell"> <input type="date" class="table-inputs"></td>
-          <td class="act-cell"><input type="text" class="activity-cost" placeholder="$"></td>
+          <td class="act-cell"><input type="date" class="table-inputs"></td>
+          <td class="act-cell"><input type="number" class="activity-cost" placeholder="$"></td>
         </tr>
       </tbody>
-  </div>
-  <tfoot>
-    <tr>
-      <th>Total</th>
-      <div>
-        <th class="total-cost" id="total-activities" colspan="4">0</th>
-      </div>
-    </tr>
-  </tfoot>
-  </table>
-  <div><button class="hidden-add-activities"><span class="material-symbols-outlined">add</span></button></div>
-  </div>
+      <tfoot>
+        <tr>
+          <th>Total</th>
+          <th colspan="3"><input type="number" class="total-cost" id="total-activities" placeholder="0.00" readonly>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+    <div><button class="hidden-add-activities"><span class="material-symbols-outlined">add</span></button></div>
   </div>
 
   <div id="confirm-deletion-act" class="modal-backdrop">
@@ -397,47 +381,47 @@
     </div>
   </div>
 
+
+
   <!-- Shopping -->
 
   <div class="table-container">
     <h2>Shopping</h2>
     <table>
       <thead>
-        <th class="button-header">
-          <div class="add-delete-wrapper">
-            <button class="add" id="add-shopping-button"><span class="material-symbols-outlined">add</span></button>
-            <button class="delete" id="delete-shopping-button"><span
-                class="material-symbols-outlined">delete</span></button>
-          </div>
-        </th>
-        <th>Purchase</th>
-        <th>Date</th>
-        <th>Cost</th>
+        <tr>
+          <th class="button-header">
+            <div class="add-delete-wrapper">
+              <button class="add" id="add-shopping-button"><span class="material-symbols-outlined">add</span></button>
+              <button class="delete" id="delete-shopping-button"><span
+                  class="material-symbols-outlined">delete</span></button>
+            </div>
+          </th>
+          <th>Purchase</th>
+          <th>Date</th>
+          <th>Cost</th>
+        </tr>
       </thead>
       <tbody id="shoppingTableBody">
         <tr>
-          <td class="first-column"><input type="checkbox" class="row-selector">
+          <td class="first-column">
+            <input type="checkbox" class="row-selector">
             <div class="hidden-delete-wrapper"><button class="hidden-delete-shopping"><span
-                  class="material-symbols-outlined">delete</span></button>
-            </div>
+                  class="material-symbols-outlined">delete</span></button></div>
           </td>
           <td class="shop-cell"><input type="text" placeholder="Enter name of item" class="table-inputs"></td>
           <td class="shop-cell"><input type="date" name="date" class="table-inputs"></td>
-          <td class="shop-cell"><input type="text" class="shopping-cost" placeholder="$"></td>
+          <td class="shop-cell"><input type="number" class="shopping-cost" placeholder="$"></td>
         </tr>
       </tbody>
-  </div>
-  <tfoot>
-    <tr>
-      <th>Total</th>
-      <div>
-        <th class="total-cost" id="total-shopping" colspan="4">0</th>
-      </div>
-    </tr>
-  </tfoot>
-  </table>
-  <div><button class="hidden-add-shopping"><span class="material-symbols-outlined">add</span></button></div>
-  </div>
+      <tfoot>
+        <tr>
+          <th>Total</th>
+          <th colspan="3"><input type="number" class="total-cost" id="total-shopping" placeholder="0.00" readonly></th>
+        </tr>
+      </tfoot>
+    </table>
+    <div><button class="hidden-add-shopping"><span class="material-symbols-outlined">add</span></button></div>
   </div>
 
   <div id="confirm-deletion-shop" class="modal-backdrop">
@@ -465,46 +449,46 @@
     </div>
   </div>
 
+
   <!-- Extra Expenses -->
 
   <div class="extra-table-container">
     <h2>Extra Expenses</h2>
     <table>
       <thead>
-        <th class="button-header">
-          <div class="add-delete-wrapper">
-            <button class="add" id="add-extra-button"><span class="material-symbols-outlined">add</span></button>
-            <button class="delete" id="delete-extra-button"><span
-                class="material-symbols-outlined">delete</span></button>
-          </div>
-        </th>
-        <th>Purchase</th>
-        <th>Date</th>
-        <th>Cost</th>
+        <tr>
+          <th class="button-header">
+            <div class="add-delete-wrapper">
+              <button class="add" id="add-extra-button"><span class="material-symbols-outlined">add</span></button>
+              <button class="delete" id="delete-extra-button"><span
+                  class="material-symbols-outlined">delete</span></button>
+            </div>
+          </th>
+          <th>Purchase</th>
+          <th>Date</th>
+          <th>Cost</th>
+        </tr>
       </thead>
       <tbody id="extraTableBody">
         <tr>
-          <td class="first-column"><input type="checkbox" class="row-selector">
+          <td class="first-column">
+            <input type="checkbox" class="row-selector">
             <div class="hidden-delete-wrapper"><button class="hidden-delete-extra"><span
-                  class="material-symbols-outlined">delete</span></button>
-            </div>
+                  class="material-symbols-outlined">delete</span></button></div>
           </td>
           <td class="ext-cell"><input type="text" placeholder="Enter name of item" class="table-inputs"></td>
           <td class="ext-cell"><input type="date" class="table-inputs"></td>
-          <td class="ext-cell"><input type="text" class="extra-cost" placeholder="$"></td>
+          <td class="ext-cell"><input type="number" class="extra-cost" placeholder="$"></td>
         </tr>
       </tbody>
-  </div>
-  <tfoot>
-    <tr>
-      <th>Total</th>
-      <th class="total-cost" id="total-extra" colspan="4">0</th>
-      </div>
-    </tr>
-  </tfoot>
-  </table>
-  <div><button class="hidden-add-extra"><span class="material-symbols-outlined">add</span></button></div>
-  </div>
+      <tfoot>
+        <tr>
+          <th>Total</th>
+          <th colspan="3"><input type="number" class="total-cost" id="total-extra" placeholder="0.00" readonly></th>
+        </tr>
+      </tfoot>
+    </table>
+    <div><button class="hidden-add-extra"><span class="material-symbols-outlined">add</span></button></div>
   </div>
 
   <div id="confirm-deletion-ext" class="modal-backdrop">
@@ -512,10 +496,10 @@
       <div class="modal">
         <div class="modal-text">
           <h3>Are you sure you want to delete these items?</h3>
-          <div class=".close">
-            <button id="confirm-button-ext">Delete</button>
-            <button id="cancel-button-ext">Cancel</button>
-          </div>
+        </div>
+        <div class="close">
+          <button id="confirm-button-ext">Delete</button>
+          <button id="cancel-button-ext">Cancel</button>
         </div>
       </div>
     </div>
@@ -533,6 +517,7 @@
       </div>
     </div>
   </div>
+
   </form>
 
   <script src="api-key.js"></script>

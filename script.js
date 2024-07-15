@@ -231,199 +231,205 @@ document
 
 // Budget Overview
 
-function calculateGrandTotal() {
-  const totalAccommodation = document.getElementById("total-accommodation");
-  const totalTransport = document.getElementById("total-transport");
-  const totalFood = document.getElementById("total-food");
-  const totalActivities = document.getElementById("total-activities");
-  const totalShopping = document.getElementById("total-shopping");
-  const totalExtra = document.getElementById("total-extra");
-
-  const accommodationValue = parseFloat(totalAccommodation.innerText) || 0;
-  const transportValue = parseFloat(totalTransport.innerText) || 0;
-  const foodValue = parseFloat(totalFood.innerText) || 0;
-  const activitiesValue = parseFloat(totalActivities.innerText) || 0;
-  const shoppingValue = parseFloat(totalShopping.innerText) || 0;
-  const extraValue = parseFloat(totalExtra.innerText) || 0;
-
-  const grandTotal =
-    accommodationValue +
-    transportValue +
-    foodValue +
-    activitiesValue +
-    shoppingValue +
-    extraValue;
-
-  const totalUsed = document.getElementById("grand-total");
-  if (totalUsed) {
-    totalUsed.innerText = grandTotal.toFixed(2);
-  }
-
+document.addEventListener("DOMContentLoaded", (event) => {
+  // Get references to the necessary elements
   const budgetInput = document.getElementById("budget-input");
-  const budgetValue = parseFloat(budgetInput.value) || 0;
+  const totalRemainingInput = document.getElementById("total-remaining");
+  const grandTotalInput = document.getElementById("grand-total");
 
-  const totalRemaining = budgetValue - grandTotal;
+  const totalAccommodationInput = document.getElementById(
+    "total-accommodation"
+  );
+  const totalTransportInput = document.getElementById("total-transport");
+  const totalFoodInput = document.getElementById("total-food");
+  const totalActivitiesInput = document.getElementById("total-activities");
+  const totalShoppingInput = document.getElementById("total-shopping");
+  const totalExtraInput = document.getElementById("total-extra");
 
-  const remainingField = document.getElementById("total-remaining");
-  if (remainingField) {
-    remainingField.innerText = totalRemaining.toFixed(2);
+  // Function to calculate the total cost for each section
+  function calculateSectionTotal(sectionClass) {
+    const costs = document.querySelectorAll(`.${sectionClass}`);
+    let total = 0;
+    costs.forEach((cost) => {
+      total += parseFloat(cost.value) || 0;
+    });
+    return total;
   }
-  return grandTotal;
-}
 
-function budgetCalculation() {
-  const spendingCategories = [
-    "total-accommodation",
-    "total-transport",
-    "total-food",
-    "total-activities",
-    "total-shopping",
-    "total-extra",
-    "budget-input",
-  ];
+  // Function to calculate and update the grand total and total remaining
+  function calculateTotals() {
+    const accommodationTotal = calculateSectionTotal("cost");
+    totalAccommodationInput.value = accommodationTotal.toFixed(2);
 
-  spendingCategories.forEach((id) => {
-    const category = document.getElementById(id);
-    if (category) {
-      if (category.tagName === "INPUT") {
-        category.addEventListener("input", calculateGrandTotal);
-      } else {
-        const observer = new MutationObserver(calculateGrandTotal);
-        observer.observe(category, { childList: true, characterData: true });
-      }
-    }
+    const transportTotal = calculateSectionTotal("transport-cost");
+    totalTransportInput.value = transportTotal.toFixed(2);
+
+    const foodTotal = calculateSectionTotal("food-cost");
+    totalFoodInput.value = foodTotal.toFixed(2);
+
+    const activitiesTotal = calculateSectionTotal("activity-cost");
+    totalActivitiesInput.value = activitiesTotal.toFixed(2);
+
+    const shoppingTotal = calculateSectionTotal("shopping-cost");
+    totalShoppingInput.value = shoppingTotal.toFixed(2);
+
+    const extraTotal = calculateSectionTotal("extra-cost");
+    totalExtraInput.value = extraTotal.toFixed(2);
+
+    const grandTotal =
+      accommodationTotal +
+      transportTotal +
+      foodTotal +
+      activitiesTotal +
+      shoppingTotal +
+      extraTotal;
+    grandTotalInput.value = grandTotal.toFixed(2);
+
+    const budget = parseFloat(budgetInput.value) || 0;
+    const totalRemaining = budget - grandTotal;
+    totalRemainingInput.value = totalRemaining.toFixed(2);
+  }
+
+  // Add event listeners to update totals when values change
+  const inputs = document.querySelectorAll('input[type="number"]');
+  inputs.forEach((input) => {
+    input.addEventListener("input", calculateTotals);
   });
-}
 
-document.addEventListener("DOMContentLoaded", budgetCalculation);
+  // Calculate totals on initial load
+  calculateTotals();
+});
 
 // Accommodation
 
-document
-  .getElementById("add-accommodation-button")
-  .addEventListener("click", addAccommodationRow);
-document
-  .getElementById("hidden-add-accommodation")
-  .addEventListener("click", addAccommodationRow);
+document.addEventListener("DOMContentLoaded", function () {
+  document
+    .getElementById("add-accommodation-button")
+    .addEventListener("click", addAccommodationRow);
+  document
+    .getElementById("hidden-add-accommodation")
+    .addEventListener("click", addAccommodationRow);
 
-document
-  .getElementById("delete-accommodation-button")
-  .addEventListener("click", function () {
+  document
+    .getElementById("delete-accommodation-button")
+    .addEventListener("click", function () {
+      const tableBodyAcc = document.getElementById("accommodationTableBody");
+      const rows = tableBodyAcc.querySelectorAll("tr");
+      let checkedRows = [];
+
+      rows.forEach((row) => {
+        const checkbox = row.querySelector(".row-selector");
+        if (checkbox && checkbox.checked) {
+          checkedRows.push(row);
+        }
+      });
+
+      if (checkedRows.length === 0) {
+        const modal = document.getElementById("none-selected-modal");
+        modal.style.display = "flex";
+      } else if (checkedRows.length === 1) {
+        checkedRows[0].remove();
+        updateTotalAccCost();
+      } else {
+        const confirmModal = document.getElementById("confirm-deletion-modal");
+        confirmModal.style.display = "flex";
+      }
+    });
+
+  var confirmModal = document.getElementById("confirm-deletion-modal");
+
+  document.getElementById("confirm-button").onclick = function () {
     const tableBodyAcc = document.getElementById("accommodationTableBody");
     const rows = tableBodyAcc.querySelectorAll("tr");
-    let checkedRows = [];
 
     rows.forEach((row) => {
       const checkbox = row.querySelector(".row-selector");
       if (checkbox && checkbox.checked) {
-        checkedRows.push(row);
+        row.remove();
       }
     });
 
-    if (checkedRows.length === 0) {
-      const modal = document.getElementById("none-selected-modal");
-      modal.style.display = "flex";
-    } else if (checkedRows.length === 1) {
-      checkedRows[0].remove();
-      updateTotalAccCost();
-    } else {
-      const confirmModal = document.getElementById("confirm-deletion-modal");
-      confirmModal.style.display = "flex";
-    }
-  });
+    confirmModal.style.display = "none";
+    updateTotalAccCost();
+  };
 
-var confirmModal = document.getElementById("confirm-deletion-modal");
-
-document.getElementById("confirm-button").onclick = function () {
-  const tableBodyAcc = document.getElementById("accommodationTableBody");
-  const rows = tableBodyAcc.querySelectorAll("tr");
-
-  rows.forEach((row) => {
-    const checkbox = row.querySelector(".row-selector");
-    if (checkbox && checkbox.checked) {
-      row.remove();
-    }
-  });
-
-  confirmModal.style.display = "none";
-  updateTotalAccCost();
-};
-
-document.getElementById("cancel-button").onclick =
-  function confirmDeleteModal() {
+  document.getElementById("cancel-button").onclick = function () {
     confirmModal.style.display = "none";
   };
 
-window.onclick = function (event) {
-  if (event.target.classList.contains("modal-backdrop")) {
-    event.target.style.display = "none";
-  }
-};
-
-document.querySelectorAll(".close").forEach((span) => {
-  span.onclick = function () {
-    span.closest(".modal-backdrop").style.display = "none";
-  };
-});
-
-document
-  .getElementById("accommodationTableBody")
-  .addEventListener("input", function (e) {
-    if (
-      e.target.classList.contains("rate") ||
-      e.target.classList.contains("nights")
-    ) {
-      const row = e.target.closest("tr");
-      const rate = parseFloat(row.querySelector(".rate").value) || 0;
-      const nights = parseFloat(row.querySelector(".nights").value) || 0;
-      const costInput = row.querySelector(".cost");
-      costInput.value = (rate * nights).toFixed(2);
-      updateTotalAccCost();
+  window.onclick = function (event) {
+    if (event.target.classList.contains("modal-backdrop")) {
+      event.target.style.display = "none";
     }
+  };
+
+  document.querySelectorAll(".close").forEach((span) => {
+    span.onclick = function () {
+      span.closest(".modal-backdrop").style.display = "none";
+    };
   });
 
-function addAccommodationRow() {
-  const newAccRow = document.createElement("tr");
-  newAccRow.innerHTML = `
-    <td class="first-column">
-      <input type="checkbox" class="row-selector">
-      <div class="hidden-delete-wrapper">
-        <button class="hidden-delete-accommodation"><span class="material-symbols-outlined">delete</span></button>
-      </div>
-    </td>
-    <td><input type="text" placeholder="Enter name of stay"></td>
-    <td><input type="text" placeholder="Select Date"></td>
-    <td><input type="text" class="rate" placeholder="$ / Night"></td>
-    <td><input type="text" class="nights" placeholder="# of Nights"></td>
-    <td><input type="text" class="cost" placeholder="$" disabled></td>
-  `;
-  document.getElementById("accommodationTableBody").appendChild(newAccRow);
-  updateTotalAccCost();
-
-  newAccRow
-    .querySelector(".hidden-delete-accommodation")
-    .addEventListener("click", function () {
-      newAccRow.remove();
-      updateTotalAccCost();
+  document
+    .getElementById("accommodationTableBody")
+    .addEventListener("input", function (e) {
+      if (
+        e.target.classList.contains("rate") ||
+        e.target.classList.contains("nights")
+      ) {
+        const row = e.target.closest("tr");
+        const rate = parseFloat(row.querySelector(".rate").value) || 0;
+        const nights = parseFloat(row.querySelector(".nights").value) || 0;
+        const costInput = row.querySelector(".cost");
+        costInput.value = (rate * nights).toFixed(2);
+        updateTotalAccCost();
+      }
     });
-}
 
-function updateTotalAccCost() {
-  const costs = document.querySelectorAll(".cost");
-  let totalAccCost = 0;
-  costs.forEach((costInput) => {
-    totalAccCost += parseFloat(costInput.value) || 0;
-  });
-  document.getElementById("total-accommodation").textContent =
-    totalAccCost.toFixed(2);
-}
-
-document.querySelectorAll(".hidden-delete-accommodation").forEach((button) => {
-  button.addEventListener("click", function () {
-    const row = button.closest("tr");
-    row.remove();
+  function addAccommodationRow() {
+    const newAccRow = document.createElement("tr");
+    newAccRow.innerHTML = `
+      <td class="first-column">
+        <input type="checkbox" class="row-selector">
+        <div class="hidden-delete-wrapper">
+          <button class="hidden-delete-accommodation"><span class="material-symbols-outlined">delete</span></button>
+        </div>
+      </td>
+      <td><input type="text" placeholder="Enter name of stay"></td>
+      <td><input type="text" placeholder="Select Date"></td>
+      <td><input type="number" class="rate" placeholder="$ / Night"></td>
+      <td><input type="number" class="nights" placeholder="# of Nights"></td>
+      <td><input type="number" class="cost" placeholder="$" disabled></td>
+    `;
+    document.getElementById("accommodationTableBody").appendChild(newAccRow);
     updateTotalAccCost();
-  });
+
+    newAccRow
+      .querySelector(".hidden-delete-accommodation")
+      .addEventListener("click", function () {
+        newAccRow.remove();
+        updateTotalAccCost();
+      });
+  }
+
+  function updateTotalAccCost() {
+    const costs = document.querySelectorAll(".cost");
+    let totalAccCost = 0;
+    costs.forEach((costInput) => {
+      totalAccCost += parseFloat(costInput.value) || 0;
+    });
+    document.getElementById("total-accommodation").value =
+      totalAccCost.toFixed(2);
+  }
+
+  document
+    .querySelectorAll(".hidden-delete-accommodation")
+    .forEach((button) => {
+      button.addEventListener("click", function () {
+        const row = button.closest("tr");
+        row.remove();
+        updateTotalAccCost();
+      });
+    });
 });
 
 // Transport
@@ -506,7 +512,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <td class="t-cell"><input type="text" placeholder="Departure"></td>
       <td class="t-cell"><input type="text" placeholder="Arrival"></td>
       <td class="t-cell"><input type="date"></td>
-      <td class="t-cell"><input type="text" class="transport-cost" placeholder="$"></td>
+      <td class="t-cell"><input type="number" class="transport-cost" placeholder="$"></td>
     `;
     document.getElementById("transportTableBody").appendChild(newTranRow);
     updateTotalTranCost();
@@ -528,8 +534,7 @@ document.addEventListener("DOMContentLoaded", function () {
     costs.forEach((costInput) => {
       totalTranCost += parseFloat(costInput.value) || 0;
     });
-    document.getElementById("total-transport").textContent =
-      totalTranCost.toFixed(2);
+    document.getElementById("total-transport").value = totalTranCost.toFixed(2);
   }
 
   document.querySelectorAll(".hidden-delete-transport").forEach((button) => {
@@ -636,7 +641,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </select>
       </td>
       <td class="f-cell"><input type="date" name="date"></td>
-      <td class="f-cell"><input type="text" placeholder="$" class="food-cost"></td>
+      <td class="f-cell"><input type="number" placeholder="$" class="food-cost"></td>
     `;
     document.getElementById("foodTableBody").appendChild(newFoodRow);
     updateTotalFoodCost();
@@ -658,8 +663,7 @@ document.addEventListener("DOMContentLoaded", function () {
     costs.forEach((costInput) => {
       totalFoodCost += parseFloat(costInput.value) || 0;
     });
-    document.getElementById("total-food").textContent =
-      totalFoodCost.toFixed(2);
+    document.getElementById("total-food").value = totalFoodCost.toFixed(2);
   }
 
   document.querySelectorAll(".hidden-delete-food").forEach((button) => {
@@ -685,6 +689,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document
     .querySelector(".hidden-add-activities")
     .addEventListener("click", addActivityRow);
+
   document
     .getElementById("delete-activity-button")
     .addEventListener("click", function () {
@@ -749,11 +754,11 @@ document.addEventListener("DOMContentLoaded", function () {
     newActRow.innerHTML = `
       <td class="first-column">
         <input type="checkbox" class="row-selector">
-        <div class="hidden-delete-wrapper"><button class="hidden-delete-food"><span class="material-symbols-outlined">delete</span></button></div>
+        <div class="hidden-delete-wrapper"><button class="hidden-delete-activity"><span class="material-symbols-outlined">delete</span></button></div>
       </td>
       <td class="act-cell"><input type="text" placeholder="Enter name of activity"></td>
       <td class="act-cell"><input type="date"></td>
-      <td class="act-cell"><input type="text" class="activity-cost" placeholder="$"></td>
+      <td class="act-cell"><input type="number" class="activity-cost" placeholder="$"></td>
     `;
     document.getElementById("activitiesTableBody").appendChild(newActRow);
     updateTotalActCost();
@@ -762,7 +767,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .querySelector(".activity-cost")
       .addEventListener("input", updateTotalActCost);
     newActRow
-      .querySelector(".hidden-delete-food")
+      .querySelector(".hidden-delete-activity")
       .addEventListener("click", function () {
         newActRow.remove();
         updateTotalActCost();
@@ -775,11 +780,10 @@ document.addEventListener("DOMContentLoaded", function () {
     costs.forEach((costInput) => {
       totalActCost += parseFloat(costInput.value) || 0;
     });
-    document.getElementById("total-activities").textContent =
-      totalActCost.toFixed(2);
+    document.getElementById("total-activities").value = totalActCost.toFixed(2);
   }
 
-  document.querySelectorAll(".hidden-delete-food").forEach((button) => {
+  document.querySelectorAll(".hidden-delete-activity").forEach((button) => {
     button.addEventListener("click", function () {
       const row = button.closest("tr");
       row.remove();
@@ -871,7 +875,7 @@ document.addEventListener("DOMContentLoaded", function () {
       </td>
       <td class="shop-cell"><input type="text" placeholder="Enter name of item"></td>
       <td class="shop-cell"><input type="date" name="date"></td>
-      <td class="shop-cell"><input type="text" class="shopping-cost" placeholder="$"></td>
+      <td class="shop-cell"><input type="number" class="shopping-cost" placeholder="$"></td>
     `;
     document.getElementById("shoppingTableBody").appendChild(newShopRow);
     updateTotalShopCost();
@@ -893,8 +897,7 @@ document.addEventListener("DOMContentLoaded", function () {
     costs.forEach((costInput) => {
       totalShopCost += parseFloat(costInput.value) || 0;
     });
-    document.getElementById("total-shopping").textContent =
-      totalShopCost.toFixed(2);
+    document.getElementById("total-shopping").value = totalShopCost.toFixed(2);
   }
 
   document.querySelectorAll(".hidden-delete-shopping").forEach((button) => {
@@ -989,7 +992,7 @@ document.addEventListener("DOMContentLoaded", function () {
       </td>
       <td class="ext-cell"><input type="text" placeholder="Enter name of item"></td>
       <td class="ext-cell"><input type="date"></td>
-      <td class="ext-cell"><input type="text" class="extra-cost" placeholder="$"></td>
+      <td class="ext-cell"><input type="number" class="extra-cost" placeholder="$"></td>
     `;
     document.getElementById("extraTableBody").appendChild(newExtRow);
     updateTotalExtraCost();
@@ -1011,8 +1014,7 @@ document.addEventListener("DOMContentLoaded", function () {
     costs.forEach((costInput) => {
       totalExtraCost += parseFloat(costInput.value) || 0;
     });
-    document.getElementById("total-extra").textContent =
-      totalExtraCost.toFixed(2);
+    document.getElementById("total-extra").value = totalExtraCost.toFixed(2);
   }
 
   document.querySelectorAll(".hidden-delete-extra").forEach((button) => {

@@ -336,11 +336,12 @@ h3 {
   text-align: center;
   font-size: 25px;
   padding: 0;
-  width: 100px;
+  width: 130px;
   border-radius: 3.5px;
   color: #71a36a;
   font-weight: 500;
   display: inline;
+  background-color: #fffdfd;
 }
 
 #grand-total {
@@ -348,11 +349,12 @@ h3 {
   text-align: center;
   font-size: 25px;
   padding: 0;
-  width: 100px;
+  width: 130px;
   border-radius: 3.5px;
   color: #cf5c5c;
   font-weight: 500;
   display: inline;
+  background-color: #fff;
 }
 
 #budget-input {
