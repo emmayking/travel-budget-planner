@@ -10,7 +10,6 @@
     href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=Urbanist:ital,wght@0,100;1,100&display=swap"
     rel="stylesheet" />
 
-  <div class="home"><a href="index.html">Back</a></div>
 
   <title>Spendid Travel</title>
 </head>
@@ -18,9 +17,69 @@
 <body>
 
 
+
+
   <h1>Your Past Trips ✈︎</h1>
 
-  <div class="new"><a href="new-trip-html">New +</a></div>
+  <div id="tripsContainer"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', displayTrips);
+
+    function displayTrips() {
+      const tripsContainer = document.getElementById('tripsContainer');
+      const trips = JSON.parse(localStorage.getItem('trips')) || [];
+
+      if (trips.length === 0) {
+        tripsContainer.innerHTML = '<p>No previous trips found.</p>';
+        return;
+      }
+
+      trips.forEach(trip => {
+        const tripDiv = document.createElement('div');
+        tripDiv.className = 'trip';
+        tripDiv.innerHTML = `
+                    <h2>Destination: ${trip.destination}</h2>
+                      <h3>Travel Dates: ${trip.startDate} ${trip.endDate}</h3>
+                      <h3>Budget: $${trip.budget}</h3>
+                     <table>
+    <tr>
+      <th>Accommodation</th>
+      <td>$${trip.accommodation}</td>
+    </tr>
+    <tr>
+      <th>Transportation</th>
+      <td>$${trip.transportation}</td>
+    </tr>
+    <tr>
+      <th>Food & Drink</th>
+      <td>$${trip.food}</td>
+    </tr>
+    <tr>
+      <th>Activities</th>
+      <td>$${trip.activities}</td>
+    </tr>
+    <tr>
+      <th>Shopping</th>
+      <td>$${trip.shopping}</td>
+    </tr>
+    <tr>
+      <th>Extra Expenses</th>
+      <td>$${trip.extra}</td>
+    </tr>
+
+
+
+  </table> `;
+        tripsContainer.appendChild(tripDiv);
+      });
+    }
+
+  </script>
+
+
+
+
 </body>
 
 </html>
